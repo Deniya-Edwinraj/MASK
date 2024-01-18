@@ -14,6 +14,7 @@ mongoose.connect(mongoString)
 const database = mongoose.connection
 import userRoutes from './routes/userRoutes.js';
 import productRouter from './routes/api/productRoute.js';
+import orderRouter from './routes/api/orderRoute.js';
 
 app.use (morgan("dev"));
 app.use(express.json());
@@ -26,7 +27,7 @@ app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
 app.use('/api/product', productRouter);
-
+app.use('/api/order',orderRouter);
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();

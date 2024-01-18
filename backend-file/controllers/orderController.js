@@ -1,143 +1,123 @@
-const Order = require('../models/orderModel.js');
-const Product = require('../models/productModel.js');
-
-const ErrorHandler = require('../utils/errorHandler');
-const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-const sendEmail = require('../utils/sendEmail');
-const User = require('../models/user');
+import asyncHandler from 'express-async-handler';
+import Order from '../models/orderModel.js';
+import Product from '../models/productModel.js';
 
 
-// Create a new order => /api/v1/order/new
-exports.newOrder = catchAsyncErrors( async (req, res, next) => {
-    const user = await User.findById(req.user.id);
-    
+//Create New Order - api/order/new
+const newOrder =  asyncHandler( async (req, res, next) => {
     const {
-        productName,
+        orderItems,
+        deliveryInfo,
         itemsPrice,
+        deliveryCharge,
         totalPrice,
         paymentInfo
     } = req.body;
 
     const order = await Order.create({
-        productName,
+        orderItems,
+        deliveryInfo,
         itemsPrice,
+        deliveryCharge,
         totalPrice,
         paymentInfo,
         paidAt: Date.now(),
-        user: req.user._id
+        user: req.user.id
     })
-    try {
-
 
     res.status(200).json({
         success: true,
-        order,
-        message: `Email sent to: ${user.email}`
+        order
     })
-    } 
-    catch (error) {
-    
-    return next(new ErrorHandler(error.message, 500))
-    }
-})
+});
 
-//Get single order  =>   /api/v1/order/:id
-exports.getSingleOrder = catchAsyncErrors( async(req, res, next) => {
-    const order = await Order.findById(req.params.id).populate('user', 'name email')
-
+//Get Single Order - api/order/:id
+const getSingleOrder = asyncHandler(async (req, res, next) => {
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
     if(!order) {
-        return next(new ErrorHandler('No Order found with this Id',404))
+        return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404))
     }
 
     res.status(200).json({
         success: true,
         order
     })
-})
-//Get logged in users order  =>   /api/v1/orders/me
-exports.myOrders = catchAsyncErrors( async(req, res, next) => {
-    const orders = await Order.find({ user: req.user.id })
+});
 
+//Get Loggedin User Orders - /api/order/
+const myOrders = asyncHandler(async (req, res, next) => {
+    const orders = await Order.find({user: req.user.id});
 
     res.status(200).json({
         success: true,
         orders
     })
-})
+});
 
+//Admin: Get All Orders - api/order/orders
+const orders = asyncHandler(async (req, res, next) => {
+    const orders = await Order.find();
 
+    let totalAmount = 0;
 
-//Get all orders - ADMIN  =>   /api/v1/admon/orders/
-// exports.allOrders = catchAsyncErrors( async(req, res, next) => {
-//     const orders = await Order.find()
+    orders.forEach(order => {
+        totalAmount += order.totalPrice
+    })
 
-//     let totalAmount = 0;
+    res.status(200).json({
+        success: true,
+        totalAmount,
+        orders
+    })
+});
 
-//     orders.forEach(order => {
-//         totalAmount += order.totalPrice
-//     })
+//Admin: Update Order / Order Status - api/v1/order/:id
+const updateOrder =  asyncHandler(async (req, res, next) => {
+    const order = await Order.findById(req.params.id);
 
+    if(order.orderStatus == 'Delivered') {
+        return next(new ErrorHandler('Order has been already delivered!', 400))
+    }
+    //Updating the product stock of each order item
+    order.orderItems.forEach(async orderItem => {
+        await updateStock(orderItem.product, orderItem.quantity)
+    })
 
-//     res.status(200).json({
-//         success: true,
-//         totalAmount,
-//         orders
-//     })
-// })
+    order.orderStatus = req.body.orderStatus;
+    order.deliveredAt = Date.now();
+    await order.save();
 
-
-// Update / Process order - ADMIN  =>   /api/v1/admin/order/:id
-// exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
-//     const order = await Order.findById(req.params.id)
-//     //mail
-//     const user = await User.findById(req.user.id);
-
-//     if (order.orderStatus === 'Delivered') {
-//         return next(new ErrorHandler('You have already delivered this order', 400))
-//     }
- 
-
-//     // order.orderItems.forEach(async item => {
-//     //     await updateStock(item.product, item.quantity)
-//     // })
-
-//     order.orderStatus = req.body.status,
-//         order.deliveredAt = Date.now()
-
-//     await order.save()
-
-//     //mail
-//     const message = `Your Order is delivered, you will get soon.`
-//     try {
-
-//         await sendEmail({
-//             email: order.user.email,
-//             subject: 'Vannam - your order is ready',
-//             message
-//         })
-
-//     res.status(200).json({
-//         success: true,
-//         message: `Email sent to: ${order.user.email}`
-//     })
-// } catch (error) {
+    res.status(200).json({
+        success: true
+    })
     
-//     return next(new ErrorHandler(error.message, 500))
-//     }
-// })
+});
+
+async function updateStock (productId, quantity){
+    const product = await Product.findById(productId);
+    product.stock = product.stock - quantity;
+    product.save({validateBeforeSave: false})
+};
+
+// Admin: Delete Order - api/v1/order/:id
+const deleteOrder = asyncHandler(async (req, res, next) => {
+    const order = await Order.findById(req.params.id);
+    if(!order) {
+        return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404))
+    }
+
+    await order.remove();
+    res.status(200).json({
+        success: true
+    })
+});
 
 
-// Delete order  =>   /api/v1/admin/order/:id
-// exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
-//     const order = await Order.findById(req.params.id)
-
-//     if (!order) {
-//         return next(new ErrorHandler('No Order found with this ID', 404))
-//     }
-
-//     await order.remove()
-
-//     res.status(200).json({
-//         success: true
-//     })
-// })
+export { 
+    newOrder,
+    getSingleOrder,
+    myOrders,
+    orders,
+    updateOrder,
+    deleteOrder,
+  };

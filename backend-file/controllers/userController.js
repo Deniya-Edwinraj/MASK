@@ -13,11 +13,7 @@ const authUser =asyncHandler(async (req, res) => {
     if (user && (await user.matchPassword(password))) {
         generateToken(res, user._id);
     
-        res.json({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-        });
+        res.json(`Login Sucessfully`);
       } else {
         res.status(401);
         throw new Error('Invalid email or password');
@@ -46,11 +42,7 @@ const registerUser =asyncHandler(async (req, res) => {
     if (user) {
         generateToken(res, user._id);
     
-        res.status(201).json({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-        });
+        res.status(201).json(`Registered sucessfully`);
       } else {
         res.status(400);
         throw new Error('Invalid user data');
@@ -66,7 +58,7 @@ const logoutUser =asyncHandler(async (req, res) => {
         expires: new Date(0),
       });
 
-    res.status(200).json({message: 'User logged out'});
+    res.status(200).json(`User logged out`);
 });
 
 // @desc    get user profile
@@ -100,11 +92,7 @@ const updateUserProfile =asyncHandler(async (req, res) => {
   
       const updatedUser = await user.save();
   
-      res.status(200).json({
-        _id: updatedUser._id,
-        name: updatedUser.name,
-        email: updatedUser.email,
-      });
+      res.status(200).json(`Update sucessfully`);
     } else {
       res.status(404);
       throw new Error('User not found');
@@ -142,6 +130,31 @@ const getaUser = asyncHandler(async (req, res) => {
 });
 
 
+// @desc    delete a single user
+// route    Delete/api/users/
+// @access Public
+const deleteaUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteaUser = await User.findByIdAndDelete(id);
+    res.json({
+      deleteaUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// const deleteaUser = asyncHandler(async (req, res) => {
+//   const id = req.params.id;
+//   try {
+//     const deleteUser = await Product.findByIdAndDelete(id);
+//     res.json(`Delete sucessfully`);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
+
 export{
     authUser,
     registerUser,
@@ -150,4 +163,5 @@ export{
     updateUserProfile,
     getallUser,
     getaUser,
+    deleteaUser,
 };

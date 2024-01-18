@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
 import slugify from 'slugify';
+import { JSONCookie } from 'cookie-parser';
 
 // create new product
 const createProduct = asyncHandler(async (req, res) => {
@@ -57,40 +58,55 @@ const getaProduct = asyncHandler(async (req, res) => {
 
 const getAllProduct = asyncHandler(async (req, res) => {
   try {
+    // Filtering
     const queryObj = { ...req.query };
     const excludeFields = ["page", "sort", "limit", "fields"];
     excludeFields.forEach((el) => delete queryObj[el]);
-
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
+    let query = Product.find(JSON.parse(queryStr));
 
-    const { category, sort } = req.query;
+    // Sorting
 
-    let query = {};
-
-    if (category) {
-      query.category = category;
-    }
-
-    let products;
-
-    if (sort) {
-      const sortOptions = {};
-      sortOptions.quantity = sort === 'asc' ? 1 : -1;
-
-      products = await Product.find(query).sort(sortOptions).exec();
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      query = query.sort(sortBy);
     } else {
-      products = await Product.find(query).exec();
+      query = query.sort("-createdAt");
     }
 
-    res.json(products);
+    // limiting the fields
+
+    if (req.query.fields) {
+      const fields = req.query.fields.split(",").join(" ");
+      query = query.select(fields);
+    } else {
+      query = query.select("-__v");
+    }
+
+    // pagination
+
+    const page = req.query.page;
+    const limit = req.query.limit;
+    const skip = (page - 1) * limit;
+    query = query.skip(skip).limit(limit);
+    if (req.query.page) {
+      const productCount = await Product.countDocuments();
+      // if (skip >= productCount) throw new Error("This Page does not exists");
+      if (skip >= productCount) {
+        throw new Error("This Page does not exist");
+      }
+    }
+    
+    const product = await query;
+    res.json(product);
+
   } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+     console.error('Error fetching products:', error);
+     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 
 
