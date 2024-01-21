@@ -6,6 +6,7 @@ dotenv.config();
 import cookieParser from 'cookie-parser';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import morgan from 'morgan';
+import nodemailer from 'nodemailer';
 // import connectDB from '../config/db.js';
 const port = process.env.PORT || 5000;
 const mongoString = process.env.MONGO_URI
@@ -55,3 +56,12 @@ database.once('connected' , ()=>{
     console.log('Database Connected')
 })
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'deniyaedwinraj@gmail.com',
+      pass: 'ed0329ed'
+  }
+});
+
+export default transporter;

@@ -27,7 +27,6 @@ const newOrder =  asyncHandler( async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        order
     })
 });
 
@@ -55,33 +54,89 @@ const myOrders = asyncHandler(async (req, res, next) => {
 });
 
 //Admin: Get All Orders - api/order/orders
-const orders = asyncHandler(async (req, res, next) => {
-    const orders = await Order.find();
+// const orders = asyncHandler(async (req, res, next) => {
+//     const orders = await Order.find();
 
-    let totalAmount = 0;
+//     let totalAmount = 0;
 
-    orders.forEach(order => {
-        totalAmount += order.totalPrice
-    })
+//     orders.forEach(order => {
+//         totalAmount += order.totalPrice
+//     })
 
-    res.status(200).json({
+//     res.status(200).json({
+//         success: true,
+//         totalAmount,
+//         orders
+//     })
+// });
+
+// Controller to get all orders
+const getAllOrders = async (req, res) => {
+    try {
+      const orders = await Order.find().populate('user').populate('orderItems.product');
+  
+      let totalAmount = 0;
+  
+      orders.forEach(order => {
+        totalAmount += order.totalPrice;
+      });
+  
+      res.status(200).json({
         success: true,
         totalAmount,
         orders
-    })
-});
+      });
+    } catch (error) {
+      console.error(error);
+  
+      res.status(500).json({
+        success: false,
+        message: 'Internal Server Error'
+      });
+    }
+  };
+     
+
 
 //Admin: Update Order / Order Status - api/v1/order/:id
-const updateOrder =  asyncHandler(async (req, res, next) => {
+// const updateOrder =  asyncHandler(async (req, res, next) => {
+//     const order = await Order.findById(req.params.id);
+
+//     if(order.orderStatus == 'Delivered') {
+//         return next(new ErrorHandler('Order has been already delivered!', 400))
+//     }
+//     //Updating the product stock of each order item
+//     order.orderItems.forEach(async orderItem => {
+//         await updateStock(orderItem.product, orderItem.quantity)
+//     })
+
+//     order.orderStatus = req.body.orderStatus;
+//     order.deliveredAt = Date.now();
+//     await order.save();
+
+//     res.status(200).json({
+//         success: true
+//     })
+    
+// });
+
+// async function updateStock (productId, quantity){
+//     const product = await Product.findById(productId);
+//     product.stock = product.stock - quantity;
+//     product.save({validateBeforeSave: false})
+// };
+
+const updateOrder = asyncHandler(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
 
-    if(order.orderStatus == 'Delivered') {
-        return next(new ErrorHandler('Order has been already delivered!', 400))
+    if (order.orderStatus === 'Delivered') {
+        return next(new ErrorHandler('Order has already been delivered!', 400));
     }
-    //Updating the product stock of each order item
-    order.orderItems.forEach(async orderItem => {
-        await updateStock(orderItem.product, orderItem.quantity)
-    })
+
+    // Updating the product stock of each order item using a for...of loop
+    for (const orderItem of order.orderItems) {
+        await updateStock(orderItem.product, orderItem.quantity);
+    }
 
     order.orderStatus = req.body.orderStatus;
     order.deliveredAt = Date.now();
@@ -89,15 +144,15 @@ const updateOrder =  asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
         success: true
-    })
-    
+    });
 });
 
-async function updateStock (productId, quantity){
+async function updateStock(productId, quantity) {
     const product = await Product.findById(productId);
     product.stock = product.stock - quantity;
-    product.save({validateBeforeSave: false})
-};
+    await product.save({ validateBeforeSave: false });
+}
+
 
 // Admin: Delete Order - api/v1/order/:id
 const deleteOrder = asyncHandler(async (req, res, next) => {
@@ -117,7 +172,7 @@ export {
     newOrder,
     getSingleOrder,
     myOrders,
-    orders,
+    getAllOrders,
     updateOrder,
     deleteOrder,
   };

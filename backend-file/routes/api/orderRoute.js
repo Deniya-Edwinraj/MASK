@@ -3,7 +3,7 @@ import {
     newOrder,
     getSingleOrder, 
     myOrders, 
-    orders, 
+    getAllOrders, 
     updateOrder, 
     deleteOrder, 
 } from '../../controllers/orderController.js';
@@ -16,7 +16,7 @@ router.get('/:id',protect,getSingleOrder);
 router.get('/',protect,myOrders);
 
 //Admin Routes
-router.get('./orders',protect,isAdmin,orders);
+router.get('./orders',protect,isAdmin,getAllOrders);
 router.put('./:id',protect,isAdmin,updateOrder);
 router.delete('./:id',protect,isAdmin,deleteOrder);
 

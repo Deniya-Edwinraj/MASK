@@ -1,24 +1,109 @@
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
-import User from '../models/userModel.js'
+import User from '../models/userModel.js';
+import nodemailer from 'nodemailer';
 
 // @desc     Auth user/set token
 // route    POST /api/users/auth
 // @access Public 
-const authUser =asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+// const authUser =asyncHandler(async (req, res) => {
+//     const { email, password } = req.body;
 
-    if (user && (await user.matchPassword(password))) {
-        generateToken(res, user._id);
+//     const user = await User.findOne({ email });
+
+//     if (user && (await user.matchPassword(password))) {
+//         generateToken(res, user._id);
     
-        res.json(`Login Sucessfully`);
-      } else {
-        res.status(401);
-        throw new Error('Invalid email or password');
-      }
+//         res.json(`Login Sucessfully`);
+//       } else {
+//         res.status(401);
+//         throw new Error('Invalid email or password');
+//       }
+// });
+
+// const authUser = asyncHandler(async (req, res) => {
+//   const { email, password } = req.body;
+
+//   const user = await User.findOne({ email });
+
+//   if (user && (await user.matchPassword(password))) {
+//       generateToken(res, user._id);
+
+//       // Send alert email to user
+//       await sendAlertEmail(user.email);
+
+//       res.json(`Login Successfully`);
+//   } else {
+//       res.status(401);
+//       throw new Error('Invalid email or password');
+//   }
+//   var transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: process.env.GMAIL,
+//       pass: process.env.PASS
+//     }
+//   });
+//   var mailOptions = {
+//     from : 'deniyaedwinraj@gmail.com',
+//     to : email ,
+//     subject : 'Welcome to the MASK',
+//     html : `
+//     <h5>You have successfully logged in. If this was not you, please contact support.<h5/>
+//     `
+//   };
+//   transporter.sendMail(mailOptions, function(error, info){
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log('id sent: ' + info.response);
+//     }
+//   });
+// });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'deniyaedwinraj@gmail.com',
+      pass: 'ed0329ed'
+  }
 });
+
+async function sendAlertEmail(userEmail) {
+  const mailOptions = {
+      from: 'deniyaedwinraj@gmail.com',
+      to: userEmail,
+      subject: 'Welcome to the MASK',
+      text: 'You have successfully logged in. If this was not you, please contact support.'
+  };
+
+  try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Alert email sent successfully:', info.response);
+  } catch (error) {
+      console.error('Error sending alert email:', error.message);
+  }
+}
+
+const authUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+      generateToken(res, user._id);
+
+      // Send alert email to user
+      await sendAlertEmail(user.email);
+
+      res.json(`Login Successfully`);
+  } else {
+      res.status(401);
+      throw new Error('Invalid email or password');
+  }
+};
+
+
 
 // @desc    register a user
 // route    POST /api/users
