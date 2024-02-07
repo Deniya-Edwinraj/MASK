@@ -16,8 +16,8 @@ router.get('/:id',protect,getSingleOrder);
 router.get('/',protect,myOrders);
 
 //Admin Routes
-router.get('./orders',protect,isAdmin,getAllOrders);
-router.put('./:id',protect,isAdmin,updateOrder);
-router.delete('./:id',protect,isAdmin,deleteOrder);
+router.get('/orders',protect,isAdmin,getAllOrders);
+router.put('/:id',protect,isAdmin,updateOrder);
+router.delete('/:id',protect,isAdmin,deleteOrder);
 
 export default router;

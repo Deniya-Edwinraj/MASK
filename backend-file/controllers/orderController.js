@@ -25,9 +25,7 @@ const newOrder =  asyncHandler( async (req, res, next) => {
         user: req.user.id
     })
 
-    res.status(200).json({
-        success: true,
-    })
+    res.status(200).json(`Order created succesfully`)
 });
 
 //Get Single Order - api/order/:id
@@ -50,27 +48,10 @@ const myOrders = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         success: true,
         orders
-    })
+})
 });
 
 //Admin: Get All Orders - api/order/orders
-// const orders = asyncHandler(async (req, res, next) => {
-//     const orders = await Order.find();
-
-//     let totalAmount = 0;
-
-//     orders.forEach(order => {
-//         totalAmount += order.totalPrice
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         totalAmount,
-//         orders
-//     })
-// });
-
-// Controller to get all orders
 const getAllOrders = async (req, res) => {
     try {
       const orders = await Order.find().populate('user').populate('orderItems.product');
@@ -95,37 +76,8 @@ const getAllOrders = async (req, res) => {
       });
     }
   };
-     
-
 
 //Admin: Update Order / Order Status - api/v1/order/:id
-// const updateOrder =  asyncHandler(async (req, res, next) => {
-//     const order = await Order.findById(req.params.id);
-
-//     if(order.orderStatus == 'Delivered') {
-//         return next(new ErrorHandler('Order has been already delivered!', 400))
-//     }
-//     //Updating the product stock of each order item
-//     order.orderItems.forEach(async orderItem => {
-//         await updateStock(orderItem.product, orderItem.quantity)
-//     })
-
-//     order.orderStatus = req.body.orderStatus;
-//     order.deliveredAt = Date.now();
-//     await order.save();
-
-//     res.status(200).json({
-//         success: true
-//     })
-    
-// });
-
-// async function updateStock (productId, quantity){
-//     const product = await Product.findById(productId);
-//     product.stock = product.stock - quantity;
-//     product.save({validateBeforeSave: false})
-// };
-
 const updateOrder = asyncHandler(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
 
@@ -133,7 +85,6 @@ const updateOrder = asyncHandler(async (req, res, next) => {
         return next(new ErrorHandler('Order has already been delivered!', 400));
     }
 
-    // Updating the product stock of each order item using a for...of loop
     for (const orderItem of order.orderItems) {
         await updateStock(orderItem.product, orderItem.quantity);
     }
@@ -142,9 +93,7 @@ const updateOrder = asyncHandler(async (req, res, next) => {
     order.deliveredAt = Date.now();
     await order.save();
 
-    res.status(200).json({
-        success: true
-    });
+    res.status(200).json(`Updated successfully`);
 });
 
 async function updateStock(productId, quantity) {
@@ -157,14 +106,12 @@ async function updateStock(productId, quantity) {
 // Admin: Delete Order - api/v1/order/:id
 const deleteOrder = asyncHandler(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
-    if(!order) {
-        return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404))
+    if (!order) {
+        return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404));
     }
 
-    await order.remove();
-    res.status(200).json({
-        success: true
-    })
+    await Order.deleteOne({ _id: req.params.id }); // Use deleteOne to remove the order
+    res.status(200).json(`Order deleted successfully`);
 });
 
 
