@@ -22,99 +22,62 @@
 <body>
   <div id="root">
 <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg  navbar-dark" id="navbar">
-        <div class="container-fluid">
-          <img src="./Assests/img/logo.png" width="60rem" height="20rem" class="img-fluid">
-          <a class="navbar-brand" href="#">MASK</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto " style="gap: 1rem;">
-              <li class="nav-item">
-                <a class="nav-link " href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="#contact">Contact Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="desktop-item" href="#">Services</a>
 
-                <!-- <input type="checkbox" id="showMega">
-          <label for="showMega" class="mobile-item">Mega Menu</label>
-          <div class="mega-box">
-            <div class="content">
-              <div class="row">
-                <img src="img.jpg" alt="">
-              </div>
-              <div class="row">
-                <header>Design Services</header>
-                <ul class="mega-links">
-                  <li><a href="#">Graphics</a></li>
-                  <li><a href="#">Vectors</a></li>
-                  <li><a href="#">Business cards</a></li>
-                  <li><a href="#">Custom logo</a></li>
-                </ul>
-              </div>
-              <div class="row">
-                <header>Email Services</header>
-                <ul class="mega-links">
-                  <li><a href="#">Personal Email</a></li>
-                  <li><a href="#">Business Email</a></li>
-                  <li><a href="#">Mobile Email</a></li>
-                  <li><a href="#">Web Marketing</a></li>
-                </ul>
-              </div>
-              <div class="row">
-                <header>Security services</header>
-                <ul class="mega-links">
-                  <li><a href="#">Site Seal</a></li>
-                  <li><a href="#">VPS Hosting</a></li>
-                  <li><a href="#">Privacy Seal</a></li>
-                  <li><a href="#">Website design</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li> -->
-              
+    <nav className="navbar navbar-expand-lg  navbar-dark" id="navbar">
+        <div className="container-fluid">
+          <img src="./Assests/img/logo.png" width="60rem" height="20rem" className="img-fluid">
+          <a className="navbar-brand" href="#">MASK</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mx-auto " style="gap: 1rem;">
+              <li className="nav-item">
+                <a className="nav-link " href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link " href="#about">About</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link " href="#contact">Contact Us</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Services</a>
+              </li>
               
             </ul>
-            <button class="btn p-2 my-lg-0 my-2" id="getStartedBtn"><img src="Assests/img/login.png" height="20px" width="20px"> Get Start</button>
+            <button className="btn p-2 my-lg-0 my-2" id="getStartedBtn"><img src="Assests/img/login.png" height="20px" width="20px"> Get Started</button>
           </div>
         </div>
       </nav>
 <!-- End Navbar -->
 
 <!-- Home -->
-      <section class="home">
+      <section className="home">
 
-        <div class="content">
-            <h1 class="h1"> MASK</h1>
-            <p class="description">We are Provide Best Decorative Ornaments <span> & </span> Function Decoration According To Your Preferance.</p>
+        <div className="content">
+            <h1 className="h1"> MASK</h1>
+            <p className="description">We are Provide Best Decorative Ornaments <span> & </span> Function Decoration According To Your Preferance.</p>
         </div>
 
-        <div class="image">
-            <img src="Assests/img/IMG_20240128_225317_911.jpg" alt="" data-speed="-3" class="move img-fluid">
+        <div className="image">
+            <img src="Assests/img/IMG_20240128_225317_911.jpg" alt="" data-speed="-3" className="move img-fluid">
         </div>
       </section>
 <!-- End Home -->
 
 <!-- About -->
-   <section class="about" id="about">
-     <div class="main">
+   <section className="about-section" id="about">
+     <div className="main">
       <img src="./Assests/img/collage (1).jpg" height="50%" width="50%">
      </div>
-     <div class="all-text">
+     <div className="all-text">
       <h2>We Provide The Best <br>You Want</h2>
       <p><span>MASK</span> provide you with the finest paper-based decorative ornaments and functional decoration as you wish at an affordable price.</p>
       <h3>Join us for a unique experience !</h3>
      
-     <div class="btn-button">
-      <button class="btn2" id="decorativeOrnamentsBtn"><img src="./Assests/img/buynow.png" height="30px" width="30px"> Start Purchase</button>
+     <div className="btn-button">
+      <button className="btn2" id="decorativeOrnamentsBtn"><img src="./Assests/img/buynow.png" height="30px" width="30px"> Start Purchase</button>
      </div>
     </div>
 
@@ -122,94 +85,63 @@
 <!-- About End -->
 
 <!-- Contact Form -->
-<section id="contact">
-<div class="contact">
-  <div class="container-contact">
-    <div class="footer-inner">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="map">
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.351503962989!2d77.407055815083!3d28.649192082411254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf0244f674129%3A0xeae70e3d20c464e8!2s227%2C+Sector+12%2C+Block+J%2C+Pratap+Vihar%2C+Ghaziabad%2C+Uttar+Pradesh+201009!5e0!3m2!1sen!2sin!4v1507363869540" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3933.394322960658!2d80.03600307598626!3d9.647307990440883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMzgnNTAuMyJOIDgwwrAwMicxOC45IkU!5e0!3m2!1sen!2slk!4v1706866217815!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="contact-text">
-          <h1>Let's Get In Touch</h1>
-            <h2><img src="./Assests/img/loc.png" height="30px" width="30px"> &nbsp; Address</h2>
-            <p>&nbsp;Valampuram, Jaffna.</p>
-            <h2><img src="./Assests/img/viber.png" height="30px" width="30px">  &nbsp; Contact Us</h2>
-            <P>&nbsp;+91 0987654321</P>
-            <h2><img src="./Assests/img/mail.png" height="30px" width="30px">  &nbsp; E-Mail</h2>
-            <P> &nbsp; deniyaedwinraj@gmail.com</P>
-          </div>
-        </div>
-      </div>
+<div className="testbox contact-section" id="contact">
+  <form action="index.html">
+    <div className="banner">
+      <iframe allowfullscreen src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3933.394322960658!2d80.03600307598626!3d9.647307990440883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMzgnNTAuMyJOIDgwwrAwMicxOC45IkU!5e0!3m2!1sen!2slk!4v1706866217815!5m2!1sen!2slk" width="100%" height="200" style="border:0;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-  </div>
-
-  <form action="index.html" autocomplete="off">
-    <h3 class="title">Contact us</h3>
-    <div class="input-container">
-      <input type="text" name="name" class="input" />
-      <label for="">Username</label>
-      <span>Username</span>
+    <div className="item">
+      <p className="item-name">Name</p>
+      <input type="text" name="name" required/>
     </div>
-    <div class="input-container">
-      <input type="email" name="email" class="input" />
-      <label for="">Email</label>
-      <span>Email</span>
+    <div className="item">
+      <p className="item-name">Email</p>
+      <input type="email" name="email" required/>
     </div>
-    <div class="input-container">
-      <input type="tel" name="phone" class="input" />
-      <label for="">Phone</label>
-      <span>Phone</span>
+    <div className="item">
+      <p className="item-name">Phone Number</p>
+      <input type="text" name="phone-no" required/>
     </div>
-    <div class="input-container textarea">
-      <textarea name="message" class="input"></textarea>
-      <label for="">Message</label>
-      <span>Message</span>
+    <div className="item">
+      <p className="item-name">Messages</p>
+      <textarea rows="4" required></textarea>
     </div>
-    <input type="submit" value="Send" class="btn3" />
+    <div className="btn-block">
+      <button className="btn4" type="submit" href="/">SEND MESSAGE</button>
+    </div>
   </form>
 </div>
-
-
-</section>
 <!-- Contact end -->  
      
-<!-- ======= Footer ======= -->
+<!---- Footer ---->
  <footer id="footer">
-  <div class="container-foot">
+  <div className="container-foot">
     <img src="Assests/img/logo.png" height="130px" width="150px">
     <h1>MASK</h1>
     <p>We are think for you !</p>
     <p>We provide you with customized decorative ornaments and functional decorations. Join Mask to have a unique experience.</p>
 
-    <div class="social-links">
-      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+    <div className="social-links">
+      <a href="#" className="twitter"><i className="bx bxl-twitter"></i></a>
+      <a href="#" className="facebook"><i className="bx bxl-facebook"></i></a>
+      <a href="#" className="instagram"><i className="bx bxl-instagram"></i></a>
 
-      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      <a href="#" className="linkedin"><i className="bx bxl-linkedin"></i></a>
 
     </div>
-    <div class="copyright">
+    <div className="copyright">
       &copy; Copyright <strong><span>MASK</span></strong>. All Rights Reserved.
     </div>
-    <div class="credits">
+    <div className="credits">
       
     </div>
   </div>
 </footer>
+
 <!-- End Footer -->
    <script src="script.js"></script>
    <script src="./Assests/bootstrap/js/bootstrap.min.js"></script>
-   </div>
+
+  </div>
 </body>
 </html>
-
-
-
-
-

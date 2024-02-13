@@ -16,7 +16,7 @@ function Header () {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto" style={{ gap: "1rem" }}>
               <li class="nav-item">
-                <a class="nav-link " href="#123">Home</a>
+                <a class="nav-link " href="index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="#about">About</a>
@@ -33,7 +33,7 @@ function Header () {
             
              <button class="btn-login p-2 my-lg-0 my-2" id="getStartedBtn">
              <Link to="/login">
-              <img src={require("./Assests/img/login.png")} alt="Login" style={{ height: '20px', width: '20px' }} /> Get Started
+              <img src={require("./Assests/img/login.png")} alt="Login" style={{ height: '17px', width: '17px' }} /> Get Started
               </Link>
              </button>
 

@@ -17,6 +17,8 @@ import userRoutes from './routes/userRoutes.js';
 import productRouter from './routes/api/productRoute.js';
 import orderRouter from './routes/api/orderRoute.js';
 import contactRouter from './routes/api/contactRoute.js';
+import bookingRouter from './routes/api/bookingRoute.js';
+import addToCartRouter from './models/addToCartModel.js';
 
 
 app.use (morgan("dev"));
@@ -32,6 +34,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/product', productRouter);
 app.use('/api/order',orderRouter);
 app.use('/api/contact',contactRouter);
+app.use('/api/booking',bookingRouter);
+app.use('/api/cart',addToCartRouter);
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();

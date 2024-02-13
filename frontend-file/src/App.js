@@ -6,9 +6,9 @@ import Header from './header';
 import Body from './Body';
 import Footer from './footer';
 import Login from './login';
-import Product from './dec-orn'; 
-import Bookingform from './bookingform';
-
+import Booking from './booking';
+import Product from './dec-orn';
+import Order from './order';
 
 function App() {
   return (
@@ -17,11 +17,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Body />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/booking" element={<Bookingform />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/booking" element={<Booking/>} />
+          <Route path='/order' element={<Order/>} />
         </Routes>
-        {/* <Body /> */}
         <Footer />
       </div>
     </Router>

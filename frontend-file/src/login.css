@@ -15,13 +15,6 @@
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(15px);
-    animation: animatebg 5s linear infinite;
-}
-
-@keyframes animatebg{
-    100%{
-        filter: hue-rotate(360deg);
-    }
 }
 
 .login-box{
@@ -105,10 +98,10 @@ top: -5px;
     text-decoration: none;
 }
 
-button{
+.btnlogin{
     width: 100%;
     height: 40px;
-    background: #fff;
+    background: #FFD700;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -117,7 +110,9 @@ button{
     color: black;
     font-weight: 500;
 }
-
+.btnlogin:hover{
+    background: #817201;
+}
 .register-link{
     font-size: .9em;
     color:#fff;
