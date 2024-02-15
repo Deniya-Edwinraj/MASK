@@ -30,8 +30,8 @@ const orderSchema = mongoose.Schema({
             required: true
         },
         image: {
-            type: String,
-            required: true
+            public_id: String,
+        secure_url: String,
         },
         price: {
             type: Number,
@@ -87,6 +87,16 @@ const orderSchema = mongoose.Schema({
 },
 { timestamps: true }
 );
+
+orderSchema.pre("remove", function (next) {
+    // Delete the images from Cloudinary when an order is removed
+    this.orderItems.forEach((item) => {
+      item.images.forEach((image) => {
+        cloudinary.uploader.destroy(image.public_id);
+      });
+    });
+    next();
+  });
 
 const orderModel = mongoose.model('Order', orderSchema);
 

@@ -19,8 +19,10 @@ import orderRouter from './routes/api/orderRoute.js';
 import contactRouter from './routes/api/contactRoute.js';
 import bookingRouter from './routes/api/bookingRoute.js';
 import addToCartRouter from './models/addToCartModel.js';
+import cors from 'cors';
 
 
+app.use(cors());
 app.use (morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extented: true}));

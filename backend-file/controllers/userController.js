@@ -3,6 +3,7 @@ import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import nodemailer from 'nodemailer';
 
+
 // @desc     Auth user/set token
 // route    POST /api/users/auth
 // @access Public 
@@ -61,6 +62,9 @@ import nodemailer from 'nodemailer';
 //     }
 //   });
 // });
+
+
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

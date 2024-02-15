@@ -19,6 +19,7 @@ const bookingSchema= mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         required: true,
         ref: 'User'
+      
     },
     bookings: [{
         function_type: {
@@ -38,45 +39,10 @@ const bookingSchema= mongoose.Schema({
             require: true
         }
     }],
-    advancedPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    deliveryCharge: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    paymentInfo: {
-        id: {
-            type: String,
-            required: true
-        },
-        status: {
-            type: String,
-            required: true
-        }
-    },
-    paidAt: {
-        type: Date
-    },
-    deliveredAt: {
-        type: Date
-    },
     bookingStatus: {
         type: String,
-        required: true,
+        // required: true,
         default: 'Processing'
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
 },
     { timestamps: true }

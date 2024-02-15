@@ -1,17 +1,104 @@
+// import { useState, useEffect } from 'react';
+// import './dec-orn.css';
+// import { Link } from 'react-router-dom';
+
+// function Product () {
+//   const [products, setProducts] = useState([]);
+
+//   useEffect(() => {
+//     fetch('http://localhost:5000/api/product/')
+//       .then((response) => response.json())
+//       .then(data => setProducts(data.products))
+//       .catch(error => console.error('Error fetching products:', error));
+//     }, []);
+
+
+//     return (
+//       <div className="Product">
+
+// {/* <!-- About --> */}
+// <section className="about-product" id="about">
+//   <div className="main-product">
+//     <img src={require("./Assests/img/dec hero.jpg")} alt='hero'/>
+//   </div>
+//   <div className="all-text-product">
+//     <h2>Are You Looking For The <br/>Meticulous Decorations</h2>
+//    <p><span>MASK</span> provide you with the paper flower decorations for celebrations like
+//     <ul>
+//       <li>Birthday Party</li>
+//       <li>Wedding</li>
+//       <li>Family get-together</li>
+//       <li>Reuions</li>
+//     </ul>
+//   </p>
+//    <h3>Join us for a unique experience !</h3>
+  
+//   <div className="btn-button">
+//   <Link to="/booking">
+//    <button className="btn2"><img src={require("./Assests/img/buynow.png")} alt="icon" style={{height:'30px', width:'30px'}}/> Book Now</button>
+//    </Link>
+//   </div>
+//  </div>
+
+// </section>
+// {/* <!-- About End --> */}
+
+// {/* <!-- Products --> */}
+// <div className = "wrapper" id="products">
+//   <div className = "category-filter">
+//       <div className = "container">
+//           <div className = "title" >
+//               <h1 className='producth1'>Our Products</h1>
+//           </div>
+//           <div className = "filter-btns">
+//               <button type = "button" className = "filter-btn" id = "all">all</button>
+//               <button type = "button" className = "filter-btn" id = "Flower-Vases">Flower Vases</button>
+//               <button type = "button" className = "filter-btn" id = "Wall-Hangers">Wall Hangers</button>
+//               <button type = "button" className = "filter-btn" id = "Flower-Bouquets">Flower Bouquets</button>
+//               <button type = "button" className = "filter-btn" id = "Lantern">Lanterns</button>
+//           </div>
+//       <div className = "filter-items">
+//     {/* <!-- card 1 --> */}
+//     {products.map(product => (
+//         <div className = "filter-item all Flower-Vases">
+//           <article className="card__article">
+//             <img src={require("./Assests/img/vase1.jpg")} alt="image1" className="card__img"/>
+
+//             <div className="card__data">
+//               <h3 className="card__title">{product.name}</h3>
+//               <button className="card__button">Customize</button>
+//             </div>
+//           </article>
+//         </div>
+//  ))}
+//         </div>
+//       </div>
+//   </div>
+// </div>
+// {/* <!-- Products End --> */}
+
+//       </div>
+//     );
+//  }
+       
+// export default Product;
+
+
+
 import React from 'react';
 import './dec-orn.css';
 import { Link } from 'react-router-dom';
 
-function Product () {
+function Product() {
     return (
       <div className="Product">
 
 {/* <!-- About --> */}
-<section className="about" id="about">
-  <div className="main">
+<section className="about-product" id="about">
+  <div className="main-product">
     <img src={require("./Assests/img/dec hero.jpg")} alt='hero'/>
   </div>
-  <div className="all-text">
+  <div className="all-text-product">
     <h2>Are You Looking For The <br/>Meticulous Decorations</h2>
    <p><span>MASK</span> provide you with the paper flower decorations for celebrations like
     <ul>
@@ -55,7 +142,9 @@ function Product () {
 
             <div className="card__data">
               <h3 className="card__title">Brown Flower Vase</h3>
-              <button className="card__button">Customize</button>
+              <Link to="/customizeform">
+              <button className="card__button" >Customize</button>
+              </Link>
             </div>
           </article>
         </div>
@@ -66,7 +155,9 @@ function Product () {
 
             <div className="card__data">
               <h3 className="card__title">Stripe Vase </h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>
@@ -77,7 +168,9 @@ function Product () {
             
             <div className="card__data">
               <h3 className="card__title">Round Roll Vase</h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>
@@ -88,7 +181,9 @@ function Product () {
             
             <div className="card__data">
               <h3 className="card__title">Big Jaar Vase with quilled flowers and leaves</h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>
@@ -99,7 +194,9 @@ function Product () {
 
             <div className="card__data">
               <h3 className="card__title">Stripe vase </h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>  
@@ -110,7 +207,9 @@ function Product () {
 
             <div className="card__data">
               <h3 className="card__title">Cuboid Vase </h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>   
@@ -121,7 +220,9 @@ function Product () {
     
             <div className="card__data">
               <h3 className="card__title">Wall hanger with mirror </h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>
@@ -132,7 +233,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Dots Wall Hanger </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div> 
@@ -143,7 +246,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Stripe paper net with flowers </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>
@@ -154,7 +259,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Tree Wall Hanger </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>
@@ -165,7 +272,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Wall hanger with full of quilled paper works </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>
@@ -176,7 +285,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Authentic Wall Hanger </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>
@@ -187,7 +298,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">You can </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div> 
@@ -198,7 +311,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">You can </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div> 
@@ -209,7 +324,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">You can </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div> 
@@ -220,7 +337,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">You can </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div> 
@@ -231,7 +350,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Paper Ribbon Rose Bouquet </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>
@@ -242,7 +363,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Multicoloured Wedding Bouquet </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>       
@@ -253,7 +376,9 @@ function Product () {
     
             <div className="card__data">
               <h3 className="card__title">Multicoloured Lantern </h3>
+              <Link to="/customizeform">
               <button className="card__button">Customize</button>
+              </Link>
             </div>
           </article>
         </div>    
@@ -264,7 +389,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Multicoloured Lantern </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>  
@@ -275,7 +402,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Petal Like Lantern </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>  
@@ -286,7 +415,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Multicoloured Lantern </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>    
@@ -297,7 +428,9 @@ function Product () {
 
         <div className="card__data">
           <h3 className="card__title">Painted Lantern </h3>
+          <Link to="/customizeform">
           <button className="card__button">Customize</button>
+          </Link>
         </div>
       </article>
     </div>   
@@ -308,8 +441,8 @@ function Product () {
 </div>
 {/* <!-- Products End --> */}
 
-      </div>
-    );
- }
-       
+    </div>
+  );
+}
+
 export default Product;

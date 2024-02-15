@@ -5,25 +5,20 @@ import Booking from '../models/bookingModel.js';
 const newBooking =  asyncHandler( async (req, res, next) => {
     const {
         bookings,
-        deliveryInfo,
-        advancedPrice,
-        deliveryCharge,
-        totalPrice,
-        paymentInfo
+        deliveryInfo
     } = req.body;
-
+  console.log(req.user);
     const booking = await Booking.create({
         bookings,
         deliveryInfo,
-        advancedPrice,
-        deliveryCharge,
-        totalPrice,
-        paymentInfo,
-        paidAt: Date.now(),
         user: req.user.id
     })
-
-    res.status(200).json(`Booking created succesfully`)
+    if (booking){
+        res.status(200).json(`Booking created succesfully`)
+    } else {
+        return next(new ErrorHandler(`Unsuccessfull`))
+    }
+    
 });
 
 //Get Single Booking - api/booking/:id
@@ -50,30 +45,6 @@ const myBooking = asyncHandler(async (req, res, next) => {
 });
 
 //Admin: Get All Bookings - api/booking/bookings
-// const getAllBookings = async (req, res) => {
-//     try {
-//       const bookings = await Booking.find().populate('user').populate('bookings');
-     
-//       let totalAmount = 0;
-//       bookings.forEach((booking) => {
-//         totalAmount += booking.totalPrice;
-//       });
-  
-//       res.status(200).json({
-//         success: true,
-//         totalAmount,
-//         bookings
-//       });
-//     } catch (error) {
-//       console.error(error);
-  
-//       res.status(500).json({
-//         success: false,
-//         message: 'Internal Server Error'
-//       });
-//     }
-//   };
-
 const getAllBookings = asyncHandler(async (req, res, next) => {
   const bookings = await Booking.find();
   console.log(bookings);

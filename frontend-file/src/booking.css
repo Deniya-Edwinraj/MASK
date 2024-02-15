@@ -23,6 +23,7 @@ html, body {
     align-items: center;
     height: inherit;
     padding: 20px;
+    background-color: #000;
     }
     .bookingform{
     width: 42%;
@@ -31,7 +32,7 @@ html, body {
     background: #000;
     box-shadow: 0 0 10px 0 #FFD700; 
     }
-    .banner {
+    .banner-map {
     position: relative;
     height: 210px;
     background-image: url("./Assests/img/heroimg.jpg");      background-size: cover;
@@ -47,12 +48,12 @@ html, body {
     width: 100%;
     height: 100%;
     }
-    input, textarea, select {
+    .inputbooking, textarea, select {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
     }
-    input {
+    .inputbooking {
     width: calc(100% - 10px);
     padding: 5px;
     border-radius: 50px;
@@ -73,7 +74,7 @@ html, body {
     .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
     color: #666;
     }
-    .item input:hover, .item select:hover, .item textarea:hover {
+    .item .inputbooking:hover, .item select:hover, .item textarea:hover {
     border: 1px solid transparent;
     box-shadow: 0 0 6px 0 #FFD700;
     color: #FFD700;

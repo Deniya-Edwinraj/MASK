@@ -1,4 +1,5 @@
 import express from 'express';
+
 const router = express.Router();
 import {
     authUser,
@@ -11,7 +12,6 @@ import {
     deleteaUser,
 } from '../controllers/userController.js';
 import { isAdmin,protect } from '../middleware/authMiddlesware.js';
-
 
 router.post('/', registerUser);
 router.post('/auth', authUser);

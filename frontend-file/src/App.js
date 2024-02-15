@@ -9,6 +9,10 @@ import Login from './login';
 import Booking from './booking';
 import Product from './dec-orn';
 import Order from './order';
+import Payment from './payment';
+import Register from './register';
+// import Admin from './Admin/main';
+import Customize from './customize';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/booking" element={<Booking/>} />
           <Route path='/order' element={<Order/>} />
+          <Route path='/payment' element={<Payment/>} />
+          <Route path='/register' element={<Register/>} />
+          {/* <Route path="/dashboard" component={Admin} /> */}
+          <Route path='/customizeform' element={<Customize/>} />
         </Routes>
         <Footer />
       </div>

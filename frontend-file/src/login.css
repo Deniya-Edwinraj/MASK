@@ -34,7 +34,6 @@ h2{
     color: #fff;
     text-align: center;
 }
-
 .input-box{
     position: relative;
     width: 310px;
@@ -142,6 +141,6 @@ top: -5px;
   }
 }
 
-#registerForm {
+/* #registerForm {
     display: none;
-}
+} */

@@ -180,15 +180,20 @@
   padding-bottom: 40px;
   }
   
-  .about-section .main img{
-  width: 750px;
+  /* .about-section .main img{
+  width: 700px;
   max-width: 100%;
   height: auto;
-  }
+  } */
   
   .all-text{
   width: 800px;
   max-width: 100%;
+  background: rgba(0,0,0,0.4);
+  padding: 100px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
   }
   
   .main{
@@ -205,7 +210,7 @@
   .all-text h2{
   font-size: 50px;
   margin-bottom: 10px;
-  color: #817201;
+  color: #FFD700;
   font-weight: 800;
   }
   

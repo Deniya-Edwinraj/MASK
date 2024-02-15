@@ -1,10 +1,10 @@
 import express from 'express';
 import {
-    newCart
+    addToCart
 } from '../../controllers/addToCartController.js';
 
 const router = express.Router();
 
-router.post('/add/:productId', newCart);
+router.post('/add-to-cart', addToCart);
 
 export default router;

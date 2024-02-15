@@ -1,42 +1,45 @@
 import React from 'react';
 import './order.css';
+import { Link } from 'react-router-dom';
 
 function Order () {
     return (
       <div className="Order">
-        <div class="popup-container">
-  <div class="testbox">
+        <div className="popup-container">
+  <div className="testbox">
     <form className="orderform" action="/">
-      <div class="banner">
+      <div className="banner">
         <h1>Decorative Ornaments Ordering Form</h1>
       </div>
       
-      <div class="item">
+      <div className="item">
         <p>Order Items</p>
-        <textarea rows="4" required></textarea>
+        <textarea className='textarea' rows="4" required></textarea>
       </div>
-      <div class="item">
+      <div className="item">
         <p>Name</p>
-        <input type="text" name="name" required/>
+        <input className='inputorder' type="text" name="name" required/>
       </div>
-      <div class="item">
+      <div className="item">
         <p>Email</p>
-        <input type="email" name="email" required/>
+        <input className='inputorder' type="email" name="email" required/>
       </div>
-      <div class="item">
+      <div className="item">
         <p>Phone Number</p>
-        <input type="text" name="phone-no" required/>
+        <input className='inputorder' type="text" name="phone-no" required/>
       </div>
-      <div class="item">
+      <div className="item">
         <p>Address</p>
-        <input type="text" name="address" required/>
+        <input className='inputorder' type="text" name="address" required/>
       </div>
-      <div class="item">
+      <div className="item">
         <p>District</p>
-        <input type="text" name="district" required/>
+        <input className='inputorder' type="text" name="district" required/>
       </div>
-      <div class="btn-block">
+      <div className="btn-block">
+        <Link to="/payment">
         <button type="submit" href="/">SEND</button>
+        </Link>
       </div>
     </form>
   </div>
