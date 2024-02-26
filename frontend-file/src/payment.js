@@ -9,7 +9,7 @@ function Payment() {
                 <div className="container-payment">
                     <div className="left">
                         <h3>BILLING ADDRESS</h3>
-                        <form>
+                        <form className="payment-form">
                             <div>
                                 <label htmlFor="name">Full name</label>
                                 <input type="text" name="name" placeholder="Enter name" />
@@ -75,7 +75,7 @@ function Payment() {
                                         <input type="number" name="cvv" placeholder="CVV" />
                                     </label>
                                 </div>
-                            <Link to="/">
+                            <Link to="/product">
                             <input type="submit" name="" value="Proceed to Checkout" />
                             </Link>
                         </form>

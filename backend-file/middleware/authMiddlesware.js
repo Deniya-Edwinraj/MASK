@@ -26,16 +26,35 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 // admin role
+// const isAdmin = asyncHandler(async (req, res, next) => {
+//   const { email } = req.user;
+//   const adminUser = await User.findOne({ email });
+
+//   if(adminUser.role !== "admin"){
+//     throw new Error ("You are not an admin");
+//   } else {
+//     next();
+//   }
+// });
 const isAdmin = asyncHandler(async (req, res, next) => {
   const { email } = req.user;
-  const adminUser = await User.findOne({ email });
 
-  if(adminUser.role !== "admin"){
-    throw new Error ("You are not an admin");
-  } else {
+  try {
+    const adminUser = await User.findOne({ email });
+
+    if (!adminUser || adminUser.role !== "admin") {
+      throw new Error("You are not an admin");
+    }
+
+    // If the user is an admin, continue to the next middleware
     next();
+  } catch (error) {
+    // Handle database errors or other issues
+    console.error("isAdmin middleware error:", error);
+    res.status(500).send("Internal Server Error");
   }
-
 });
+
+
 
 export{ protect,isAdmin };

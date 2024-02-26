@@ -79,18 +79,18 @@
 //       <div className="banner">
 //         <h1>Function Decorations Booking Form</h1>
 //       </div>
-//       <div className="item">
-//         <p>Function Type</p>
-//         <select onChange={(e) => handleChange(e, index)}>
-//           <option value=""></option>
-//           <option value="1">*Please select*</option>
-//           <option value="2">Wedding</option>
-//           <option value="3">Birthday Party</option>
-//           <option value="4">Reunion</option>
-//           <option value="5">Family Get Together</option>
-//           <option value="6">Other</option>
-//         </select>
-//       </div>
+      // <div className="item">
+      //   <p>Function Type</p>
+      //   <select onChange={(e) => handleChange(e, index)}>
+      //     <option value=""></option>
+      //     <option value="1">*Please select*</option>
+      //     <option value="2">Wedding</option>
+      //     <option value="3">Birthday Party</option>
+      //     <option value="4">Reunion</option>
+      //     <option value="5">Family Get Together</option>
+      //     <option value="6">Other</option>
+      //   </select>
+      // </div>
 //       <div className="item">
 //         <p>Theme</p>
 //         <input className='inputbooking' type="text" name="theme" onChange={(e) => handleChange(e, index)} required/>
@@ -140,95 +140,135 @@
 
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import './booking.css';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-function Booking () {
 
-  const {  handleSubmit } = useForm();
+function Booking() {
+  const [formData, setFormData] = useState({
+    function_type: '',
+    theme: '',
+    date_of_delivery: '',
+    description: '',
+    name: '',
+    email: '',
+    phoneNo: '',
+    address: '',
+    district: '',
+  });
 
-  const onSubmit = (data) => {
-    const authToken = 'YOUR_AUTH_TOKEN_HERE'; // replace with your actual token
-  
-    axios.post('http://localhost:5000/api/booking/new', data, {
-      headers: {
-        'Authorization': `Bearer ${authToken}`
-      }
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      if (error.response && error.response.status === 401) {
-        console.error('Authentication failed. Please check your authentication credentials.');
-      } else {
-        console.error(error);
-      }
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-    return (
-        <div className="Booking">
-        <div className="testbox">
-    <form className="bookingform" onSubmit={handleSubmit(onSubmit)}>
-      <div className="banner">
-        <h1>Function Decorations Booking Form</h1>
-      </div>
-      <div className="item">
-        <p>Function Type</p>
-        <select>
-          <option value=""></option>
-          <option value="1">*Please select*</option>
-          <option value="2">Wedding</option>
-          <option value="3">Birthday Party</option>
-          <option value="4">Reunion</option>
-          <option value="5">Family Get Together</option>
-          <option value="6">Other</option>
-        </select>
-      </div>
-      <div className="item">
-        <p>Theme</p>
-        <input className='inputbooking' type="text" name="theme" required/>
-      </div>
-      <div className="item">
-        <p>Date of Delivery</p>
-        <input className='inputbooking' type="date" name="bdate" required/>
-        <i className="fas fa-calendar-alt"></i>
-      </div>
-      
-      <div className="item">
-        <p>Description of Event</p>
-        <textarea rows="4" required></textarea>
-      </div>
-      <div className="item">
-        <p>Name</p>
-        <input className='inputbooking' type="text" name="name" required/>
-      </div>
-      <div className="item">
-        <p>Email</p>
-        <input className='inputbooking' type="email" name="email" required/>
-      </div>
-      <div className="item">
-        <p>Phone Number</p>
-        <input className='inputbooking' type="text" name="phone-no" required/>
-      </div>
-      <div className="item">
-        <p>Address</p>
-        <input className='inputbooking' type="text" name="address" required/>
-      </div>
-      <div className="item">
-        <p>District</p>
-        <input className='inputbooking' type="text" name="district" required/>
-      </div>
-      <div className="btn-block">
-        <button type="submit" href="/">SEND</button>
-      </div>
-    </form>
-  </div>
 
-  </div>
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/booking/new', formData, {withCredentials:true});
+      console.log('Message send successfully:', response.data);
+      toast.success('Booking created succssfully');
+  
+      // Optionally, you can clear the form after a successful submission
+      setFormData({
+        function_type: '',
+        theme: '',
+        date_of_delivery: '',
+        description: '',
+        name: '',
+        email: '',
+        phoneNo: '',
+        address: '',
+        district: '',
+      });
+    } catch (error) {
+      console.error('Error submitting contact request:', error.message);
+      // Handle errors, e.g., show an error message to the user
+      toast.error('Invalid process');
+    }
+  };
+
+  const handleClear = () => {
+    setFormData({
+        function_type: '',
+        theme: '',
+        date_of_delivery: '',
+        description: '',
+        name: '',
+        email: '',
+        phoneNo: '',
+        address: '',
+        district: '',
+    });
+  }
+
+  return (
+    <div className="Booking">
+      <div className="testbox">
+        <form className="bookingform" onSubmit={handleSubmit}>
+          <div className="banner">
+            <h1>Function Decorations Booking Form</h1>
+          </div>
+          <div className="item">
+            <p>Function Type</p>
+            <select name="function_type" value={formData.function_type} onChange={handleChange} required>
+              <option value=""></option>
+              <option value="2">Wedding</option>
+              <option value="3">Birthday Party</option>
+              <option value="4">Reunion</option>
+              <option value="5">Family Get Together</option>
+              <option value="6">Other</option>
+            </select>
+          </div>
+          <div className="item">
+            <p>Theme</p>
+            <input className='inputbooking' type="text" name="theme" value={formData.theme} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>Date of Delivery</p>
+            <input className='inputbooking' type="date" name="date_of_delivery" value={formData.date_of_delivery} onChange={handleChange} required />
+            <i className="fas fa-calendar-alt"></i>
+          </div>
+          <div className="item">
+            <p>Description of Event</p>
+            <textarea rows="4" name="description" value={formData.description} onChange={handleChange} required></textarea>
+          </div>
+          <div className="item">
+            <p>Name</p>
+            <input className='inputbooking' type="text" name="name" value={formData.name} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>Email</p>
+            <input className='inputbooking' type="email" name="email" value={formData.email} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>Phone Number</p>
+            <input className='inputbooking' type="text" name="phoneNo" value={formData.phoneNo} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>Address</p>
+            <input className='inputbooking' type="text" name="address" value={formData.address} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>District</p>
+            <input className='inputbooking' type="text" name="district" value={formData.district} onChange={handleChange} required />
+          </div>
+          <div className="btn-block">
+            <button className='btn-booking' type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Booking;

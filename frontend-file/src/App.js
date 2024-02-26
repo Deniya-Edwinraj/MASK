@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Assests/bootstrap/css/bootstrap.min.css';
 import './App.css';
 import Header from './header';
@@ -11,11 +13,13 @@ import Product from './dec-orn';
 import Order from './order';
 import Payment from './payment';
 import Register from './register';
-// import Admin from './Admin/main';
 import Customize from './customize';
+import Services from './services';
 
 function App() {
   return (
+    <>
+    <ToastContainer />
     <Router>
       <div className="App">
         <Header />
@@ -27,12 +31,13 @@ function App() {
           <Route path='/order' element={<Order/>} />
           <Route path='/payment' element={<Payment/>} />
           <Route path='/register' element={<Register/>} />
-          {/* <Route path="/dashboard" component={Admin} /> */}
-          <Route path='/customizeform' element={<Customize/>} />
+          {/* <Route path="/dashboard" element={<Dashboard />} />  */}
+          <Route path="/customizeform/:productName" element={<Customize />} />          <Route path='/services' element={<Services/>} />
         </Routes>
         <Footer />
       </div>
     </Router>
+    </>
 
   );
 }

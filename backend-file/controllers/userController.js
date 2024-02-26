@@ -23,120 +23,79 @@ import nodemailer from 'nodemailer';
 //       }
 // });
 
-// const authUser = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body;
-
-//   const user = await User.findOne({ email });
-
-//   if (user && (await user.matchPassword(password))) {
-//       generateToken(res, user._id);
-
-//       // Send alert email to user
-//       await sendAlertEmail(user.email);
-
-//       res.json(`Login Successfully`);
-//   } else {
-//       res.status(401);
-//       throw new Error('Invalid email or password');
-//   }
-//   var transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: process.env.GMAIL,
-//       pass: process.env.PASS
-//     }
-//   });
-//   var mailOptions = {
-//     from : 'deniyaedwinraj@gmail.com',
-//     to : email ,
-//     subject : 'Welcome to the MASK',
-//     html : `
-//     <h5>You have successfully logged in. If this was not you, please contact support.<h5/>
-//     `
-//   };
-//   transporter.sendMail(mailOptions, function(error, info){
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log('id sent: ' + info.response);
-//     }
-//   });
-// });
-
-
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-      user: process.env.GMAIL,
-      pass: process.env.PASS
-  }
-});
-
-async function sendAlertEmail(userEmail) {
-  const mailOptions = {
-      from: 'deniyaedwinraj@gmail.com',
-      to: userEmail,
-      subject: 'Welcome to the MASK',
-      text: 'You have successfully logged in. If this was not you, please contact support.'
-  };
-
-  try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log('Alert email sent successfully:', info.response);
-  } catch (error) {
-      console.error('Error sending alert email:', error.message);
-  }
-}
-
 const authUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-      generateToken(res, user._id);
+    generateToken(res, user._id);
 
-      // Send alert email to user
-      await sendAlertEmail(user.email);
+    // Send alert email to user
+    await sendAlertEmail(user.email);
 
-      res.json(`Login Successfully`);
+    res.json(`Login Successfully`);
   } else {
-      res.status(401);
-      throw new Error('Invalid email or password');
+    res.status(401);
+    throw new Error('Invalid email or password');
   }
 };
+
 
 
 
 // @desc    register a user
 // route    POST /api/users
 // @access Public 
-const registerUser =asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
-    
-    const userExists = await User.findOne({email:email});
+const registerUser = asyncHandler (async (req, res) =>{
+  const { name, email, password } = req.body;
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+      res.status(400);
+      throw new Error('User already exists');
+  }
+  const user = await User.create({
+      name,
+      email,
+      password
+  });
+  if (user) {
+      generateToken(res, user._id);
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        success:true,
+        message :"Welcome to MASK"    });
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL,
+          pass: process.env.PASS
+        }
+      });
+      var mailOptions = {
+        from : 'deniyaedwinraj@gmail.com',
+        to : user.email ,
+        subject : 'Registration Successful',
+        html : `
+        <h3>You have successfully registered with MASK! Thank you for joining our community of individuals who appreciate the artistry of personalized ornaments and functional decorations.
 
-    if (userExists) {
-        res.status(400);
-        throw new Error('User already exists');
-    }
-
-    const user = await User.create({
-        name,
-        email,
-        password
-    });
-
-    if (user) {
-        generateToken(res, user._id);
-    
-        res.status(201).json(`Registered sucessfully`);
-      } else {
-        res.status(400);
-        throw new Error('Invalid user data');
-      }
-});
+        At MASK, we celebrate the uniqueness of every space and believe that your personal style should be cherished. Our commitment is to provide you with handcrafted, customizable decorative ornaments, and functional pieces that not only elevate your surroundings but also reflect your individuality. If this was not you, please contact support of MASK.<h3/>
+        `
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('id sent: ' + info.response);
+        }
+      });
+  } else {
+      res.status(400);
+      throw new Error('Invalid user data');
+  }
+  });
 
 // @desc     logout user
 // route    POST /api/users/logout

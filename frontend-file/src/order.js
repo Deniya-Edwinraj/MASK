@@ -38,7 +38,7 @@ function Order () {
       </div>
       <div className="btn-block">
         <Link to="/payment">
-        <button type="submit" href="/">SEND</button>
+        <button className="btn-order" type="submit" href="/">SEND</button>
         </Link>
       </div>
     </form>

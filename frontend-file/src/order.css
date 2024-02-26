@@ -1,9 +1,5 @@
-html, body {
-    min-height: 100%;
-    font-family: Quicksand;
-    /* padding-top: 50px; */
-    }
-    body, div, form, input, select, textarea, p { 
+
+     .item, form, input, select, textarea, p { 
     padding: 0;
     margin: 0;
     outline: none;
@@ -89,7 +85,7 @@ html, body {
     margin-top: 10px;
     text-align: center;
     }
-    button {
+    .btn-order{
     width: 150px;
     padding: 10px;
     border: none;
@@ -99,7 +95,7 @@ html, body {
     color: #000;
     cursor: pointer;
     }
-    button:hover {
+    .btn-order:hover {
     background: #817201;
     }
     @media (min-width: 568px) {

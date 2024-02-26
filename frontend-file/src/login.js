@@ -79,11 +79,13 @@
 import React, { useState } from 'react';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const [loginError, setLoginError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -99,16 +101,25 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        // Handle successful login here (e.g., save the token and redirect)
-        console.log('Login successful:', data);
-        navigate('/'); // Redirect to the main page
+        // Assuming the server returns a token
+        const token = data.token;
+
+        // Store the token in local storage or a secure storage mechanism
+        localStorage.setItem('token', token);
+
+        console.log('Login successful', data);
+        toast.success('Login successful');
+        navigate('/');
       } else {
         const error = await response.json();
-        // Handle error here (e.g., show an error message)
         console.error('Login error:', error);
+        setLoginError('Invalid email or password');
+        toast.error('Invalid email or password');
       }
     } catch (error) {
       console.error('Network error:', error);
+      setLoginError('Network error. Please try again.');
+      
     }
   };
 
@@ -119,7 +130,9 @@ function Login() {
           <form onSubmit={handleSubmit} id="loginForm">
             <h2>Login</h2>
             <div className="input-box">
-              <span className="icon"><ion-icon name="mail-outline"></ion-icon></span>
+              <span className="icon">
+              <i class="bi bi-person-fill"></i>              
+              </span>
               <input
                 type="email"
                 required
@@ -129,7 +142,7 @@ function Login() {
               <label>Email</label>
             </div>
             <div className="input-box">
-              <span className="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+              <span className="icon"><i class="bi bi-key-fill"></i></span>
               <input
                 type="password"
                 required
@@ -138,7 +151,14 @@ function Login() {
               />
               <label>Password</label>
             </div>
-            <button className="btnlogin" type="submit">Login</button>
+
+            <button className="btnlogin" type="submit">
+              Login
+            </button>
+
+            {/* Display error message if there's a login error */}
+            {loginError && <div className="error-message">{loginError}</div>}
+
             <div className="register-link">
               <p>
                 Don't have an account? <Link to="/register"><a href="123" id="toggleRegister">Register</a></Link>
@@ -152,3 +172,4 @@ function Login() {
 }
 
 export default Login;
+

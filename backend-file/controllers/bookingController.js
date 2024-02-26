@@ -1,25 +1,74 @@
 import asyncHandler from 'express-async-handler';
 import Booking from '../models/bookingModel.js';
+import User from '../models/userModel.js';
+import nodemailer from 'nodemailer';
 
 //Create New Booking - api/booking/new
-const newBooking =  asyncHandler( async (req, res, next) => {
-    const {
-        bookings,
-        deliveryInfo
-    } = req.body;
-  console.log(req.user);
-    const booking = await Booking.create({
-        bookings,
-        deliveryInfo,
-        user: req.user.id
-    })
-    if (booking){
-        res.status(200).json(`Booking created succesfully`)
-    } else {
-        return next(new ErrorHandler(`Unsuccessfull`))
+const newBooking = asyncHandler(async (req, res, next) => {
+    try {
+        const {
+            function_type,
+            theme,
+            date_of_delivery,
+            description,
+            name,
+            email,
+            phoneNo,
+            address,
+            district,
+        } = req.body;
+
+        console.log("Request User:", req.user);
+
+        const booking = await Booking.create({
+            function_type,
+            theme,
+            date_of_delivery,
+            description,
+            name,
+            email,
+            phoneNo,
+            address,
+            district,
+        });
+
+        if (booking) {
+
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.GMAIL,
+                    pass: process.env.PASS,
+                },
+            });
+
+            const mailOptions = {
+                from: 'deniyaedwinraj@gmail.com',
+                to: req.body.email, 
+                subject: 'Booking Confirmation',
+                text: 'Thank you for your booking with MASK. We appreciate your trust in MASK. If you have any further questions or require assistance, feel free to contact us.',
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    res.status(500).json({ error: 'Internal Server Error' });
+                } else {
+                    console.log('Email sent:', info.response);
+                    res.status(200).json('Booking created successfully');
+                }
+            });
+        } else {
+            console.error("Booking creation failed");
+            res.status(400).json({ error: 'Invalid user data' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-    
 });
+
+
+
+
 
 //Get Single Booking - api/booking/:id
 const getSingleBooking = asyncHandler(async (req, res, next) => {

@@ -172,12 +172,12 @@
   
   .about-section{
   height: 100%;
-  width: 100%;
+  width: 90%;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
+  padding: 30px 0;
   }
   
   /* .about-section .main img{
@@ -190,7 +190,7 @@
   width: 800px;
   max-width: 100%;
   background: rgba(0,0,0,0.4);
-  padding: 100px;
+  padding: 70px;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -213,24 +213,38 @@
   color: #FFD700;
   font-weight: 800;
   }
+
+  .all-text h3{
+    display: flex;
+    justify-content: center;
+  }
   
   .all-text p{
   font-size: 20px;
   line-height: 30px;
   margin-bottom: 35px;
+  text-align: center; 
   }
-  
+   
+  .btn-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   }
+
   .btn2{
   margin-top: 0.5rem;
   display: inline-block;
-  padding: 0.8rem 1rem;
-  font-size: 1.7rem;
+  padding: 0.8rem ;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #0f0e0e;
   background-color: #FFD700;
   cursor: pointer;
   border: none;
-  border-radius: 15px;
-  width: 60%;
+  border-radius: 5px;
+  width: 100%;
   height: auto;
   }
   .btn2:hover{
@@ -276,7 +290,7 @@
   /*----- End----- */
 
   /*----Contact----- */
-div, form, input, select, textarea, .item-name { 
+ form, input, select, textarea, .item-name { 
     padding: 0;
     margin: 0;
     outline: none;
@@ -293,21 +307,22 @@ div, form, input, select, textarea, .item-name {
     background-color: #000;
     }
     .contactform {
-    width: 40%;
+    width: 30%;
     padding: 40px;
     border-radius: 10px;
     background: #000;
-    box-shadow: 0 0 10px 0 #FFD700; 
+    box-shadow: 0 0 5px 0 #FFD700; 
     margin-top: 50px;
     margin-bottom: 50px;
     }
-    .banner {
+    .contactform .banner-map {
     position: relative;
-    height: 210px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-bottom: 20px;
     }
     input, textarea {
     margin-bottom: 10px;
@@ -347,7 +362,7 @@ div, form, input, select, textarea, .item-name {
     margin-top: 10px;
     text-align: center;
     }
-    .btn4 {
+    .btn-contact{
     width: 150px;
     padding: 10px;
     border: none;
@@ -357,7 +372,7 @@ div, form, input, select, textarea, .item-name {
     color: #000;
     cursor: pointer;
     }
-    button:hover {
+    .btn-contact:hover {
     background: #817201;
     }
     @media (min-width: 568px) {
@@ -373,4 +388,88 @@ div, form, input, select, textarea, .item-name {
     width: calc(50% - 8px);
     }
     }
+
+
+    .details h3{
+      text-align: center;
+      color: #FFD700;
+    }
+    .details h5{
+      text-align: center;
+      color: #fff;
+      margin: 20px;
+    }
+    .details .social-links {
+      margin-top: 30px;
+      margin-left: 60px;
+      }
+      
+      .details .social-links a {
+      font-size: 18px;
+      display: inline-block;
+      background: #46423b;
+      color: #fff;
+      line-height: 1;
+      padding: 8px 0;
+      margin-right: 4px;
+      border-radius: 50%;
+      text-align: center;
+      width: 36px;
+      height: 36px;
+      transition: 2s;
+      }
+      
+      .details .social-links a:hover {
+      background-color: #FFD700;
+      }
+
+      /* animation */
+      .details{
+        width: 20%;
+        padding: 40px;
+        border-radius: 10px;
+        background: #000;
+        box-shadow: 0 0 5px 0 #FFD700; 
+        margin-top: 80px;
+        margin-bottom: 80px;
+        margin-left: 30px;
+        position: relative;
+        }
+
+      .details::before {
+        position: absolute;
+        content: '';
+        width: 25%;
+        border-radius: 10px;
+        background: conic-gradient(#FFD700 30deg, #817201 50deg, transparent 100deg);
+        animation: animatebox 4s linear infinite;
+    }
+    
+    @keyframes animatebox {
+        0% {
+            transform: rotate(360deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+    
+    .details::after {
+        position: absolute;
+        content: '';
+        width: 0%;
+        background: #000;
+        border-radius: 10px;
+        animation: animateAfter 4s linear infinite; /* Added animation property for .details::after */
+    }
+    
+    @keyframes animateAfter {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+    
     /* ----end---- */

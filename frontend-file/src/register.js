@@ -97,12 +97,14 @@ import React, { useState } from 'react';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 function Register() {
   const [name, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -113,11 +115,16 @@ function Register() {
       const response = await axios.post('http://localhost:5000/api/users', user);
 
       if (response.status === 201) {
-        console.log(response.data);
-        // Redirect to the main page
+
+        const token = response.data.token;
+        console.log(response.data)
+
+        localStorage.setItem('token', token);
+        toast.success('Registered successfully');
         navigate('/');
       } else {
         console.error(response.data);
+        toast.error('Invalid user data');
       }
     } catch (error) {
       console.error(error.response.data);
@@ -132,7 +139,7 @@ function Register() {
             <h2>Register</h2>
             <div className="input-box">
               <span className="icon">
-                <ion-icon name="person-outline"></ion-icon>
+              <i class="bi bi-person-fill"></i>              
               </span>
               <input
                 type="text"
@@ -144,7 +151,7 @@ function Register() {
             </div>
             <div className="input-box">
               <span className="icon">
-                <ion-icon name="mail-outline"></ion-icon>
+              <i class="bi bi-envelope-fill"></i>              
               </span>
               <input
                 type="email"
@@ -156,7 +163,7 @@ function Register() {
             </div>
             <div className="input-box">
               <span className="icon">
-                <ion-icon name="lock-closed-outline"></ion-icon>
+              <i class="bi bi-key-fill"></i>
               </span>
               <input
                 type="password"
@@ -166,11 +173,11 @@ function Register() {
               />
               <label>Password</label>
             </div>
-            
+
             <button className="btnlogin" type="submit">
               Register
             </button>
-            
+
             <div className="register-link">
               <p>
                 Already have an account?{' '}
@@ -189,4 +196,3 @@ function Register() {
 }
 
 export default Register;
-

@@ -8,18 +8,18 @@ const productSchema= mongoose.Schema(
     },
     category: {
         type: String,
-        required: true,
+
     },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    size: {
+    // quantity: {
+    //     type: Number,
+    //     required: true
+    // },
+    // size: {
+    //     type: String,
+    // },
+    price: {
         type: String,
-    },
-    pricerange: {
-        type: String,
-        required: true
+        
     },
     image: {
         public_id: String,
@@ -29,18 +29,10 @@ const productSchema= mongoose.Schema(
         type: Number,
         default: 0,
     },
-    ratings: {
-        star: Number,
-        postedby:  {type: mongoose.Schema.Types.ObjectId,ref: "User"}
-    },
-    totalrating: {
-        type: String,
-        default: 0,
-    },
-    description: {
-        type: String,
-        required: true
-    }
+    // description: {
+    //     type: String,
+
+    // }
 },
 { timestamps: true }
 );

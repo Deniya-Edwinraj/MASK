@@ -1,8 +1,5 @@
-html, body {
-    min-height: 100%;
-    font-family: Quicksand;
-    }
-    body, div, form, input, select, textarea, p { 
+
+     .item, form, input, select, textarea, p { 
     padding: 0;
     margin: 0;
     outline: none;
@@ -71,8 +68,14 @@ html, body {
     border-radius: 10px;
     background: #000;
     }
-    .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+    .item:hover p, .question:hover p, .question label:hover, input:hover::placeholder {
     color: #666;
+    }
+    .item i{
+     margin-right: 15px;
+    }
+    .item i:hover{
+     color: #FFD700;
     }
     .item .inputbooking:hover, .item select:hover, .item textarea:hover {
     border: 1px solid transparent;
@@ -82,6 +85,7 @@ html, body {
     .item {
     position: relative;
     margin: 10px 0;
+
     }
     input[type="date"]::-webkit-inner-spin-button {
     display: none;
@@ -121,7 +125,7 @@ html, body {
     margin-top: 10px;
     text-align: center;
     }
-    button {
+    .btn-booking {
     width: 150px;
     padding: 10px;
     border: none;
@@ -131,7 +135,7 @@ html, body {
     color: #000;
     cursor: pointer;
     }
-    button:hover {
+    .btn-booking:hover {
     background: #817201;
     }
     @media (min-width: 568px) {

@@ -18,11 +18,13 @@ import productRouter from './routes/api/productRoute.js';
 import orderRouter from './routes/api/orderRoute.js';
 import contactRouter from './routes/api/contactRoute.js';
 import bookingRouter from './routes/api/bookingRoute.js';
-import addToCartRouter from './models/addToCartModel.js';
+// import addToCartRouter from './routes/api/addToCartRoute.js';
+import customizeRouter from './routes/api/customizeRoute.js';
+import vendorRouter from './routes/api/vendorRoute.js';
 import cors from 'cors';
+import { isAdmin } from './middleware/authMiddlesware.js';
 
-
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use (morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extented: true}));
@@ -37,14 +39,17 @@ app.use('/api/product', productRouter);
 app.use('/api/order',orderRouter);
 app.use('/api/contact',contactRouter);
 app.use('/api/booking',bookingRouter);
-app.use('/api/cart',addToCartRouter);
+// app.use('/api/cart',addToCartRouter);
+app.use('/api/customize',customizeRouter);
+app.use('/api/vendor',vendorRouter);
+
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+    app.use(express.static(path.join(__dirname, '/frontend-file/public')));
   
     app.get('*', (req, res) =>
-      res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+      res.sendFile(path.resolve(__dirname, 'frontend-file', 'public', 'index.html'))
     );
   } else {
     app.get('/', (req, res) => {
@@ -65,12 +70,29 @@ database.once('connected' , ()=>{
     console.log('Database Connected')
 })
 
+// Your route with modified isAdmin middleware
+app.get('/header', isAdmin, async (req, res) => {
+  try {
+    // Assume req.userRole is available after isAdmin middleware
+    console.log('User Role:', req.userRole);
+
+    // Render the Header component and pass the userRole as a prop
+    res.render('header', { userRole: req.userRole });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
       user: 'deniyaedwinraj@gmail.com',
-      pass: 'ed0329ed'
+      pass: 'xwqn hecr khsw goxg'
   }
 });
+
 
 export default transporter;

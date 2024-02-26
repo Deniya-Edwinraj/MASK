@@ -37,7 +37,7 @@ h3{
     z-index: 2;
 	}
 
-form input[type="text"]{
+.payment-form input[type="text"]{
 	width: 100%;
 	padding: 0.5rem 0.7rem;
 	margin: 0.5rem 0;
@@ -47,7 +47,7 @@ form input[type="text"]{
     background-color: #000;
 	color: #fff;
 }
-form input:hover{
+.payment-form input:hover{
     border: 1px solid transparent;
     box-shadow: 0 0 6px 0 #FFD700;
     color: #FFD700;

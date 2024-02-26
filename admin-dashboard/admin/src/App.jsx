@@ -23,11 +23,13 @@
 // export default App;
 
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
+import Vendors from './Vendor/vendors';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -49,13 +51,20 @@ function App() {
   }, []);
 
   return (
+    <Router>
     <div className='grid-container'>
       <Header OpenSidebar={OpenSidebar} />
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
-      <Home data={data} />
+      {/* <Home data={data} /> */}
+      <Routes>
+      <Route path="/vendors" element={<Vendors />} />
+      <Route path='/' element={<Home />} />
+      </Routes>
     </div>
+    </Router>
   );
 }
 
 export default App;
+
 

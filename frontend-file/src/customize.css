@@ -1,7 +1,7 @@
  .form-container{
   background: #000;
  }
- .form-container,.testbox-cus, div, .customize-form, input, textarea, p { 
+ .form-container,.testbox-cus, .item, .customize-form, input, textarea, select, p { 
   padding: 0;
   margin: 0;
   outline: none;
@@ -55,6 +55,12 @@
   border-radius: 10px;
   background: #000;
   }
+  select {
+    width: 100%;
+    padding: 7px 0;
+    background: transparent;
+    border-radius: 50px;
+    }
   .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
   color: #666;
   }
@@ -99,4 +105,26 @@
   }
 
 
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  .btn6 {
+    background-color: #FFD700; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .btn6:hover{
+    background-color: #817201;
+  }

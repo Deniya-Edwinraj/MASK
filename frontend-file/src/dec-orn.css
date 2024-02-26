@@ -7,7 +7,7 @@
 
 /* -----Nav bar----- */
 
-#navbar{
+/* #navbar{
     position: sticky;
     top: 0;
     left: 0;
@@ -22,7 +22,6 @@
     font-size: 25px;
     font-weight: 800;
     color: #FFD700;
-    /* font-family: whisper; */
 }
 
 #navbarSupportedContent a{
@@ -44,7 +43,7 @@
 
 #navbarSupportedContent button:hover{
   background-color: #817201;
-}
+} */
 
 /* ----End---- */
 
@@ -137,6 +136,9 @@
    background: rgba(0,0,0,0.4);
      border-radius: 10px;
      height: 550px;
+     justify-content: center;
+     align-items: center;
+
 }
 
 .main-product{
@@ -156,17 +158,23 @@
   color: #FFD700;
   font-weight: 400;
 }
-
+.all-text-product h3{
+  text-align: center;
+}
 .all-text-product p{
   font-size: 20px;
   line-height: 30px;
   margin-bottom: 35px;
   /* color: #fff; */
+  text-align: center;
 }
-
+ul{
+  align-items: center;
+}
  li{
   font-size: 20px;
-
+  text-align: justify;
+  
 }
 
 .btn2{
@@ -178,7 +186,7 @@
   background-color: #FFD700;
   cursor: pointer;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .btn2:hover{
   background-color:#817201;
@@ -228,14 +236,16 @@
   margin-top: 40px;
 }
 .title{
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   text-align: center;
+  display: flex;
+    justify-content: center;
 }
 .title .producth1{
   color: #000;
   text-align: center;
   font-weight: 800;
-  font-size: 36px;
+  font-size: 46px;
   letter-spacing: 1px;
 }
 .filter-btns{
@@ -393,6 +403,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-items: center;
 }
 
 .card__title {
@@ -400,17 +411,17 @@
   font-weight: 500;
   color: #000;
   margin-bottom: .75rem;
+  text-align: center;
 }
 
 .card__button {
   text-decoration: none;
   background-color: #899499;
-  font-weight: 500;
+  font-weight: 400;
   border: none;
   border-radius: 15px;
-  width: 100%;
+  width: 140%;
   height: 3rem;
-
 }
 
 .card__button:hover {
@@ -531,7 +542,7 @@
 /* ------ */
 /* Products End */
 
-
+/* 
 .container-slide{
   position: absolute;
   top: 50%;
@@ -579,7 +590,7 @@
 }
 
 /* here n = 0, 1, 2, 3,... */
-.slide .item:nth-child(n + 6){
+/* .slide .item:nth-child(n + 6){
   left: calc(50% + 660px);
   opacity: 0;
 }
@@ -665,10 +676,10 @@
 .button button:hover{
   background: #ababab;
   color: #fff;
-}
+} */ */
 
 /* add to card */
-.container-add{
+/* .container-add{
   width: 1200px;
   margin: auto;
   transition: 0.5s;
@@ -800,7 +811,7 @@ header .shopping span{
 }
 .listCard .count{
   margin: 0 10px;
-}
+} */
 /* end */
 
 /* -----Footer------ */
