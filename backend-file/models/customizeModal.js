@@ -6,6 +6,10 @@ const customizeSchema= mongoose.Schema(
             type: String,
             required: true
         },
+        product_price: {
+            type: String,
+            required: true
+        },
         category: {
             type: String,
             required: true

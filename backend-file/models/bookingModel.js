@@ -30,6 +30,10 @@ const bookingSchema= mongoose.Schema({
             type: String,
             require: true
         },
+        image: {
+            public_id: String,
+            secure_url: String,
+        },
   
     bookingStatus: {
         type: String,

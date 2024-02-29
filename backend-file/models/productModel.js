@@ -10,16 +10,9 @@ const productSchema= mongoose.Schema(
         type: String,
 
     },
-    // quantity: {
-    //     type: Number,
-    //     required: true
-    // },
-    // size: {
-    //     type: String,
-    // },
     price: {
         type: String,
-        
+        require: true
     },
     image: {
         public_id: String,
@@ -29,21 +22,10 @@ const productSchema= mongoose.Schema(
         type: Number,
         default: 0,
     },
-    // description: {
-    //     type: String,
-
-    // }
 },
 { timestamps: true }
 );
 
-productSchema.pre("remove", function (next) {
-
-    this.image.forEach((image) => {
-      cloudinary.uploader.destroy(image.public_id);
-    });
-    next();
-  });
 
 const Product = mongoose.model('Product', productSchema);
 

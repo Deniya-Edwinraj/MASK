@@ -85,7 +85,7 @@
   /**
    * Remove the gray background on active links in IE 10.
    */
-  .side-link {
+   .side-link {
     background-color: transparent;
     color: #000;
   }
@@ -395,8 +395,6 @@
   
   .sidebar-list {
     margin-bottom: 0;
-  }
-  ul{
     list-style-type: none;
   }
   
@@ -432,7 +430,7 @@
   }
   
   h1 {
-    font-size: 1.75rem;
+    font-size: 2.75rem;
   }
   
   h2 {
@@ -475,7 +473,7 @@
   }
   
   a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
   }
   
@@ -926,7 +924,7 @@
   }
   
   select {
-    color: #fff;
+    color: #FFD700;
     -webkit-appearance: none;
     -moz-appearance: none;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06JLMvcNWmaOv2W/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==) right center no-repeat;
@@ -988,7 +986,7 @@
   :-ms-input-placeholder {
     color: #9a9a9a;
   }
- 
+  
   /**
    * Tables
    */
@@ -997,7 +995,6 @@
     border-spacing: 0;
     width: 90%;
     max-width: 90%;
-
   }
   
   thead th {

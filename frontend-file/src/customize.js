@@ -150,13 +150,16 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 
-function Customize() {
+function Customize({item, handleClick}) {
   const navigate = useNavigate();
   const { productName } = useParams();
+  const { productPrice } = useParams();
   const decodedProductName = decodeURIComponent(productName);
+  const decodedProductPrice = decodeURIComponent(productPrice)
 
   const [formData, setFormData] = useState({
     product: decodedProductName,
+    product_price: decodedProductPrice,
     category: '',
     size: '',
     colour: '',
@@ -184,6 +187,7 @@ function Customize() {
 
       setFormData({
         product: decodedProductName,
+        product_price: decodedProductPrice,
         category: '',
         size: '',
         colour: '',
@@ -200,6 +204,7 @@ function Customize() {
   const handleClear = () => {
     setFormData({
       product: decodedProductName,
+      product_price: decodedProductPrice,
       category: '',
       size: '',
       colour: '',
@@ -220,9 +225,13 @@ function Customize() {
                 <p>Product Name</p>
                 <input type="text" name="product" value={decodedProductName}   onChange={handleChange} required />
               </div>
+              <div class="item">
+                <p>Product Price</p>
+                <input type="text" name="product_price" value={decodedProductPrice}   onChange={handleChange} required />
+              </div>
               <div className="item">
-                <p>Function Type</p>
-                <select name="category" value={formData.category} onChange={handleChange}>
+                <p>Category</p>
+                <select className='select-cus' name="category" value={formData.category} onChange={handleChange}>
                   <option value=""></option>
                   <option value="1">Flower Vase</option>
                   <option value="2">Wall Hangers</option>
@@ -242,14 +251,10 @@ function Customize() {
                 <p>Extra Features that need to add</p>
                 <textarea rows="4" name="extra_features" value={formData.extra_features} onChange={handleChange}></textarea>
               </div>
-              <div class="item">
-                <p>Quantity</p>
-                <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} min="1" />
-              </div>
             
               <div class="btn-block">
                 {/* <Link to='/product'> */}
-               <button className="btn5" type="submit" >Add to cart</button>
+               <button className="btn5" type="submit" onClick={()=>handleClick(item)}>Add to cart</button>
                {/* </Link> */}
              </div>
           </form>

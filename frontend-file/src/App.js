@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState}  from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,8 +15,42 @@ import Payment from './payment';
 import Register from './register';
 import Customize from './customize';
 import Services from './services';
+import Cart from './cart';
 
 function App() {
+  const [show, setShow] = useState(true);
+	const [cart , setCart] = useState([]);
+  const [warning, setWarning] = useState(false);
+
+	const handleClick = (item)=>{
+		let isPresent = false;
+		cart.forEach((product)=>{
+			if (item.id === product.id)
+			isPresent = true;
+		})
+		if (isPresent){
+			setWarning(true);
+			setTimeout(()=>{
+				setWarning(false);
+			}, 2000);
+			return ;
+		}
+		setCart([...cart, item]);
+	}
+
+	const handleChange = (item, d) =>{
+		let ind = -1;
+		cart.forEach((data, index)=>{
+			if (data.id === item.id)
+				ind = index;
+		});
+		const tempArr = cart;
+		tempArr[ind].amount += d;
+		
+		if (tempArr[ind].amount === 0)
+			tempArr[ind].amount = 1;
+		setCart([...tempArr])
+	}
   return (
     <>
     <ToastContainer />
@@ -32,7 +66,8 @@ function App() {
           <Route path='/payment' element={<Payment/>} />
           <Route path='/register' element={<Register/>} />
           {/* <Route path="/dashboard" element={<Dashboard />} />  */}
-          <Route path="/customizeform/:productName" element={<Customize />} />          <Route path='/services' element={<Services/>} />
+          <Route path="/customizeform/:productName/:productPrice" element={<Customize />} />          <Route path='/services' element={<Services/>} />
+          <Route path='/cart' element={<Cart/>} />
         </Routes>
         <Footer />
       </div>

@@ -55,8 +55,8 @@
   border-radius: 10px;
   background: #000;
   }
-  select {
-    width: 100%;
+  .select-cus {
+    width: 97%;
     padding: 7px 0;
     background: transparent;
     border-radius: 50px;

@@ -69,7 +69,7 @@
 
 //             <div className="card__data">
 //               <h3 className="card__title">{product.name}</h3>
-//               <button className="card__button">Customize</button>
+//               <button className="card__button">Add to cart</button>
 //             </div>
 //              ))}
 
@@ -148,7 +148,7 @@
 //               <h3 className="card__title">Brown Flower Vase</h3>
 //               <h5 className="card__title">Price : 600</h5>
 //               <Link to="/customizeform">
-//               <button className="card__button" >Customize</button>
+//               <button className="card__button" >Add to cart</button>
 //               </Link>
 //             </div>
 //           </article>
@@ -162,7 +162,7 @@
     //           <h3 className="card__title">Stripe Vase </h3>
     //           <h5 className="card__title">Price : 400</h5>
     //           <Link to="/customizeform">
-    //           <button className="card__button">Customize</button>
+    //           <button className="card__button">Add to cart</button>
     //           </Link>
     //         </div>
     //       </article>
@@ -176,7 +176,7 @@
     //           <h3 className="card__title">Round Roll Vase</h3>
     //           <h5 className="card__title">Price : 420</h5>
     //           <Link to="/customizeform">
-    //           <button className="card__button">Customize</button>
+    //           <button className="card__button">Add to cart</button>
     //           </Link>
     //         </div>
     //       </article>
@@ -190,7 +190,7 @@
     //           <h3 className="card__title">Big Jaar Vase with quilled flowers and leaves</h3>
     //           <h5 className="card__title">Price : 750</h5>
     //           <Link to="/customizeform">
-    //           <button className="card__button">Customize</button>
+    //           <button className="card__button">Add to cart</button>
     //           </Link>
     //         </div>
     //       </article>
@@ -204,7 +204,7 @@
     //           <h3 className="card__title">Stripe vase </h3>
     //           <h5 className="card__title">Price : 450</h5>
     //           <Link to="/customizeform">
-    //           <button className="card__button">Customize</button>
+    //           <button className="card__button">Add to cart</button>
     //           </Link>
     //         </div>
     //       </article>
@@ -218,7 +218,7 @@
         //       <h3 className="card__title">Cuboid Vase </h3>
         //       <h5 className="card__title">Price : 500</h5>
         //       <Link to="/customizeform">
-        //       <button className="card__button">Customize</button>
+        //       <button className="card__button">Add to cart</button>
         //       </Link>
         //     </div>
         //   </article>
@@ -232,7 +232,7 @@
 //               <h3 className="card__title">Wall hanger with mirror </h3>
 //               <h5 className="card__title">Price : 550</h5>
 //               <Link to="/customizeform">
-//               <button className="card__button">Customize</button>
+//               <button className="card__button">Add to cart</button>
 //               </Link>
 //             </div>
 //           </article>
@@ -246,7 +246,7 @@
 //           <h3 className="card__title">Dots Wall Hanger </h3>
 //           <h5 className="card__title">Price : 600</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -260,7 +260,7 @@
 //           <h3 className="card__title">Stripe paper net with flowers </h3>
 //           <h5 className="card__title">Price : 400</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -274,7 +274,7 @@
 //           <h3 className="card__title">Tree Wall Hanger </h3>
 //           <h5 className="card__title">Price : 650</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -288,7 +288,7 @@
 //           <h3 className="card__title">Wall hanger with full of quilled paper works </h3>
 //           <h5 className="card__title">Price : 500</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -302,7 +302,7 @@
 //           <h3 className="card__title">Authentic Wall Hanger </h3>
 //           <h5 className="card__title">Price : 720</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -316,7 +316,7 @@
 //           <h3 className="card__title">Wedding Bouquet</h3>
 //           <h5 className="card__title">Price : 450</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -330,7 +330,7 @@
 //           <h3 className="card__title">Red Rose Bouquet</h3>
 //           <h5 className="card__title">Price : 700</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -344,7 +344,7 @@
 //           <h3 className="card__title">Birthday Bouquet</h3>
 //           <h5 className="card__title">Price : 450</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -358,7 +358,7 @@
 //           <h3 className="card__title">Birthday Bouquet </h3>
 //           <h5 className="card__title">Price : 520</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -372,7 +372,7 @@
 //           <h3 className="card__title">Paper Ribbon Rose Bouquet </h3>
 //           <h5 className="card__title">Price : 650</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -386,7 +386,7 @@
 //           <h3 className="card__title">Multicoloured Wedding Bouquet </h3>
 //           <h5 className="card__title">Price : 600</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -400,7 +400,7 @@
 //               <h3 className="card__title">Multicoloured Lantern </h3>
 //               <h5 className="card__title">Price : 600</h5>
 //               <Link to="/customizeform">
-//               <button className="card__button">Customize</button>
+//               <button className="card__button">Add to cart</button>
 //               </Link>
 //             </div>
 //           </article>
@@ -414,7 +414,7 @@
 //           <h3 className="card__title">Multicoloured Lantern </h3>
 //           <h5 className="card__title">Price : 550</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -428,7 +428,7 @@
 //           <h3 className="card__title">Petal Like Lantern </h3>
 //           <h5 className="card__title">Price : 650</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -442,7 +442,7 @@
 //           <h3 className="card__title">Multicoloured Lantern </h3>
 //           <h5 className="card__title">Price : 600</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -456,7 +456,7 @@
 //           <h3 className="card__title">Painted Lantern </h3>
 //           <h5 className="card__title">Price : 500</h5>
 //           <Link to="/customizeform">
-//           <button className="card__button">Customize</button>
+//           <button className="card__button">Add to cart</button>
 //           </Link>
 //         </div>
 //       </article>
@@ -554,9 +554,9 @@ export default class Product extends Component {
                     <div className="card__data">
                       <h3 className="card__title">{product.name}</h3>
                        <h5 className="card__title">Rs: {product.price}</h5>
-                       <Link to={`/customizeform/${encodeURIComponent(product.name)}`}>
-                       <button className="card__button" >Customize</button>
-                        </Link>
+                       <Link to='/cart'>
+                       <button className="card__button" >Add to cart</button>
+                       </Link>
                     </div>
                 </article>
                </div>
@@ -567,8 +567,8 @@ export default class Product extends Component {
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                     <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}`}>
-                    <button className="card__button">Customize</button>
+                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
+                    <button className="card__button">Add to cart</button>
                     </Link>
                   </div>
                 </article>
@@ -580,8 +580,8 @@ export default class Product extends Component {
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                     <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}`}>
-                    <button className="card__button">Customize</button>
+                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
+                    <button className="card__button">Add to cart</button>
                     </Link>
                   </div>
                 </article>
@@ -593,8 +593,8 @@ export default class Product extends Component {
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                     <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to="/customizeform">
-                    <button className="card__button">Customize</button>
+                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
+                    <button className="card__button">Add to cart</button>
                     </Link>
                   </div>
                 </article>
@@ -606,8 +606,8 @@ export default class Product extends Component {
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                     <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}`}>
-                    <button className="card__button">Customize</button>
+                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
+                    <button className="card__button">Add to cart</button>
                     </Link>
                   </div>
                 </article>
@@ -619,8 +619,8 @@ export default class Product extends Component {
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                     <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}`}>
-                    <button className="card__button">Customize</button>
+                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
+                    <button className="card__button">Add to cart</button>
                     </Link>
                   </div>
                 </article>

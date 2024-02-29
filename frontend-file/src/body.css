@@ -344,11 +344,11 @@
     .item:hover .item-name, .item:hover i, .question label:hover, input:hover::placeholder {
     color: #666;
     }
-    .item input:hover, .item textarea:hover {
-    border: 1px solid transparent;
-    box-shadow: 0 0 6px 0 #FFD700;
-    color: #FFD700;
-    }
+  input:hover,  textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #FFD700;
+      color: #FFD700;
+      }
     .item {
     position: relative;
     margin: 10px 0;

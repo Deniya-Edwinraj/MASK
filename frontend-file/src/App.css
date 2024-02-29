@@ -63,6 +63,18 @@ background-color: #817201;
 color: #000;
 }
 
+
+#cart span{
+  padding: 0 3px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  position: relative;
+  top: -19px;
+  width: 50px;
+}
+
 /* -----Footer------ */
 #footer {
 background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.9)), url(Assests/img/footer.jpg);

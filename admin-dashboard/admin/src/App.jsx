@@ -30,6 +30,9 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Vendors from './Vendor/vendors';
+import AddVendorForm from './Vendor/AppVendorForm';
+import Customization from './Customizes/Customize';
+import DatatablePage from './Bookings/BookingTable';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -39,26 +42,29 @@ function App() {
     setOpenSidebarToggle(!openSidebarToggle);
   };
 
-  useEffect(() => {
-    // Fetch data from the backend API when the component mounts
-    axios.get('http://localhost:5000/api/data')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch data from the backend API when the component mounts
+  //   axios.get('http://localhost:5000/api/')
+  //     .then(response => {
+  //       setData(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // }, []);
 
   return (
     <Router>
     <div className='grid-container'>
       <Header OpenSidebar={OpenSidebar} />
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
-      {/* <Home data={data} /> */}
+
       <Routes>
       <Route path="/vendors" element={<Vendors />} />
+      <Route path="/add-vendor" element={<AddVendorForm />} />
       <Route path='/' element={<Home />} />
+      <Route path='/customize' element={<Customization />} />
+      <Route path='/demo' element={<DatatablePage/>} />
       </Routes>
     </div>
     </Router>

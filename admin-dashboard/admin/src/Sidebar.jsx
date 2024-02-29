@@ -19,7 +19,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
                 <Link to="/">
-                <a href="">
+                <a href="" className='side-link'>
                     <BsGrid1X2Fill className='icon'/> Dashboard
                 </a>
                 </Link>
@@ -52,9 +52,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
+                <Link to='/customize'>
                 <a href="">
                 <BsMenuButtonWideFill className='icon'/> Customize
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <a href="">

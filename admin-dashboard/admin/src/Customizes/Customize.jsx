@@ -1,43 +1,43 @@
 import { useState } from "react";
-import AddVendorForm from "./AppVendorForm";
-import VendorTable from "./VendorTable"
-import EditVendorForm from "./EditVendorForm";
-import './Vendor.css';
+// import AddVendorForm from "./AppVendorForm";
+import CustomizeTable from "./CustomizeTable";
+// import EditVendorForm from "./EditVendorForm";
+import './Customize.css'
 
 
-function Vendors() {
+function Customization() {
 
-const vendorsData = [
+const usersData = [
     {id:1,name:'Logesh',username:'jvlogesh'},
     {id:2,name:'Ramesh',username:'rameshtr'},
     {id:3,name:'Daniel',username:'danielradcliff'},
 ];
 
-const addVendor = (vendor)=>{
-    vendor.id = vendors.length + 1;
-    setVendors([...vendors,vendor])
+const addVendor = (user)=>{
+    user.id = users.length + 1;
+    setUsers([...users,user])
 }
 const deleteVendor = (id)=>{
-    setVendors(vendors.filter((vendor)=>vendor.id!==id))
+    setUsers(users.filter((user)=>user.id!==id))
     setEditing(false);
 }
 
-    const [vendors,setVendors] = useState(vendorsData);
+    const [users,setUsers] = useState(usersData);
     const [editing,setEditing] = useState(false)
     
 
     const initialFormState = {id:null,name:'',username:''}
 
-    const [currentVendor,setCurrentVendor] = useState(initialFormState);
+    const [currentVendor,setCurrentUser] = useState(initialFormState);
 
-    const editRow = (vendor)=>{
+    const editRow = (user)=>{
         setEditing(true);
-        setCurrentVendor({id:vendor.id,name:vendor.name,username:vendor.username});
+        setCurrentUser({id:user.id,name:user.name,username:user.username});
     }
 
     const updateVendor = (id,updatedUser)=>{
         setEditing(false);
-        setVendors(vendors.map((vendor)=>(vendor.id===id?updatedUser:vendor)))
+        setUsers(users.map((user)=>(user.id===id?updatedUser:user)))
     }
 
   return (
@@ -47,25 +47,25 @@ const deleteVendor = (id)=>{
         <div className="flex-large">
             {editing?(<div>
                 <h2>Edit Vendor</h2>
-                <EditVendorForm 
+                {/* <EditVendorForm 
                     setEditing={setEditing}
                     currentVendor={currentVendor}
                     updateVendor={updateVendor}
-                />
+                /> */}
             </div>):(<div>
-                {/* <h2>Add Vendor</h2> */}
-          {/* <AddVendorForm addVendor={addVendor} /> */}
+                {/* <h2>Add Vendor</h2>
+          <AddVendorForm addVendor={addVendor} /> */}
           </div>
             ) 
         }
         </div>
         <div className="flex-large">
           <h2>View Vendors</h2>
-          <VendorTable editRow={editRow} deleteVendor={deleteVendor} vendors={vendors} />
+          <CustomizeTable editRow={editRow} deleteVendor={deleteVendor} users={users} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Vendors;
+export default Customization;

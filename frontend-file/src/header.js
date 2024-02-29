@@ -2,11 +2,10 @@ import './Assests/bootstrap/css/bootstrap.min.css';
 import './Assests/bootstrap-icons/bootstrap-icons.min.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import ModalComponent from './Modal';
 
-function Header ({ userRole }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
+
+function Header ({userRole,size, setShow}) {
+  const [ setFormData] = useState({
     product: '',
     quantity: 1,
   });
@@ -16,30 +15,6 @@ function Header ({ userRole }) {
   useEffect(() => {
     setDashboardVisible(userRole === 'admin');
   }, [userRole]);
-
-  const handleAddToCart = () => {
-    // Assuming you have the product name stored somewhere in your application state
-    // Replace 'productName' with the actual variable that holds the product name
-    const productName = '{decodedProductName}'; // Replace 'YourProduct' with the actual product name
-
-    // Set the product name and open the modal
-    setFormData({
-      ...formData,
-      product: productName,
-    });
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    // Clear the form data on modal close
-    setFormData({
-      product: '',
-      quantity: 1,
-    });
-  };
-
-  
 
     return (
       <div className="Header">
@@ -64,7 +39,7 @@ function Header ({ userRole }) {
               </li>
               <li className="nav-item">
                 <Link to="/services" style={{ textDecoration: 'none' }}>
-                <a className="nav-link " >Services</a>
+                <a className="nav-link " href='services'>Services</a>
                 </Link>
               </li>
 
@@ -75,40 +50,21 @@ function Header ({ userRole }) {
              )} */}
              {dashboardVisible && (
               <li className="nav-item">
-                <a className="nav-link" href="http://localhost:5173/">
-                  Dashboard
-                </a>
+                <a className="nav-link" href="http://localhost:5173/">Dashboard</a>
               </li>
-            )}
-
-              
-            </ul>
-            <div className='addcart-icon'>
-          <button id="cart" onClick={handleAddToCart}>
-            <i className="bi bi-bag-check-fill"></i>
+             )}
+          </ul>
+          <div className='addcart-icon'>
+          <button id="cart"  onClick={()=>setShow(false)}><i className="bi bi-bag-check-fill"></i>          
+           <span>{size}</span>
           </button>
-          <ModalComponent isOpen={isModalOpen} onRequestClose={handleCloseModal}>
-            <div className="modal-content">
-              <h1>Products added to cart!</h1>
-              <div className='productList'>
-                <p>{formData.product}</p>
-                <p>Quantity: {formData.quantity}</p>
-              </div>
-              <div className='buttonContainer'>
-                <button className="btn6" onClick={handleCloseModal}>Close</button>
-                <Link to="/order">
-                  <button className="btn6" onClick={handleCloseModal}>Order</button>
-                </Link>
-              </div>
-            </div>
-          </ModalComponent>
-        </div>
+          </div>
 
-             <button className="btn-login p-2 my-lg-0 my-2" id="getStartedBtn" style={{ co: '#000' }}>
-             <Link to="/login" style={{ textDecoration: 'none' }}>
+          <button className="btn-login p-2 my-lg-0 my-2" id="getStartedBtn" >
+             <Link to="/login" style={{ textDecoration: 'none', color:'#000' }}>
               <img src={require("./Assests/img/login.png")} alt="Login" style={{ height: '17px', width: '17px' }} /> Get Started
-              </Link>
-             </button>
+             </Link>
+          </button>
              
 
           </div>

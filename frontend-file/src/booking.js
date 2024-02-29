@@ -159,7 +159,11 @@ function Booking() {
     phoneNo: '',
     address: '',
     district: '',
+    image:'',
   });
+
+  const [imageFile, setImageFile] = useState(null);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -189,12 +193,18 @@ function Booking() {
         phoneNo: '',
         address: '',
         district: '',
+        image:'',
       });
     } catch (error) {
       console.error('Error submitting contact request:', error.message);
       // Handle errors, e.g., show an error message to the user
       toast.error('Invalid process');
     }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
   };
 
   const handleClear = () => {
@@ -208,6 +218,7 @@ function Booking() {
         phoneNo: '',
         address: '',
         district: '',
+        image:'',
     });
   }
 
@@ -222,11 +233,11 @@ function Booking() {
             <p>Function Type</p>
             <select name="function_type" value={formData.function_type} onChange={handleChange} required>
               <option value=""></option>
-              <option value="2">Wedding</option>
-              <option value="3">Birthday Party</option>
-              <option value="4">Reunion</option>
-              <option value="5">Family Get Together</option>
-              <option value="6">Other</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Birthday Party">Birthday Party</option>
+              <option value="Reunion">Reunion</option>
+              <option value="Family Get Together">Family Get Together</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div className="item">
@@ -261,6 +272,10 @@ function Booking() {
           <div className="item">
             <p>District</p>
             <input className='inputbooking' type="text" name="district" value={formData.district} onChange={handleChange} required />
+          </div>
+          <div className="item">
+            <p>Upload Image</p>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
           </div>
           <div className="btn-block">
             <button className='btn-booking' type="submit">SEND</button>

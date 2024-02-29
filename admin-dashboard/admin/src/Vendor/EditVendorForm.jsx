@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react"
 
 const EditVendorForm = (props)=>{
-   const [user,setUser] = useState(props.currentUser)
+   const [vendor,setVendor] = useState(props.currentVendor)
 
    useEffect(()=>{
-        setUser(props.currentUser)
+        setVendor(props.currentVendor)
    },[props])
 
    const handleInputChange = (event)=>{
     const {name,value} = event.target
 
-    setUser({...user,[name]:value})
+    setVendor({...vendor,[name]:value})
     }
 
     return (
         <form onSubmit={
             event => {
                 event.preventDefault();
-                if(!user.name||!user.username) return;
-                props.updateUser(user.id,user);
+                if(!vendor.name||!vendor.vendorname) return;
+                props.updateUser(vendor.id,vendor);
             }
         }>
             <label>Name</label>
-            <input type="text" onChange={handleInputChange} name="name" value={user.name} />
+            <input type="text" onChange={handleInputChange} name="name" value={vendor.name} />
             <label>Username</label>
-            <input type="text" onChange={handleInputChange} name="username" value={user.username} />
-            <button>Update user</button>
+            <input type="text" onChange={handleInputChange} name="vendorname" value={vendor.vendorname} />
+            <button>Update vendor</button>
             <button className="button muted-button" onClick={()=>{
                 props.setEditing(false)
             }}>Cancel</button>

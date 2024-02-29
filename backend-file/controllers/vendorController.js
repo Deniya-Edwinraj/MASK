@@ -4,16 +4,20 @@ import slugify from 'slugify';
 
 // create new vendor
 const createVendor = asyncHandler(async (req, res) => {
-    try {
-        if (req.body.name) {
-            req.body.slug = slugify(req.body.name);
-        }
-        const newVendor = await vendorModel.create(req.body);
-        res.json(`Created Successfully`);
-    } catch (error) {
-        throw new Error(error);
+  try {
+    if (req.body.name) {
+      req.body.slug = slugify(req.body.name);
     }
-  });
+    const newVendor = await vendorModel.create(req.body);
+
+    // Respond with the created vendor or a success message
+    res.json({ message: 'Vendor created successfully', vendor: newVendor });
+  } catch (error) {
+    console.error('Error creating vendor:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
   // get all vendors 
 const getallVendors = asyncHandler(async (req, res) => {
