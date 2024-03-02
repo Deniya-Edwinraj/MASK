@@ -153,13 +153,10 @@ import { useParams } from 'react-router-dom';
 function Customize({item, handleClick}) {
   const navigate = useNavigate();
   const { productName } = useParams();
-  const { productPrice } = useParams();
   const decodedProductName = decodeURIComponent(productName);
-  const decodedProductPrice = decodeURIComponent(productPrice)
 
   const [formData, setFormData] = useState({
     product: decodedProductName,
-    product_price: decodedProductPrice,
     category: '',
     size: '',
     colour: '',
@@ -187,7 +184,6 @@ function Customize({item, handleClick}) {
 
       setFormData({
         product: decodedProductName,
-        product_price: decodedProductPrice,
         category: '',
         size: '',
         colour: '',
@@ -204,7 +200,6 @@ function Customize({item, handleClick}) {
   const handleClear = () => {
     setFormData({
       product: decodedProductName,
-      product_price: decodedProductPrice,
       category: '',
       size: '',
       colour: '',
@@ -224,10 +219,6 @@ function Customize({item, handleClick}) {
               <div class="item">
                 <p>Product Name</p>
                 <input type="text" name="product" value={decodedProductName}   onChange={handleChange} required />
-              </div>
-              <div class="item">
-                <p>Product Price</p>
-                <input type="text" name="product_price" value={decodedProductPrice}   onChange={handleChange} required />
               </div>
               <div className="item">
                 <p>Category</p>
@@ -254,7 +245,7 @@ function Customize({item, handleClick}) {
             
               <div class="btn-block">
                 {/* <Link to='/product'> */}
-               <button className="btn5" type="submit" onClick={()=>handleClick(item)}>Add to cart</button>
+               <button className="btn5" type="submit" onClick={()=>handleClick(item)}>Order</button>
                {/* </Link> */}
              </div>
           </form>

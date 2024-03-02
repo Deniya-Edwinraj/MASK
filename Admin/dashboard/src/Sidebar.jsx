@@ -47,21 +47,25 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </Link>
             </li>
             <li className='sidebar-list-item'>
+                <Link to='/orders' style={{ textDecoration: 'none' }}>
                 <a href="">
                     <BsListCheck className='icon'/> Orders
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/customize'>
+                <Link to='/customizes' style={{ textDecoration: 'none' }}>
                 <a href="">
                 <BsMenuButtonWideFill className='icon'/> Customize
                 </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
+               <Link to='/bookings' style={{ textDecoration: 'none' }}>   
                 <a href="">
                     <BsListCheck className='icon'/> Bookings
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <a href="">

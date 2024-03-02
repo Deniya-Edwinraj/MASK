@@ -6,23 +6,35 @@ import Product from '../models/productModel.js';
 //Create New Order - api/order/new
 const newOrder =  asyncHandler( async (req, res, next) => {
     const {
+        name,
+        email,
+        phoneNo,
+        address,
+        district,
+        totalprice,
         orderItems,
-        deliveryInfo,
-        itemsPrice,
+        orderStatus,
+        paymentInfo,
+        paidAt,
+        deliveryAt,
         deliveryCharge,
-        totalPrice,
-        paymentInfo
+        createdAt
     } = req.body;
 
     const order = await Order.create({
+        name,
+        email,
+        phoneNo,
+        address,
+        district,
+        totalprice,
         orderItems,
-        deliveryInfo,
-        itemsPrice,
-        deliveryCharge,
-        totalPrice,
+        orderStatus,
         paymentInfo,
-        paidAt: Date.now(),
-        user: req.user.id
+        paidAt,
+        deliveryAt,
+        deliveryCharge,
+        createdAt
     })
 
     res.status(200).json(`Order created succesfully`)

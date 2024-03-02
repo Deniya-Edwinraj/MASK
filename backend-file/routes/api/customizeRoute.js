@@ -10,7 +10,7 @@ import {isAdmin,protect} from '../../middleware/authMiddlesware.js';
 
 
 router.post("/new", protect, createCustomize);
-router.get('/',protect,isAdmin,getallCustomize);
+router.get('/' ,getallCustomize);
 router.get('/:id',protect,isAdmin,getaCustomize);
 
 

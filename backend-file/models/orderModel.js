@@ -1,7 +1,18 @@
 import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
-    deliveryInfo: {
+        name: {
+            type: String,
+            required: true
+        },
+        email :{
+            type: String,
+            required: true
+        },
+        phoneNo: {
+            type: String,
+            required: true
+        },
         address: {
             type: String,
             required: true
@@ -10,75 +21,37 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        phoneNo: {
-            type: String,
-            required: true
-        },
-    },
-    user: {
-        type: mongoose.SchemaTypes.ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    orderItems: [{
-        name: {
-            type: String,
-            required: true
-        },
-        quantity: {
+        totalprice: {
             type: Number,
-            required: true
+            required: true,
+            default: 0.0
         },
-        image: {
-            public_id: String,
-        secure_url: String,
-        },
-        price: {
-            type: Number,
-            required: true
-        },
-        product: {
-            type: mongoose.SchemaTypes.ObjectId,
+        orderItems: {
+            type: String,
             required: true,
             ref: 'Product'
-        }
-
-    }],
-    itemsPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    deliveryCharge: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
+        },
+    orderStatus: {
+        type: String,
+        default: 'Processing'
     },
     paymentInfo: {
         id: {
             type: String,
-            required: true
         },
         status: {
             type: String,
-            required: true
         }
     },
     paidAt: {
         type: Date
     },
-    deliveredAt: {
+    deliveryAt :{
         type: Date
     },
-    orderStatus: {
-        type: String,
-        required: true,
-        default: 'Processing'
+    deliveryCharge: {
+        type: Number,
+        default: 0.0
     },
     createdAt: {
         type: Date,
@@ -88,15 +61,6 @@ const orderSchema = mongoose.Schema({
 { timestamps: true }
 );
 
-orderSchema.pre("remove", function (next) {
-    // Delete the images from Cloudinary when an order is removed
-    this.orderItems.forEach((item) => {
-      item.images.forEach((image) => {
-        cloudinary.uploader.destroy(image.public_id);
-      });
-    });
-    next();
-  });
 
 const orderModel = mongoose.model('Order', orderSchema);
 

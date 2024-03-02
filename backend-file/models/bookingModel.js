@@ -1,48 +1,59 @@
 import mongoose from "mongoose";
 
-const bookingSchema= mongoose.Schema({
-   
-        address: {
+const bookingSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    district: {
+        type: String,
+        required: true
+    },
+    phoneNo: {
+        type: String,
+        required: true
+    },
+    function_type: {
+        type: String,
+        required: true
+    },
+    theme: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    image: {
+        public_id: {
             type: String,
             required: true
         },
-        district: {
+        secure_url: {
             type: String,
             required: true
-        },
-        phoneNo: {
-            type: String,
-            required: true
-        },   
-        function_type: {
-            type: String,
-            required: true
-        },
-        theme: {
-            type: String,
-            required: true
-        },
-        date_of_delivery: {
-            type: Date,
-            require: true
-        },
-        description:{
-            type: String,
-            require: true
-        },
-        image: {
-            public_id: String,
-            secure_url: String,
-        },
-  
+        }
+    },
     bookingStatus: {
         type: String,
-        // required: true,
         default: 'Processing'
+    },
+    paymentInfo: {
+        type: String
+    },
+    date_of_delivery: {
+        type: Date
     }
-},
-    { timestamps: true }
-);
+}, { timestamps: true });
 
 const bookingModel = mongoose.model('Booking', bookingSchema);
 

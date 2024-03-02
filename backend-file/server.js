@@ -24,7 +24,9 @@ import vendorRouter from './routes/api/vendorRoute.js';
 import cors from 'cors';
 import { isAdmin } from './middleware/authMiddlesware.js';
 
-app.use(cors({credentials: true, origin: ['http://localhost:3000','http://localhost:5173/']}));
+const corsInstance = cors({ origin: ['http://localhost:3000', 'http://localhost:5173'],});
+app.use(corsInstance);
+
 app.use (morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extented: true}));
@@ -39,7 +41,6 @@ app.use('/api/product', productRouter);
 app.use('/api/order',orderRouter);
 app.use('/api/contact',contactRouter);
 app.use('/api/booking',bookingRouter);
-// app.use('/api/cart',addToCartRouter);
 app.use('/api/customize',customizeRouter);
 app.use('/api/vendor',vendorRouter);
 

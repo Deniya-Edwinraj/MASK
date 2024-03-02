@@ -1,5 +1,5 @@
 import React,{useState}  from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Assests/bootstrap/css/bootstrap.min.css';
@@ -51,6 +51,9 @@ function App() {
 			tempArr[ind].amount = 1;
 		setCart([...tempArr])
 	}
+	const isAdmin = true;
+
+	
   return (
     <>
     <ToastContainer />
@@ -65,9 +68,17 @@ function App() {
           <Route path='/order' element={<Order/>} />
           <Route path='/payment' element={<Payment/>} />
           <Route path='/register' element={<Register/>} />
-          {/* <Route path="/dashboard" element={<Dashboard />} />  */}
-          <Route path="/customizeform/:productName/:productPrice" element={<Customize />} />          <Route path='/services' element={<Services/>} />
+          <Route path="/customizeform" element={<Customize />} />          
+		  <Route path='/services' element={<Services/>} />
           <Route path='/cart' element={<Cart/>} />
+		  {isAdmin ? (
+            <Route
+              path="/dashboard"
+              element={<Navigate to="http://localhost:5173/" replace />}
+            />
+          ) : (
+            <Navigate to="/" />
+          )}
         </Routes>
         <Footer />
       </div>

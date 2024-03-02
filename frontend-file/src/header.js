@@ -2,24 +2,132 @@ import './Assests/bootstrap/css/bootstrap.min.css';
 import './Assests/bootstrap-icons/bootstrap-icons.min.css';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import ShoppingCart from './cart';
+import { GiShoppingBag } from "react-icons/gi";
 
 
-function Header ({userRole,size, setShow}) {
-  const [ setFormData] = useState({
-    product: '',
-    quantity: 1,
-  });
+function Header () {
+const [loggedIn, setLoggedIn] = useState(false);
+const [isAdmin, setIsAdmin] = useState(false);
 
-  const [dashboardVisible, setDashboardVisible] = useState(false);
+const products = [
+	{
+		id: 1,
+		name: "Vivamus vitae",
+		rating: 4.3,
+		description:
+			"Vivamus vitae neque accumsan, ultrices nisl et, viverra magna. Fusce nec maximus sem.",
+		price: 199,
+	},
+	{
+		id: 2,
+		name: "Fusce sit amet ipsum",
+		rating: 4.2,
+		description:
+			"Maecenas fermentum urna egestas urna ullamcorper sodales. Sed a enim imperdiet, tempus massa a, iaculis tellus.",
+		price: 229,
+	}
+];
+const [cartsVisibilty, setCartVisible] =
+		useState(false);
+	const [productsInCart, setProducts] =
+		useState(
+			JSON.parse(
+				localStorage.getItem(
+					"shopping-cart"
+				)
+			) || []
+		);
+	useEffect(() => {
+		localStorage.setItem(
+			"shopping-cart",
+			JSON.stringify(productsInCart)
+		);
+	}, [productsInCart]);
+	const addProductToCart = (product) => {
+		const newProduct = {
+			...product,
+			count: 1,
+		};
+		setProducts([
+			...productsInCart,
+			newProduct,
+		]);
+	};
+
+	const onQuantityChange = (
+		productId,
+		count
+	) => {
+		setProducts((oldState) => {
+			const productsIndex =
+				oldState.findIndex(
+					(item) =>
+						item.id === productId
+				);
+			if (productsIndex !== -1) {
+				oldState[productsIndex].count =
+					count;
+			}
+			return [...oldState];
+		});
+	};
+
+	const onProductRemove = (product) => {
+		setProducts((oldState) => {
+			const productsIndex =
+				oldState.findIndex(
+					(item) =>
+						item.id === product.id
+				);
+			if (productsIndex !== -1) {
+				oldState.splice(productsIndex, 1);
+			}
+			return [...oldState];
+		});
+	};
+
+useEffect(() => {
+  const isLoggedIn = sessionStorage.getItem('loggedIn');
+  if (isLoggedIn) {
+    setLoggedIn(true);
+    const userRole = sessionStorage.getItem('userRole');
+    if (userRole === 'admin') {
+      setIsAdmin(true);
+    }
+  }
+}, []);
 
   useEffect(() => {
-    setDashboardVisible(userRole === 'admin');
-  }, [userRole]);
+    const isLoggedIn = sessionStorage.getItem('loggedIn');
+    if (isLoggedIn) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    sessionStorage.setItem('loggedIn', true);
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('loggedIn');
+    setLoggedIn(false);
+    toast.success('Logout successful');
+  };
 
     return (
       <div className="Header">
+<ShoppingCart
+  visibilty={cartsVisibilty}
+  products={productsInCart}
+  onClose={() => setCartVisible(false)}
+  onQuantityChange={onQuantityChange}
+  onProductRemove={onProductRemove}
+/>
 
-<nav className="navbar navbar-expand-lg  navbar-dark" id="navbar">
+      <nav className="navbar navbar-expand-lg  navbar-dark" id="navbar">
         <div className="container-fluid">
         <img src={require("./Assests/img/logo.png")} alt="Logo" style={{ width: "5rem", height: "4rem" }} className="img-fluid" />
           <a className="navbar-brand" href="123">MASK</a>
@@ -29,7 +137,9 @@ function Header ({userRole,size, setShow}) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto" style={{ gap: "1rem" }}>
               <li className="nav-item">
+                <Link to='/' style={{ textDecoration: 'none' }}>
                 <a className="nav-link " href="index.html">Home</a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link " href="#about">About</a>
@@ -42,29 +152,44 @@ function Header ({userRole,size, setShow}) {
                 <a className="nav-link " href='services'>Services</a>
                 </Link>
               </li>
-
-             {/* {userRole && userRole === 'admin' && (
-              <li className="nav-item">
-              <a className="nav-link" href="http://localhost:5173/">Dashboard</a>
-              </li>
-             )} */}
-             {dashboardVisible && (
-              <li className="nav-item">
-                <a className="nav-link" href="http://localhost:5173/">Dashboard</a>
-              </li>
-             )}
+              {isAdmin && (
+                <li className="nav-item">
+                  <Link to="http://localhost:5173/" style={{ textDecoration: 'none' }}>
+                    <a className="nav-link " href='services'>Dashboard</a>
+                  </Link>
+                </li>
+              )} 
           </ul>
-          <div className='addcart-icon'>
-          <button id="cart"  onClick={()=>setShow(false)}><i className="bi bi-bag-check-fill"></i>          
-           <span>{size}</span>
-          </button>
-          </div>
 
-          <button className="btn-login p-2 my-lg-0 my-2" id="getStartedBtn" >
-             <Link to="/login" style={{ textDecoration: 'none', color:'#000' }}>
-              <img src={require("./Assests/img/login.png")} alt="Login" style={{ height: '17px', width: '17px' }} /> Get Started
-             </Link>
-          </button>
+          <button
+  className="btn shopping-cart-btn"
+  onClick={() => setCartVisible(true)}
+>
+  <GiShoppingBag size={24} />
+  {productsInCart.length > 0 && (
+    <span className="product-count">
+      {productsInCart.length}
+    </span>
+  )}
+</button>
+
+
+            {!loggedIn && (
+              <button className="btn-login p-2 my-lg-0 my-2" id="getStartedBtn" onClick={handleLogin}>
+                <Link to="/login" style={{ textDecoration: 'none', color: '#000' }}>
+                  <img src={require("./Assests/img/login.png")} alt="Login" style={{ height: '17px', width: '17px' }} /> Get Started
+                </Link>
+              </button>
+            )}
+
+            {loggedIn && (
+              <button className="btn-login p-2 my-lg-0 my-2" id="getStartedBtn" onClick={handleLogout}>
+                <i class="bi bi-box-arrow-right"></i> 
+                Logout
+              </button>
+              
+            )}
+
              
 
           </div>

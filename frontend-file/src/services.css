@@ -16,8 +16,8 @@
 }
 .services .box{
     position: relative;
-    width: 380px;
-    height: 380px;
+    width: 450px;
+    height: 400px;
     background: #000;
     display: flex;
     justify-content: center;
@@ -120,4 +120,8 @@
 }
 .services .box .service-content a:hover{
     background: #817201;
+}
+
+.service-text p{
+    font-size: 15px;
 }

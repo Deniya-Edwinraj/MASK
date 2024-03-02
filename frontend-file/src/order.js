@@ -1,45 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './order.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 
 function Order () {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNo: '',
+    address: '',
+    district: '',
+    totalprice: '',
+    orderItems: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/order/new', formData, { withCredentials: true });
+      console.log('Message send successfully:', response.data);
+      toast.success('Order created succssfully');
+      navigate('/payment');
+  
+      setFormData({
+        name: '',
+        email: '',
+        phoneNo: '',
+        address: '',
+        district: '',
+        totalprice: '',
+        orderItems: '',
+      });
+    } catch (error) {
+      console.error('Error submitting contact request:', error.message);
+      toast.error('Invalid process');
+    }
+  };
+
+  const handleClear = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phoneNo: '',
+      address: '',
+      district: '',
+      totalprice: '',
+      orderItems: '',
+    });
+  }
+
     return (
       <div className="Order">
         <div className="popup-container">
   <div className="testbox">
-    <form className="orderform" action="/">
+    <form className="orderform"  onSubmit={handleSubmit}>
       <div className="banner">
         <h1>Decorative Ornaments Ordering Form</h1>
       </div>
       
       <div className="item">
         <p>Order Items</p>
-        <textarea className='textarea' rows="4" required></textarea>
+        <textarea className='textarea' rows="4" name="orderItems" value={formData.orderItems} onChange={handleChange} required></textarea>
+      </div>
+      <div className="item">
+        <p>Total Price</p>
+        <input className='inputorder' type="text" name="totalprice" value={formData.totalprice} onChange={handleChange} required/>
       </div>
       <div className="item">
         <p>Name</p>
-        <input className='inputorder' type="text" name="name" required/>
+        <input className='inputorder' type="text" name="name" value={formData.name} onChange={handleChange} required/>
       </div>
       <div className="item">
         <p>Email</p>
-        <input className='inputorder' type="email" name="email" required/>
+        <input className='inputorder' type="email" name="email" value={formData.email} onChange={handleChange} required/>
       </div>
       <div className="item">
         <p>Phone Number</p>
-        <input className='inputorder' type="text" name="phone-no" required/>
+        <input className='inputorder' type="text" name="phoneNo" value={formData.phoneNo} onChange={handleChange} required/>
       </div>
       <div className="item">
         <p>Address</p>
-        <input className='inputorder' type="text" name="address" required/>
+        <input className='inputorder' type="text" name="address" value={formData.address} onChange={handleChange} required/>
       </div>
       <div className="item">
         <p>District</p>
-        <input className='inputorder' type="text" name="district" required/>
+        <input className='inputorder' type="text" name="district" value={formData.district} onChange={handleChange} required/>
       </div>
       <div className="btn-block">
-        <Link to="/payment">
-        <button className="btn-order" type="submit" href="/">SEND</button>
-        </Link>
+        <button className="btn-order" type="submit" >SEND</button>
       </div>
     </form>
   </div>

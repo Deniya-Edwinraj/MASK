@@ -1,11 +1,10 @@
 import { useState } from "react";
-// import AddVendorForm from "./AppVendorForm";
-import CustomizeTable from "./CustomizeTable";
-// import EditVendorForm from "./EditVendorForm";
-import './Customize.css'
+import OrderTable from "./OrderTable"
+import EditOrderForm from "./EditOrderForm";
+import './Order.css';
 
 
-function Customization() {
+function Orders() {
 
 const usersData = [
     {id:1,name:'Logesh',username:'jvlogesh'},
@@ -13,59 +12,59 @@ const usersData = [
     {id:3,name:'Daniel',username:'danielradcliff'},
 ];
 
-const addVendor = (user)=>{
+const addUser = (user)=>{
     user.id = users.length + 1;
     setUsers([...users,user])
 }
-const deleteVendor = (id)=>{
+const deleteUser = (id)=>{
     setUsers(users.filter((user)=>user.id!==id))
     setEditing(false);
 }
 
     const [users,setUsers] = useState(usersData);
     const [editing,setEditing] = useState(false)
-    
+
 
     const initialFormState = {id:null,name:'',username:''}
 
-    const [currentVendor,setCurrentUser] = useState(initialFormState);
+    const [currentUser,setCurrentUser] = useState(initialFormState);
 
     const editRow = (user)=>{
         setEditing(true);
         setCurrentUser({id:user.id,name:user.name,username:user.username});
     }
 
-    const updateVendor = (id,updatedUser)=>{
+    const updateUser = (id,updatedUser)=>{
         setEditing(false);
         setUsers(users.map((user)=>(user.id===id?updatedUser:user)))
     }
 
   return (
     <div className="container">
-      <h1>Vendors Stands For MASK</h1>
+      <h1>Order Details of MASK</h1>
       <div className="flex-row">
         <div className="flex-large">
             {editing?(<div>
-                <h2>Edit Vendor</h2>
-                {/* <EditVendorForm 
+                <h2>Edit User</h2>
+                <EditOrderForm 
                     setEditing={setEditing}
-                    currentVendor={currentVendor}
-                    updateVendor={updateVendor}
-                /> */}
+                    currentUser={currentUser}
+                    updateUser={updateUser}
+                />
             </div>):(<div>
                 {/* <h2>Add Vendor</h2>
-          <AddVendorForm addVendor={addVendor} /> */}
+          <AddVendorForm addUser={addUser} /> */}
           </div>
             ) 
         }
         </div>
         <div className="flex-large">
-          <h2>View Vendors</h2>
-          <CustomizeTable editRow={editRow} deleteVendor={deleteVendor} users={users} />
+          {/* <h2>View Orders</h2> */}
+          <OrderTable editRow={editRow} deleteUser={deleteUser} users={users} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Customization;
+export default Orders;

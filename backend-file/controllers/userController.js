@@ -8,41 +8,20 @@ import nodemailer from 'nodemailer';
 // route    POST /api/users/auth
 // @access Public 
 
-// const authUser =asyncHandler(async (req, res) => {
-//     const { email, password } = req.body;
+const authUser =asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
 
-//     const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-//     if (user && (await user.matchPassword(password))) {
-//         generateToken(res, user._id);
+    if (user && (await user.matchPassword(password))) {
+        generateToken(res, user._id);
     
-//         res.json(`Login Sucessfully`);
-//       } else {
-//         res.status(401);
-//         throw new Error('Invalid email or password');
-//       }
-// });
-
-const authUser = async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
-
-    // Send alert email to user
-    await sendAlertEmail(user.email);
-
-    res.json(`Login Successfully`);
-  } else {
-    res.status(401);
-    throw new Error('Invalid email or password');
-  }
-};
-
-
-
+        res.json(`Login Sucessfully`);
+      } else {
+        res.status(401);
+        throw new Error('Invalid email or password');
+      }
+});
 
 // @desc    register a user
 // route    POST /api/users

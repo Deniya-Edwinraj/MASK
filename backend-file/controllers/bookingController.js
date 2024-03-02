@@ -11,11 +11,14 @@ const newBooking = asyncHandler(async (req, res, next) => {
             theme,
             date_of_delivery,
             description,
+            image,
             name,
             email,
             phoneNo,
             address,
             district,
+            bookingStatus,
+            paymentInfo,
         } = req.body;
 
         console.log("Request User:", req.user);
@@ -25,11 +28,14 @@ const newBooking = asyncHandler(async (req, res, next) => {
             theme,
             date_of_delivery,
             description,
+            image,
             name,
             email,
             phoneNo,
             address,
             district,
+            bookingStatus,
+            paymentInfo,
         });
 
         if (booking) {
