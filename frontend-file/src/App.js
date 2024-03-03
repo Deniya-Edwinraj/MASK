@@ -69,7 +69,7 @@ function App() {
           <Route path='/payment' element={<Payment/>} />
           <Route path='/register' element={<Register/>} />
           <Route path="/customizeform" element={<Customize />} />          
-		  <Route path='/services' element={<Services/>} />
+		      <Route path='/services' element={<Services/>} />
           <Route path='/cart' element={<Cart/>} />
 		  {isAdmin ? (
             <Route

@@ -159,10 +159,10 @@ function Booking() {
     phoneNo: '',
     address: '',
     district: '',
-    image:'',
+    // image:'',
   });
 
-  const [imageFile, setImageFile] = useState(null);
+  // const [imageFile, setImageFile] = useState(null);
 
 
   const handleChange = (e) => {
@@ -176,12 +176,10 @@ function Booking() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     try {
-      const response = await axios.post('http://localhost:5000/api/booking/new', formData, {withCredentials:true});
-      console.log('Message send successfully:', response.data);
-      toast.success('Booking created succssfully');
-  
+      const response = await axios.post('http://localhost:5000/api/booking/new', formData, { withCredentials: true });
+      console.log('Message sent successfully:', response.data);
+      toast.success('Booking created successfully');
       // Optionally, you can clear the form after a successful submission
       setFormData({
         function_type: '',
@@ -193,7 +191,7 @@ function Booking() {
         phoneNo: '',
         address: '',
         district: '',
-        image:'',
+        // image: '',
       });
     } catch (error) {
       console.error('Error submitting contact request:', error.message);
@@ -201,11 +199,12 @@ function Booking() {
       toast.error('Invalid process');
     }
   };
+  
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
-  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setImageFile(file);
+  // };
 
   const handleClear = () => {
     setFormData({
@@ -218,7 +217,7 @@ function Booking() {
         phoneNo: '',
         address: '',
         district: '',
-        image:'',
+        // image:'',
     });
   }
 
@@ -273,10 +272,10 @@ function Booking() {
             <p>District</p>
             <input className='inputbooking' type="text" name="district" value={formData.district} onChange={handleChange} required />
           </div>
-          <div className="item">
+          {/* <div className="item">
             <p>Upload Image</p>
             <input type="file" accept="image/*" onChange={handleImageChange} />
-          </div>
+          </div> */}
           <div className="btn-block">
             <button className='btn-booking' type="submit">SEND</button>
           </div>

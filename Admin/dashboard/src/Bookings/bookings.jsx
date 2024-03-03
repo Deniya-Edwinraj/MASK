@@ -41,7 +41,7 @@ const deleteUser = (id)=>{
 
   return (
     <div className="container">
-      <h1>Booking etails of MASK</h1>
+      <h1>Booking Details of MASK</h1>
       <div className="flex-row">
         <div className="flex-large">
             {editing?(<div>

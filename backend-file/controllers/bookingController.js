@@ -11,7 +11,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             theme,
             date_of_delivery,
             description,
-            image,
+            // image,
             name,
             email,
             phoneNo,
@@ -28,7 +28,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             theme,
             date_of_delivery,
             description,
-            image,
+            // image,
             name,
             email,
             phoneNo,
@@ -46,6 +46,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
                     user: process.env.GMAIL,
                     pass: process.env.PASS,
                 },
+
             });
 
             const mailOptions = {
@@ -71,7 +72,6 @@ const newBooking = asyncHandler(async (req, res, next) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
 
 
 

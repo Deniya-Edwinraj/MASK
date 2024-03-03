@@ -46,33 +46,21 @@
 #getStartedBtn{
   color: #000;
 }
-.addcart-icon{
-  width: 50px;
-  margin-right: 20px;
-}
- #cart{
+
+.shopping-cart-btn{
   background-color: #FFD700;
   border-radius: 50%;
-  width: 100%;
   height: 50px;
   border: none;
+  margin-right: 40px;
+}
+.shopping-cart-btn:hover{
+  background-color: #817201;
 }
 
 #navbarSupportedContent #getStartedBtn:hover{
 background-color: #817201;
 color: #000;
-}
-
-
-#cart span{
-  padding: 0 3px;
-  background-color: red;
-  color: white;
-  font-weight: bold;
-  border-radius: 50%;
-  position: relative;
-  top: -19px;
-  width: 50px;
 }
 
 /* -----Footer------ */

@@ -33,16 +33,16 @@ const bookingSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
-        public_id: {
-            type: String,
-            required: true
-        },
-        secure_url: {
-            type: String,
-            required: true
-        }
-    },
+    // image: {
+    //     public_id: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     secure_url: {
+    //         type: String,
+    //         required: true
+    //     }
+    // },
     bookingStatus: {
         type: String,
         default: 'Processing'

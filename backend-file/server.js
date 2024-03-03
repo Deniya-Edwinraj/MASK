@@ -24,7 +24,7 @@ import vendorRouter from './routes/api/vendorRoute.js';
 import cors from 'cors';
 import { isAdmin } from './middleware/authMiddlesware.js';
 
-const corsInstance = cors({ origin: ['http://localhost:3000', 'http://localhost:5173'],});
+const corsInstance = cors({ origin: ['http://localhost:3000', 'http://localhost:5173'],credentials: true});
 app.use(corsInstance);
 
 app.use (morgan("dev"));
