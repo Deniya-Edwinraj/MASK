@@ -89,7 +89,7 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/users/auth', {
         method: 'POST',
@@ -98,18 +98,24 @@ function Login() {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        // Assuming the server returns a token
         const token = data.token;
-
-        // Store the token in local storage or a secure storage mechanism
         localStorage.setItem('token', token);
-
+  
         console.log('Login successful', data);
-        toast.success('Login successful');
-        navigate('/');
+  
+        const userRole = data.role;
+
+        if (userRole === 'admin') {
+          navigate('http://localhost:5173/');
+          toast.success('Admin login successful');
+        } else {
+          navigate('/');
+          toast.success('Login successful');
+        }
+        
       } else {
         const error = await response.json();
         console.error('Login error:', error);
@@ -119,9 +125,9 @@ function Login() {
     } catch (error) {
       console.error('Network error:', error);
       setLoginError('Network error. Please try again.');
-      
     }
   };
+  
 
   return (
     <div className="Login">
@@ -172,4 +178,3 @@ function Login() {
 }
 
 export default Login;
-

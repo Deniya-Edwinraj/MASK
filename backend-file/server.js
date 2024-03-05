@@ -18,9 +18,9 @@ import productRouter from './routes/api/productRoute.js';
 import orderRouter from './routes/api/orderRoute.js';
 import contactRouter from './routes/api/contactRoute.js';
 import bookingRouter from './routes/api/bookingRoute.js';
-// import addToCartRouter from './routes/api/addToCartRoute.js';
 import customizeRouter from './routes/api/customizeRoute.js';
 import vendorRouter from './routes/api/vendorRoute.js';
+
 import cors from 'cors';
 import { isAdmin } from './middleware/authMiddlesware.js';
 

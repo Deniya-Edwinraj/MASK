@@ -109,8 +109,10 @@ function AddVendorForm() {
         <input type="text" name="address" value={formData.address} onChange={handleChange} /><br/>
         <button type="submit" disabled={loading}>
           {loading ? 'Adding...' : 'Add new vendor'}
+        </button> 
+        <button className="button muted-button" style={{ marginLeft:'287px' }}>
+        <Link to='/vendors' style={{ textDecoration: 'none', color: '#818181' }}>Cancel</Link>
         </button>
-        <Link to='/vendors'>Cancel</Link>
       </form>
    );
 }

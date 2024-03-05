@@ -1,12 +1,12 @@
-import './Order.css';
+import './category.css';
 
-const OrderTable = (props)=>(
+const CategoryTable = (props)=>(
     <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Actions</th>
+        <th>Function type</th>
+        <th>Number</th>
+        {/* <th>Actions</th> */}
       </tr>
     </thead>
     <tbody>
@@ -15,18 +15,18 @@ const OrderTable = (props)=>(
                 <tr key={user.id}>
                         <td>{user.name}</td>
                         <td>{user.username}</td>
-                        <td>
-                        {/* <button onClick={()=>{
+                        {/* <td>
+                        <button onClick={()=>{
                             props.editRow(user)
                         }} className="button muted-button">Edit</button>
-                        <button onClick={()=>props.deleteUser(user.id)} className="button muted-button">Delete</button> */}
+                        <button onClick={()=>props.deleteUser(user.id)} className="button muted-button">Delete</button>
                         <select className="browser-default custom-select">
                          <option>Status</option>
                          <option value="1">Done</option>
                          <option value="2">On process</option>
                          <option value="3">Rejected</option>
                         </select>
-                        </td>
+                        </td> */}
                     </tr>
 
             ))
@@ -41,4 +41,4 @@ const OrderTable = (props)=>(
   </table>
 );
 
-export default OrderTable;
+export default CategoryTable;

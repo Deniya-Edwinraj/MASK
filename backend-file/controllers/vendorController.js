@@ -50,22 +50,25 @@ const getaVendor = asyncHandler(async (req, res) => {
   });
 
 // update a vendor
-const updateaVendor =asyncHandler(async (req, res) => {
-    // res.status(200).json({message: 'Update user profile'});
-    const vendor = await vendorModel.findById(req.vendor._id);
+const updateaVendor = asyncHandler(async (req, res) => {
+  try {
+    const vendorId = req.params.id;
+    const updatedVendor = await vendorModel.findByIdAndUpdate(
+      vendorId,
+      req.body,
+      { new: true, runValidators: true }
+    );
 
-    if (vendor) {
-      vendor.name = req.body.name || vendor.name;
-      vendor.email = req.body.email || vendor.email;
-  
-  
-      const updatedvendor = await vendor.save();
-  
-      res.status(200).json(`Update sucessfully`);
-    } else {
-      res.status(404);
-      throw new Error('Vendor not found');
+    if (!updatedVendor) {
+      res.status(404).json({ error: 'Vendor not found' });
+      return;
     }
+
+    res.json({ message: 'Vendor updated successfully', vendor: updatedVendor });
+  } catch (error) {
+    console.error('Error updating vendor:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 // Delete a vendor

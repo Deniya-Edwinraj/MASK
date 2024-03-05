@@ -18,7 +18,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <Link to="/">
+                <Link to="/" style={{ textDecoration: 'none', color:'black' }}>
                 <a href="" className='side-link'>
                     <BsGrid1X2Fill className='icon'/> Dashboard
                 </a>
@@ -30,47 +30,51 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <Link to='/category'  style={{ textDecoration: 'none' }}>
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsFillGrid3X3GapFill className='icon'/> Categories
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsPeopleFill className='icon'/> Customers
                 </a>
             </li>
             <li className='sidebar-list-item'>
                 <Link to='/vendors'  style={{ textDecoration: 'none' }}>
-                <a href="">
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsPeopleFill className='icon'/> Vendors
                 </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
                 <Link to='/orders' style={{ textDecoration: 'none' }}>
-                <a href="">
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsListCheck className='icon'/> Orders
                 </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
                 <Link to='/customizes' style={{ textDecoration: 'none' }}>
-                <a href="">
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                 <BsMenuButtonWideFill className='icon'/> Customize
                 </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
                <Link to='/bookings' style={{ textDecoration: 'none' }}>   
-                <a href="">
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsListCheck className='icon'/> Bookings
                 </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGearFill className='icon'/> Settings
+                <Link to="/messages" style={{ textDecoration: 'none', color:'black' }}>
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <BsMenuButtonWideFill className='icon'/> Contacts
                 </a>
+                </Link>
             </li>
         </ul>
     </aside>

@@ -9,6 +9,7 @@ import AddVendorForm from './Vendor/AppVendorForm';
 import Bookings from './Bookings/bookings';
 import Orders from './Orders/orders';
 import Customizes from './Customizes/cutomizes';
+import Categories from './categoryTable/category';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -30,6 +31,8 @@ function App() {
       <Route path="/bookings" element={<Bookings />} />
       <Route path="/orders" element={<Orders />} />
       <Route path="/customizes" element={<Customizes />} />
+      <Route path='/messages' />
+      <Route path='/category' element={<Categories />} />
       </Routes>
 
     </div>

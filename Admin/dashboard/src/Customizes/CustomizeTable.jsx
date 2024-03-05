@@ -88,20 +88,26 @@ const Customizetable = (props) => {
               <td>{customize.colour}</td>
               <td>{customize.extra_features}</td>
               <td>
-                <button
+                {/* <button
                   onClick={() => {
                     props.editRow(customize);
                   }}
                   className="button muted-button"
                 >
                   Edit
-                </button> <br/>
-                <button
+                </button> <br/> */}
+                {/* <button
                   onClick={() => props.deleteCustomize(customize._id)}
                   className="button muted-button"
                 >
                   Delete
-                </button>
+                </button> */}
+                  <select className="browser-default custom-select">
+                   <option>Status</option>
+                   <option value="1">Done</option>
+                   <option value="2">On process</option>
+                   <option value="3">Rejected</option>
+                  </select>
               </td>
             </tr>
           ))

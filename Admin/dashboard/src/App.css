@@ -12,6 +12,12 @@ body {
   line-height: 1px;
   font-size: 20px;
 }
+.icon-head{
+  margin-left: 20px;
+}
+.icon-head:hover{
+  color: #FFD700;
+}
 .icon_header {
   vertical-align: middle;
   line-height: 1px;
@@ -104,18 +110,19 @@ body {
   text-decoration: none;
   color: #000;
 }
-
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
-  /*
-    we want the z-index of the sidebar higher so that
-    the charts are not showing over the sidebar 
-    on small screens
-  */
   z-index: 12 !important;
 }
-
+.side-link{
+  text-decoration: none;
+   color: #000;
+}
+.side-link:hover{
+  color: #fff;
+  text-decoration: none;
+}
 /* End Sidebar  */
 
 

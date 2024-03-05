@@ -7,11 +7,7 @@ import './Vendor.css';
 
 function Vendors() {
 
-const vendorsData = [
-    {id:1,name:'Logesh',username:'jvlogesh'},
-    {id:2,name:'Ramesh',username:'rameshtr'},
-    {id:3,name:'Daniel',username:'danielradcliff'},
-];
+const vendorsData = [ ];
 
 const addVendor = (vendor)=>{
     vendor.id = vendors.length + 1;
@@ -32,7 +28,7 @@ const deleteVendor = (id)=>{
 
     const editRow = (vendor)=>{
         setEditing(true);
-        setCurrentVendor({id:vendor.id,name:vendor.name,username:vendor.username});
+        setCurrentVendor({id:vendor.id,name:vendor.name,email:vendor.email,phoneNumber:vendor.phoneNumber,address:vendor.address});
     }
 
     const updateVendor = (id,updatedUser)=>{

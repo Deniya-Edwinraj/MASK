@@ -51,7 +51,6 @@ function App() {
 			tempArr[ind].amount = 1;
 		setCart([...tempArr])
 	}
-	const isAdmin = true;
 
 	
   return (
@@ -71,14 +70,6 @@ function App() {
           <Route path="/customizeform" element={<Customize />} />          
 		      <Route path='/services' element={<Services/>} />
           <Route path='/cart' element={<Cart/>} />
-		  {isAdmin ? (
-            <Route
-              path="/dashboard"
-              element={<Navigate to="http://localhost:5173/" replace />}
-            />
-          ) : (
-            <Navigate to="/" />
-          )}
         </Routes>
         <Footer />
       </div>

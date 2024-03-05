@@ -12,7 +12,7 @@ export default class Vendor extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/vendor/') // Make sure to use the correct URL
+    fetch('http://localhost:5000/api/vendor/')
       .then(response => response.json())
       .then(data => {
         this.setState({ vendors: data });
@@ -32,6 +32,7 @@ export default class Vendor extends Component {
               <th>Email</th>
               <th>Phone-Number</th>
               <th>Address</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

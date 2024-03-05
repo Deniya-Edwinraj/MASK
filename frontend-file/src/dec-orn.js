@@ -478,7 +478,7 @@ import React, { Component } from 'react';
 import './dec-orn.css';
 import { Link } from 'react-router-dom';
 
-export default class Product extends Component {
+class Product extends Component {
   constructor(props) {
     super(props);
 
@@ -546,89 +546,21 @@ export default class Product extends Component {
       
         <div className="row">
           {this.state.products.map(product => (
-              <div className = "filter-items">
+              <div className = "filter-items" key={product.id}>
                 {/* card 1 */}
                <div className = "filter-item all Flower-Vases">
                 <article className="card__article">
                   <img src={require("./Assests/img/vase1.jpg")} alt="image1" className="card__img"/>
-                    <div className="card__data">
-                      <h3 className="card__title">{product.name}</h3>
-                       <h5 className="card__title">Rs: {product.price}</h5>
-                       <Link to='/cart'>
-                       <button className="card__button" >Add to cart</button>
-                       </Link>
-                    </div>
-                </article>
-               </div>
-               {/* card 2 */}
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                 <img src={require("./Assests/img/vase2.jpeg")} alt="image2" className="card__img"/>
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
-                    <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
-                    <button className="card__button">Add to cart</button>
-                    </Link>
+                   <h5 className="card__title">Rs: {product.price}</h5>
+                    <button className="card__button"> Add to cart </button>
                   </div>
                 </article>
                </div>
-               {/* <!-- card 3 --> */}
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                 <img src={require("./Assests/img/vase3.jpeg")} alt="image3" className="card__img"/>
-                  <div className="card__data">
-                   <h3 className="card__title">{product.name}</h3>
-                    <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
-                    <button className="card__button">Add to cart</button>
-                    </Link>
-                  </div>
-                </article>
-               </div>
-               {/* <!-- card 4 --> */}
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                 <img src={require("./Assests/img/vase4.jpg")} alt="image4" className="card__img"/>
-                  <div className="card__data">
-                   <h3 className="card__title">{product.name}</h3>
-                    <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
-                    <button className="card__button">Add to cart</button>
-                    </Link>
-                  </div>
-                </article>
-               </div>
-               {/* <!-- card 5 --> */}
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                 <img src={require("./Assests/img/vase5.jpg")} alt="image5" className="card__img"/>
-                  <div className="card__data">
-                   <h3 className="card__title">{product.name}</h3>
-                    <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
-                    <button className="card__button">Add to cart</button>
-                    </Link>
-                  </div>
-                </article>
-               </div>  
-               {/* <!-- card 6 --> */}     
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                 <img src={require("./Assests/img/vase6.jpg")} alt="image6" className="card__img"/>
-                  <div className="card__data">
-                   <h3 className="card__title">{product.name}</h3>
-                    <h5 className="card__title">Rs: {product.price}</h5>
-                    <Link to={`/customizeform/${encodeURIComponent(product.name)}/${encodeURIComponent(product.price)}`}>
-                    <button className="card__button">Add to cart</button>
-                    </Link>
-                  </div>
-                </article>
-               </div>   
-
-      </div>
+              </div>
           ))}
-            </div>
+        </div>
           </div>
         </div>
        </div>
@@ -636,3 +568,5 @@ export default class Product extends Component {
     );
   }
 }
+
+export default Product;

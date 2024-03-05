@@ -23,8 +23,12 @@ const EditVendorForm = (props)=>{
         }>
             <label>Name</label>
             <input type="text" onChange={handleInputChange} name="name" value={vendor.name} />
-            <label>Username</label>
-            <input type="text" onChange={handleInputChange} name="vendorname" value={vendor.vendorname} />
+            <label>Email</label>
+            <input type="email" onChange={handleInputChange} name="vendorname" value={vendor.email} />
+            <label>Phone Number</label>
+            <input type="text" onChange={handleInputChange} name="vendorname" value={vendor.phoneNumber} />
+            <label>Address</label>
+            <input type="text" onChange={handleInputChange} name="vendorname" value={vendor.address} />
             <button>Update vendor</button>
             <button className="button muted-button" onClick={()=>{
                 props.setEditing(false)

@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 import {isAdmin,protect} from '../../middleware/authMiddlesware.js';
 
-router.post("/new", protect,isAdmin, createVendor);
-router.get("/", protect,isAdmin, getallVendors);
+router.post("/new", createVendor);
+router.get("/", getallVendors);
 router.get("/:id", getaVendor);
-router.put("/:id",protect,isAdmin,updateaVendor);
+router.put("/:id",updateaVendor);
 router.delete("/:id", protect,isAdmin, deleteaVendor);
 
 export default router;
