@@ -43,7 +43,7 @@ const deleteUser = (id)=>{
 
   return (
     <div className="container">
-      <h1>Order Details of MASK</h1>
+      <h1>Category Details of MASK</h1>
       <div className="flex-row">
         <div className="flex-large">
             {editing?(<div>

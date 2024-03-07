@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Vendor.css';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default class Vendor extends Component {
   constructor(props) {
@@ -16,6 +17,8 @@ export default class Vendor extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({ vendors: data });
+        console.log('Vendor successfully:', response);
+        toast.success('Vendor created successfully');
       })
       .catch(error => {
         console.log(error);
@@ -51,7 +54,7 @@ export default class Vendor extends Component {
               ))
             ) : (
               <tr>
-                <td colSpan={4}>No vendors</td>
+                <td colSpan={5}>No vendors</td>
               </tr>
             )}
           </tbody>

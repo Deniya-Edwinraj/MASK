@@ -10,7 +10,7 @@ import {isAdmin,protect} from '../../middleware/authMiddlesware.js';
 
 
 router.post("/new", protect, createContactMessage);
-router.get('/',protect,isAdmin,getallContact);
+router.get('/',getallContact);
 router.get('/:id',protect,isAdmin,getSingleContact);
 
 

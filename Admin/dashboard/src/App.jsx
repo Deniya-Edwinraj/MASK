@@ -10,6 +10,10 @@ import Bookings from './Bookings/bookings';
 import Orders from './Orders/orders';
 import Customizes from './Customizes/cutomizes';
 import Categories from './categoryTable/category';
+import Messages from './Messages/messages';
+import Customers from './Customers/Customer';
+import Products from './Products/products';
+import AddProductForm from './Products/AddProductForm';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -31,8 +35,12 @@ function App() {
       <Route path="/bookings" element={<Bookings />} />
       <Route path="/orders" element={<Orders />} />
       <Route path="/customizes" element={<Customizes />} />
-      <Route path='/messages' />
+      <Route path='/messages' element={<Messages />} />
       <Route path='/category' element={<Categories />} />
+      <Route path='/customers' element={<Customers />} />
+      <Route path='/products' element={<Products />} />
+      <Route path="/add-product" element={<AddProductForm />} />
+
       </Routes>
 
     </div>

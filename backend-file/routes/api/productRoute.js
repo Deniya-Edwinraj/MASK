@@ -19,7 +19,7 @@ router.get("/", getProducts);
 
 //Admin Routes
 router.put("/:id",protect,isAdmin, updateProduct);
-router.delete("/:id",protect,isAdmin, deleteProduct);
-router.post("/",protect,isAdmin,upload.single('image'), createProduct);
+router.delete("/:id", deleteProduct);
+router.post("/",upload.single('image'), createProduct);
 
 export default router;

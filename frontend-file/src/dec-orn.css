@@ -299,12 +299,12 @@ ul{
 }
 /*  */
 
-.filter-items{
+.product-sec{
   margin-top: 40px;
 }
-.filter-items{
-  display: -webkit-box;
-  display: -ms-flexbox;
+.product-sec{
+  /* display: -webkit-box;
+  display: -ms-flexbox; */
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -314,7 +314,9 @@ ul{
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+          flex-direction: column;
 }
+
 .filter-item{
   width: 100%;
   margin-bottom: 40px;
@@ -371,10 +373,10 @@ ul{
 .container-view h2{
   padding-bottom: 3rem;
 }
-.card__container {
+/* .card__container {
   display: grid;
   row-gap: 3.5rem;
-}
+} */
 
 .card__article {
   position: relative;

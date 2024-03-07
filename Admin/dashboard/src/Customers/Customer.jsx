@@ -1,47 +1,47 @@
 import { useState } from "react";
-import OrderTable from "./OrderTable"
+import CustomerTable from "./CustomerTable";
 // import EditOrderForm from "./EditOrderForm";
-import './Order.css';
+import './customers.css';
 
 
-function Orders() {
+function Customers() {
 
-const usersData = [
+const messageData = [
     // {id:1,name:'Logesh',username:'jvlogesh'},
     // {id:2,name:'Ramesh',username:'rameshtr'},
     // {id:3,name:'Daniel',username:'danielradcliff'},
 ];
 
-const addUser = (order)=>{
-    order.id = orders.length + 1;
-    setOrders([...orders,order])
+const addUser = (message)=>{
+    message.id = messages.length + 1;
+    SetMessage([...messages,message])
 }
 const deleteUser = (id)=>{
-    setOrders(orders.filter((order)=>order.id!==id))
+    SetMessage(messages.filter((message)=>message.id!==id))
     setEditing(false);
 }
 
-    const [orders,setOrders] = useState(usersData);
+    const [messages,SetMessage] = useState(messageData);
     const [editing,setEditing] = useState(false)
 
 
-    const initialFormState = {id:null,name:'',username:''}
+    const initialFormState = {id:null,name:'',email:''}
 
     const [currentUser,setCurrentUser] = useState(initialFormState);
 
-    const editRow = (order)=>{
+    const editRow = (message)=>{
         setEditing(true);
-        setCurrentUser({id:order.id,name:order.name,username:order.username});
+        setCurrentUser({id:message.id,name:message.name,username:message.username});
     }
 
     const updateUser = (id,updatedUser)=>{
         setEditing(false);
-        setOrders(orders.map((order)=>(order.id===id?updatedUser:order)))
+        SetMessage(messages.map((message)=>(message.id===id?updatedUser:message)))
     }
 
   return (
     <div className="container">
-      <h1>Order Details of MASK</h1>
+      <h1>Users of MASK</h1>
       <div className="flex-row">
         <div className="flex-large">
             {editing?(<div>
@@ -60,11 +60,11 @@ const deleteUser = (id)=>{
         </div>
         <div className="flex-large">
           {/* <h2>View Orders</h2> */}
-          <OrderTable editRow={editRow} deleteUser={deleteUser} orders={orders} />
+          <CustomerTable editRow={editRow} deleteUser={deleteUser} messages={messages} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Orders;
+export default Customers;

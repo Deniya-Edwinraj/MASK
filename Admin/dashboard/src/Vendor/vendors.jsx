@@ -1,22 +1,43 @@
-import { useState } from "react";
-import AddVendorForm from "./AppVendorForm";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 import VendorTable from "./VendorTable"
 import EditVendorForm from "./EditVendorForm";
 import './Vendor.css';
+import { toast } from 'react-toastify';
 
 
 function Vendors() {
 
 const vendorsData = [ ];
+const { id } = useParams();
+const navigate = useNavigate();
+
 
 const addVendor = (vendor)=>{
     vendor.id = vendors.length + 1;
     setVendors([...vendors,vendor])
 }
-const deleteVendor = (id)=>{
-    setVendors(vendors.filter((vendor)=>vendor.id!==id))
+// const deleteVendor = (id)=>{
+//     setVendors(vendors.filter((vendor)=>vendor.id!==id))
+//     setEditing(false);
+// }
+const deleteVendor = async (id) => {
+  try {
+    await fetch(`http://localhost:5000/api/vendor/${id}`, {
+      method: 'DELETE',
+    });
+    console.log('Vendor deleted successfully:', response.data);
+    toast.success('Vendor deleted successfully');
+    navigate('/vendors');
+
+    setVendors((prevVendors) => prevVendors.filter((vendor) => vendor.id !== id));
     setEditing(false);
-}
+  } catch (error) {
+    console.error('Error deleting vendor:', error);
+  }
+};
+
+
 
     const [vendors,setVendors] = useState(vendorsData);
     const [editing,setEditing] = useState(false)
@@ -56,7 +77,7 @@ const deleteVendor = (id)=>{
         }
         </div>
         <div className="flex-large">
-          <h2>View Vendors</h2>
+          {/* <h2>View Vendors</h2> */}
           <VendorTable editRow={editRow} deleteVendor={deleteVendor} vendors={vendors} />
         </div>
       </div>

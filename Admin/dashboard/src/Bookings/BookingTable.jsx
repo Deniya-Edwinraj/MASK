@@ -1,38 +1,116 @@
-import './Booking.css';
+// import './Booking.css';
 
-const BookingTable = (props)=>(
+// const BookingTable = (props)=>(
+//     <table>
+//     <thead>
+//       <tr>
+//             <th>Function Type</th>
+//             <th>Theme</th>
+//             <th>Description</th>
+//             <th>Name</th>
+//             <th>Email</th>
+//             <th>Address</th>
+//             <th>District</th>
+//             <th>Delivery At</th>
+//             <th>Delivery Charge</th>
+//             <th>Actions</th>
+//       </tr>
+//     </thead>
+//     <tbody>
+//         {props.bookings.length>0?(
+//             props.bookings.map((booking)=>(
+//                 <tr key={booking.id}>
+//                         <td>{booking.name}</td>
+//                         <td>{booking.username}</td>
+//                         <td>
+//                         <button onClick={()=>{
+//                             props.editRow(booking)
+//                         }} className="button muted-button">Edit</button>
+//                         <button onClick={()=>props.deleteUser(booking.id)} className="button muted-button">Delete</button>
+//                         </td>
+//                     </tr>
+
+//             ))
+//             ):(
+//                 <tr>
+//                     <td colSpan={10}>No bookings</td>
+//                 </tr>
+//             )
+//         }
+
+//     </tbody>
+//   </table>
+// );
+
+// export default BookingTable;
+
+import './Booking.css'; 
+import React, { useEffect, useState } from 'react';
+
+const BookingTable = () => {
+  const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    const token = 'abc123';
+
+    fetch('http://localhost:5000/api/booking/bookings', {
+      headers: new Headers({
+        Authorization: `Bearer ${token}`,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setBookings(data))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
     <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Actions</th>
+            <th>Function Type</th>
+            <th>Theme</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>Delivery At</th>
+            <th>Delivery Charge</th>
+            <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-        {props.users.length>0?(
-            props.users.map((user)=>(
-                <tr key={user.id}>
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
+        {bookings.length>0?(
+            bookings.map((booking)=>(
+                <tr key={booking.id}>
+                        <td>{booking.name}</td>
+                        <td>{booking.username}</td>
                         <td>
-                        <button onClick={()=>{
-                            props.editRow(user)
-                        }} className="button muted-button">Edit</button>
-                        <button onClick={()=>props.deleteUser(user.id)} className="button muted-button">Delete</button>
+                            <select className="browser-default custom-select">
+                                <option>{order.district}</option>
+                                <option value="1">Done</option>
+                                <option value="2">On process</option>
+                                <option value="3">Rejected</option>
+                            </select>
                         </td>
                     </tr>
 
             ))
             ):(
                 <tr>
-                    <td colSpan={3}>No users</td>
+                    <td colSpan={10}>No bookings</td>
                 </tr>
             )
         }
 
     </tbody>
   </table>
-);
+  );
+};
 
 export default BookingTable;

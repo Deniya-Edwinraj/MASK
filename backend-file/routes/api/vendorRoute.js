@@ -14,6 +14,6 @@ router.post("/new", createVendor);
 router.get("/", getallVendors);
 router.get("/:id", getaVendor);
 router.put("/:id",updateaVendor);
-router.delete("/:id", protect,isAdmin, deleteaVendor);
+router.delete("/:id", deleteaVendor);
 
 export default router;

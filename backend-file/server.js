@@ -20,6 +20,7 @@ import contactRouter from './routes/api/contactRoute.js';
 import bookingRouter from './routes/api/bookingRoute.js';
 import customizeRouter from './routes/api/customizeRoute.js';
 import vendorRouter from './routes/api/vendorRoute.js';
+import paymentRouter from './routes/api/paymentRoute.js';
 
 import cors from 'cors';
 import { isAdmin } from './middleware/authMiddlesware.js';
@@ -43,7 +44,7 @@ app.use('/api/contact',contactRouter);
 app.use('/api/booking',bookingRouter);
 app.use('/api/customize',customizeRouter);
 app.use('/api/vendor',vendorRouter);
-
+app.use('/api/payment',paymentRouter);
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();

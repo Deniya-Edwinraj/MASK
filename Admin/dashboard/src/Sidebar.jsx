@@ -25,9 +25,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <Link to='/products'  style={{ textDecoration: 'none' }}>
+                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsFillArchiveFill className='icon'/> Products
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <Link to='/category'  style={{ textDecoration: 'none' }}>
@@ -37,9 +39,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </Link>
             </li>
             <li className='sidebar-list-item'>
+                <Link to='/customers'  style={{ textDecoration: 'none' }}>
                 <a href="" style={{ textDecoration: 'none' , color:'black'}}>
                     <BsPeopleFill className='icon'/> Customers
                 </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <Link to='/vendors'  style={{ textDecoration: 'none' }}>

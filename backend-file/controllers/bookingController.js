@@ -37,6 +37,10 @@ const newBooking = asyncHandler(async (req, res, next) => {
             bookingStatus,
             paymentInfo,
         });
+        if (booking.errors) {
+            console.log('Validation Errors:', booking.errors);
+        }
+    
 
         if (booking) {
 
@@ -78,7 +82,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
 
 //Get Single Booking - api/booking/:id
 const getSingleBooking = asyncHandler(async (req, res, next) => {
-    const booking = await Booking.findById(req.params.id).populate('user', 'name email');
+    const booking = await Booking.findById(req.params.id);
     if(!booking) {
         return next(new ErrorHandler(`Booking not found with this id: ${req.params.id}`, 404))
     }
@@ -99,16 +103,25 @@ const myBooking = asyncHandler(async (req, res, next) => {
 })
 });
 
-//Admin: Get All Bookings - api/booking/bookings
-const getAllBookings = asyncHandler(async (req, res, next) => {
-  const bookings = await Booking.find();
-  console.log(bookings);
-  if (!bookings) {
-      return next(new ErrorHandler('No bookings found', 404));
-  }
+// Admin: Get All Bookings - api/booking/bookings
+// const getAllBookings = asyncHandler(async (req, res, next) => {
+//   const bookings = await Booking.find();
+//   console.log(bookings);
+//   if (!bookings) {
+//       return next(new ErrorHandler('No bookings found', 404));
+//   }
 
-  res.status(200).json(bookings);
-});
+// });
+
+// 
+const getAllBookings = asyncHandler(async (req, res, next) => {
+    try {
+        const getBooking = await Booking.find();
+        res.json(getBooking);
+      } catch (error) {
+        throw new Error(error);
+      }
+  });
 
 //Admin: Update Booking / Booking Status - api/v1/booking/:id
 const updateBooking = asyncHandler(async (req, res, next) => {

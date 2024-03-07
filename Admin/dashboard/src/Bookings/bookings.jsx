@@ -7,21 +7,21 @@ import './Booking.css';
 function Vendors() {
 
 const usersData = [
-    {id:1,name:'Logesh',username:'jvlogesh'},
-    {id:2,name:'Ramesh',username:'rameshtr'},
-    {id:3,name:'Daniel',username:'danielradcliff'},
+    // {id:1,name:'Logesh',username:'jvlogesh'},
+    // {id:2,name:'Ramesh',username:'rameshtr'},
+    // {id:3,name:'Daniel',username:'danielradcliff'},
 ];
 
-const addUser = (user)=>{
-    user.id = users.length + 1;
-    setUsers([...users,user])
+const addUser = (booking)=>{
+    booking.id = bookings.length + 1;
+    setBooking([...bookings,booking])
 }
 const deleteUser = (id)=>{
-    setUsers(users.filter((user)=>user.id!==id))
+    setBooking(bookings.filter((booking)=>booking.id!==id))
     setEditing(false);
 }
 
-    const [users,setUsers] = useState(usersData);
+    const [bookings,setBooking] = useState(usersData);
     const [editing,setEditing] = useState(false)
 
 
@@ -29,14 +29,14 @@ const deleteUser = (id)=>{
 
     const [currentUser,setCurrentUser] = useState(initialFormState);
 
-    const editRow = (user)=>{
+    const editRow = (booking)=>{
         setEditing(true);
-        setCurrentUser({id:user.id,name:user.name,username:user.username});
+        setCurrentUser({id:booking.id,name:booking.name,username:booking.username});
     }
 
     const updateUser = (id,updatedUser)=>{
         setEditing(false);
-        setUsers(users.map((user)=>(user.id===id?updatedUser:user)))
+        setBooking(bookings.map((booking)=>(booking.id===id?updatedUser:booking)))
     }
 
   return (
@@ -60,7 +60,7 @@ const deleteUser = (id)=>{
         </div>
         <div className="flex-large">
           {/* <h2>View Vendors</h2> */}
-          <BookingTable editRow={editRow} deleteUser={deleteUser} users={users} />
+          <BookingTable editRow={editRow} deleteUser={deleteUser} bookings={bookings} />
         </div>
       </div>
     </div>

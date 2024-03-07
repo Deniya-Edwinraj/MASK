@@ -546,7 +546,7 @@ class Product extends Component {
       
         <div className="row">
           {this.state.products.map(product => (
-              <div className = "filter-items" key={product.id}>
+              <div className = "product-sec" key={product.id}>
                 {/* card 1 */}
                <div className = "filter-item all Flower-Vases">
                 <article className="card__article">
