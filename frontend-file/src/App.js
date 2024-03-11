@@ -16,6 +16,7 @@ import Register from './register';
 import Customize from './customize';
 import Services from './services';
 import Cart from './cart';
+import PaymentHead from './paymentHead';
 
 function App() {
   const [show, setShow] = useState(true);
@@ -65,7 +66,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/booking" element={<Booking/>} />
           <Route path='/order' element={<Order/>} />
-          <Route path='/payment' element={<Payment/>} />
+          <Route path='/payment' element={<PaymentHead/>} />
           <Route path='/register' element={<Register/>} />
           <Route path="/customizeform" element={<Customize />} />          
 		      <Route path='/services' element={<Services/>} />

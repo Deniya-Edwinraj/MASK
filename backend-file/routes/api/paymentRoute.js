@@ -6,6 +6,6 @@ import { protect} from '../../middleware/authMiddlesware.js';
 const router = express.Router();
 
 
-router.post("/process",protect, processPayment);
-router.get("/sendapi", protect,sendStripApi);
+router.post("/process", processPayment);
+router.get("/sendapi",sendStripApi);
 export default router;

@@ -18,66 +18,48 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <Link to="/" style={{ textDecoration: 'none', color:'black' }}>
-                <a href="" className='side-link'>
-                    <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
-                </Link>
+            <Link to="/" style={{ textDecoration: 'none', color:'black' }} className='side-link'>
+             <BsGrid1X2Fill className='icon'/> Dashboard
+            </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/products'  style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/products'  style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                     <BsFillArchiveFill className='icon'/> Products
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/category'  style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/category'  style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                     <BsFillGrid3X3GapFill className='icon'/> Categories
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/customers'  style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/customers'  style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                     <BsPeopleFill className='icon'/> Customers
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/vendors'  style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/vendors'  style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                     <BsPeopleFill className='icon'/> Vendors
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/orders' style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/orders' style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                     <BsListCheck className='icon'/> Orders
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to='/customizes' style={{ textDecoration: 'none' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to='/customizes' style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                 <BsMenuButtonWideFill className='icon'/> Customize
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-               <Link to='/bookings' style={{ textDecoration: 'none' }}>   
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+               <Link to='/bookings' style={{ textDecoration: 'none', color:'black' }} className='side-link'>   
                     <BsListCheck className='icon'/> Bookings
-                </a>
                 </Link>
             </li>
             <li className='sidebar-list-item'>
-                <Link to="/messages" style={{ textDecoration: 'none', color:'black' }}>
-                <a href="" style={{ textDecoration: 'none' , color:'black'}}>
+                <Link to="/messages" style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                 <BsMenuButtonWideFill className='icon'/> Contacts
-                </a>
                 </Link>
             </li>
         </ul>

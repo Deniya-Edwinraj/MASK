@@ -12,7 +12,7 @@ const CategoryTable = (props)=>(
     <tbody>
         {props.users.length>0?(
             props.users.map((user)=>(
-                <tr key={user.id}>
+                <tr key={user.id|| index}>
                         <td>{user.name}</td>
                         <td>{user.username}</td>
                         {/* <td>
@@ -42,3 +42,4 @@ const CategoryTable = (props)=>(
 );
 
 export default CategoryTable;
+

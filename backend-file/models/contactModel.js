@@ -17,6 +17,9 @@ const contactSchema= mongoose.Schema(
         message: {
             type: String,
             required: true
+        },
+        status: {
+            type: String,
         }
     },
     { timestamps: true }

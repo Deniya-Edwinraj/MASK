@@ -1,6 +1,8 @@
 import './message.css';
 import React, { useEffect, useState } from 'react';
 
+// ... (your imports)
+
 const MessageTable = () => {
   const [customizes, setCustomizes] = useState([]);
 
@@ -35,8 +37,8 @@ const MessageTable = () => {
       </thead>
       <tbody>
         {customizes.length > 0 ? (
-          customizes.map((customize) => (
-            <tr key={customize.id}>
+          customizes.map((customize, index) => (
+            <tr key={customize.id || index}>
               <td>{customize.name}</td>
               <td>{customize.email}</td>
               <td>{customize.phoneNumber}</td>
@@ -44,9 +46,9 @@ const MessageTable = () => {
               <td>
                 <select className="browser-default custom-select">
                   <option>Status</option>
-                  <option value="1">Done</option>
-                  <option value="2">On process</option>
-                  <option value="3">Rejected</option>
+                  <option value="1" style={{color:"green"}}>Done</option>
+                  <option value="2" style={{color:"orange"}}>On process</option>
+                  <option value="3" style={{color:"red"}}>Rejected</option>
                 </select>
               </td>
             </tr>

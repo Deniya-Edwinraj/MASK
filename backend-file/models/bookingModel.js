@@ -43,7 +43,7 @@ const bookingSchema = mongoose.Schema({
     //         required: true
     //     }
     // },
-    bookingStatus: {
+    status: {
         type: String,
         default: 'Processing'
     },

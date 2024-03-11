@@ -177,9 +177,10 @@ import { toast } from 'react-toastify';
 import ShoppingCart from './cart';
 import Product from './dec-orn';
 import { GiShoppingBag } from 'react-icons/gi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header({ products }) {
+  const navigate= useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cartVisibility, setCartVisibility] = useState(false);
@@ -222,23 +223,52 @@ function Header({ products }) {
     const isLoggedIn = sessionStorage.getItem('loggedIn');
     if (isLoggedIn) {
       setLoggedIn(true);
-      const userRole = sessionStorage.getItem('userRole');
-      if (userRole === 'admin') {
+      const userEmail = sessionStorage.getItem('userEmail');
+      if (userEmail === 'deniyaedwinraj@gmail.com') {
         setIsAdmin(true);
       }
     }
   }, []);
+  
 
   const handleLogin = () => {
     sessionStorage.setItem('loggedIn', true);
     setLoggedIn(true);
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('loggedIn');
-    setLoggedIn(false);
-    toast.success('Logout successful');
+  const handleLogout = async () => {
+    try {
+      // Make a request to the backend logout endpoint
+      const response = await fetch('http://localhost:5000/api/users/logout', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Clear local and session storage
+        sessionStorage.removeItem('loggedIn');
+        // You may want to clear other user-related data as well
+
+        // Display success message
+        console.log ('logout successfully');
+        toast.success('Logout successful');
+        navigate('/');
+        
+
+        // Update the state or redirect to the login page
+        setLoggedIn(false);
+      } else {
+        // Handle errors or display an error message
+        console.error('Logout failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Logout error:', error.message);
+    }
   };
+
   const handleCartVisibility = () => {
     setCartVisibility((prevVisibility) => !prevVisibility);
   };
@@ -302,29 +332,26 @@ function Header({ products }) {
                   </a>
                 </Link>
               </li>
-              {isAdmin && (
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="http://localhost:5173/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Dashboard
-                  </a>
-                </li>
-              )}
+              {loggedIn && isAdmin && (
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              href="http://localhost:5173/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Dashboard
+            </a>
+          </li>
+        )}
             </ul>
 
-<button
-  className="btn shopping-cart-btn"
-  onClick={handleCartVisibility}
->
-  <GiShoppingBag size={24} />
-  {productsInCart.length > 0 && (
-    <span className="product-count">{productsInCart.length}</span>
-  )}
-</button>
+          <button className="btn shopping-cart-btn" onClick={handleCartVisibility} >
+            <GiShoppingBag size={24} />
+             {productsInCart.length > 0 && (
+              <span className="product-count">{productsInCart.length}</span>
+            )}
+          </button>
 
             {!loggedIn ? (
               <button

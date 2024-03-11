@@ -172,15 +172,20 @@ const deleteaUser = asyncHandler(async (req, res) => {
   }
 });
 
-// const deleteaUser = asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     const deleteUser = await Product.findByIdAndDelete(id);
-//     res.json(`Delete sucessfully`);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// });
+// block the user
+const blockUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const userToBlock = await User.findById(userId);
+
+  if (!userToBlock) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  userToBlock.status = 'blocked';
+  await userToBlock.save();
+
+  res.status(200).json({ message: 'User blocked successfully' });
+});
 
 export{
     authUser,
@@ -191,4 +196,5 @@ export{
     getallUser,
     getaUser,
     deleteaUser,
+    blockUser
 };

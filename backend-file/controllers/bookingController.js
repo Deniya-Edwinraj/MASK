@@ -17,7 +17,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             phoneNo,
             address,
             district,
-            bookingStatus,
+            status,
             paymentInfo,
         } = req.body;
 
@@ -34,7 +34,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             phoneNo,
             address,
             district,
-            bookingStatus,
+            status,
             paymentInfo,
         });
         if (booking.errors) {

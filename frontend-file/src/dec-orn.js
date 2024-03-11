@@ -477,7 +477,7 @@
 import React, { Component } from 'react';
 import './dec-orn.css';
 import { Link } from 'react-router-dom';
-
+import Custom from './custom'
 class Product extends Component {
   constructor(props) {
     super(props);
@@ -500,73 +500,104 @@ class Product extends Component {
 
   render() {
     return (
-      <div className="Product">
-        
-        {/* <!-- About --> */}
-<section className="about-product" id="about">
-  <div className="main-product">
-    <img src={require("./Assests/img/dec hero.jpg")} alt='hero'/>
-  </div>
-  <div className="all-text-product">
-    <h2>Are You Looking For The <br/>Meticulous Decorations</h2>
-   <p><span>MASK</span> provide you with the paper flower decorations for celebrations like
-    <ul>
-      <li>Birthday Party</li>
-      <li>Wedding</li>
-      <li>Family get-together</li>
-      <li>Reuions</li>
-    </ul>
-  </p>
-   <h3>Join us for a unique experience !</h3>
-  
-  <div className="btn-button">
-  <Link to="/booking">
-   <button className="btn2"><i class="bi bi-bookmark-check-fill"></i> Book Now</button>
-   </Link>
-  </div>
- </div>
+<>
+<Custom></Custom>
 
-</section>
-{/* <!-- About End --> */}
+          <h1 className='producth1' style={{color: "#000"}}>Our Products</h1><br/>
+     <div className = "filter-btns">
+         <button type = "button" className = "filter-btn" id = "all">all</button>
+         <button type = "button" className = "filter-btn" id = "Flower-Vases">Flower Vases</button>
+         <button type = "button" className = "filter-btn" id = "Wall-Hangers">Wall Hangers</button>
+         <button type = "button" className = "filter-btn" id = "Flower-Bouquets">Flower Bouquets</button>
+         <button type = "button" className = "filter-btn" id = "Lantern">Lanterns</button>
+              </div>
 
-{/* <!-- Products --> */}
-<div className = "wrapper" id="products">
-  <div className = "category-filter">
-      <div className = "container">
-          <div className = "title">
-              <h1 className='producth1'>Our Products</h1>
-          </div>
-          <div className = "filter-btns">
-              <button type = "button" className = "filter-btn" id = "all">all</button>
-              <button type = "button" className = "filter-btn" id = "Flower-Vases">Flower Vases</button>
-              <button type = "button" className = "filter-btn" id = "Wall-Hangers">Wall Hangers</button>
-              <button type = "button" className = "filter-btn" id = "Flower-Bouquets">Flower Bouquets</button>
-              <button type = "button" className = "filter-btn" id = "Lantern">Lanterns</button>
-          </div>
-      
-        <div className="row">
-          {this.state.products.map(product => (
-              <div className = "product-sec" key={product.id}>
+
+
+              <div className = "products" >
+
+
                 {/* card 1 */}
-               <div className = "filter-item all Flower-Vases">
-                <article className="card__article">
-                  <img src={require("./Assests/img/vase1.jpg")} alt="image1" className="card__img"/>
+                <ul class="cd-items cd-container">
+                {this.state.products.map(product => (
+
+                <li class="cd-item filter-item vegetables" style={{display: "list-item"}} key={product.id}>
+                  <article className="card__article">
+                  <img src={require("./Assests/img/vase1.jpg")} className="card__img " alt="image1" />
                   <div className="card__data">
                    <h3 className="card__title">{product.name}</h3>
                    <h5 className="card__title">Rs: {product.price}</h5>
                     <button className="card__button"> Add to cart </button>
                   </div>
-                </article>
-               </div>
+                  </article>
+                </li>
+                      ))}
+                </ul>
               </div>
-          ))}
-        </div>
-          </div>
-        </div>
-       </div>
-      </div>
-    );
-  }
+      
+
+        
+
+</>
+
+);
+}
 }
 
 export default Product;
+
+
+
+
+
+
+
+
+
+
+
+{/* <h1>View All products</h1>
+  <div class="filters">
+    <a class="filter_link" style={{background: "#3faaf5"}} href="#" data-filter="all">All</a>
+    <a class="filter_link" href="#" data-filter="vegetables">Vegetables</a>
+    <a class="filter_link" style={{background: "#fda729"}} href="#" data-filter="fruits">Fruits</a>
+    </div>
+         <ul class="cd-items cd-container">
+
+         {this.state.products.map(product => (
+
+    <li class="cd-item vegetables" style={{display: "list-item"}} key={product.id}>
+      <img src={require("./Assests/img/vase1.jpg")}  alt=""/>
+      <div class="cd-trigger">See more
+      
+      
+      
+      
+      </div>
+      <div class="quick-view-content">
+        <div class="quick-view-content-wrapper">
+          <div class="cd-slider-wrapper">
+            <ul class="cd-slider">
+              <li class="selected"><img src="https://image.freepik.com/free-vector/coloured-tomato-design_1166-13.jpg" alt=""/></li>
+              <li><img src="https://image.freepik.com/free-vector/coloured-tomato-design_1166-13.jpg" alt=""/></li>
+            </ul>
+            <ul class="cd-slider-navigation">
+              <li><a class="cd-next">Prev</a></li>
+              <li><a class="cd-prev">Next</a></li>
+            </ul>
+          </div>
+          <div class="cd-item-info">
+            <h2>Lorem ipsum dolor sit amet</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada, sem quis feugiat auctor, velit felis efficitur nibh, eu fringilla metus lorem at magna. Nullam aliquet lectus eu commodo sodales.</p>
+            <ul class="cd-item-action">
+              <li><a class="add-to-cart" href="#" target="_blank">Add to cart</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+      )
+      )
+  }
+  
+  </ul> */}
