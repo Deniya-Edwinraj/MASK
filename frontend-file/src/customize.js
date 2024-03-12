@@ -149,12 +149,11 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-
-function Customize({item, handleClick}) {
-  const navigate = useNavigate();
+function Customize({ item, handleClick }) {
   const { productName } = useParams();
-  const decodedProductName = decodeURIComponent(productName);
-
+  const decodedProductName = decodeURIComponent(productName)
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     product: decodedProductName,
     category: '',
@@ -218,7 +217,12 @@ function Customize({item, handleClick}) {
               </div>
               <div class="item">
                 <p>Product Name</p>
-                <input type="text" name="product" value={decodedProductName}   onChange={handleChange} required />
+                <input type="text" name="product" value={decodedProductName}   onChange={(e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      name: e.target.value,
+    }));
+  }} required />
               </div>
               <div className="item">
                 <p>Category</p>

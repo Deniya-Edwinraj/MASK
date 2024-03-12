@@ -65,10 +65,10 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/booking" element={<Booking/>} />
-          <Route path='/order' element={<Order/>} />
+		  <Route path='/order/:productName/:totalAmount' element={<Order />} />
           <Route path='/payment' element={<PaymentHead/>} />
           <Route path='/register' element={<Register/>} />
-          <Route path="/customizeform" element={<Customize />} />          
+		  <Route path="/customizeform/:productName" element={<Customize />} />
 		      <Route path='/services' element={<Services/>} />
           <Route path='/cart' element={<Cart/>} />
         </Routes>

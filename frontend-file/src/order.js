@@ -5,10 +5,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 
 function Order () {
   const navigate = useNavigate();
+  const { productName,totalAmount } = useParams();
+  const decodedProductName = decodeURIComponent(productName)
+  const decodedtotalAmount = decodeURIComponent(totalAmount)
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,8 +20,8 @@ function Order () {
     phoneNo: '',
     address: '',
     district: '',
-    totalprice: '',
-    orderItems: '',
+    totalprice: decodedtotalAmount,
+    orderItems: decodedProductName,
   });
 
   const handleChange = (e) => {
@@ -44,14 +48,15 @@ function Order () {
         phoneNo: '',
         address: '',
         district: '',
-        totalprice: '',
-        orderItems: '',
+        totalprice: decodedtotalAmount,
+        orderItems: decodedProductName,
       });
     } catch (error) {
       console.error('Error submitting contact request:', error.message);
       toast.error('Invalid process');
     }
   };
+  
 
   const handleClear = () => {
     setFormData({
@@ -60,8 +65,8 @@ function Order () {
       phoneNo: '',
       address: '',
       district: '',
-      totalprice: '',
-      orderItems: '',
+      totalprice: decodedtotalAmount,
+      orderItems: decodedProductName,
     });
   }
 
@@ -76,11 +81,19 @@ function Order () {
       
       <div className="item">
         <p>Order Items</p>
-        <textarea className='textarea' rows="4" name="orderItems" value={formData.orderItems} onChange={handleChange} required></textarea>
+        <textarea className='textarea' rows="4" name="orderItems"  value={decodedProductName}   onChange={(e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      name: e.target.value,
+    }));}} required></textarea>
       </div>
       <div className="item">
         <p>Total Price</p>
-        <input className='inputorder' type="text" name="totalprice" value={formData.totalprice} onChange={handleChange} required/>
+        <input className='inputorder' type="text" name="totalprice"  value={ decodedtotalAmount}   onChange={(e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      name: e.target.value,
+    })); }}required/>
       </div>
       <div className="item">
         <p>Name</p>

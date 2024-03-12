@@ -64,9 +64,12 @@ function ShoppingCart({
           );
         })}
       </select>
-      <button className="btn-customize" >
-        <Link to="/customizeform" style={{ textDecoration: 'none', color: "#000" }}>Cuctomize</Link>
-        </button>
+      <button className="btn-customize">
+  <Link to={`/customizeform/${product.name}`} style={{ textDecoration: 'none', color: "#000" }}>
+    Customize
+  </Link>
+</button>
+
       <button
         className="btn remove-btn"
         onClick={() => onProductRemove(product)}
@@ -80,9 +83,24 @@ function ShoppingCart({
               <span>Total Amount: ${totalAmount}</span>
             </div>
           )}
-          {products && products.length > 0 && (
-            <button className="btn checkout-btn">Proceed to checkout</button>
-          )}
+
+{products && products.length > 0 && (
+  <button className="btn checkout-btn">
+  <Link
+    to={{
+      pathname: `/order/${encodeURIComponent(products.map(product => product.name).join(','))}/${encodeURIComponent(totalAmount)}`,
+      state: {
+        orderItems: products,
+        totalprice: totalAmount,
+      },
+    }}
+    style={{ textDecoration: 'none', color: "#000" }}
+  >
+    Proceed to checkout
+  </Link></button>
+)}
+
+
         </div>
         
       </div>

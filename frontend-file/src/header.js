@@ -188,14 +188,14 @@ function Header() {
 
   const products = [
     {
-      id: 1,
-      name: "Brown Flower Vase",
-      price: 600,
+      id: 7,
+      name: "Tree wall hanger",
+      price: 550,
     },
     {
-      id: 2,
-      name: "Stripe Vase",
-      price: 400,
+      id: 5,
+      name: "Stripe vase",
+      price: 450,
     },
     {
       id: 3,
@@ -206,6 +206,16 @@ function Header() {
       id: 4,
       name: "Big Jaar Vase with quilled flowers and leaves",
       price: 750,
+    },
+    {
+      id: 1,
+      name: "Brown Flower Vase",
+      price: 600,
+    },
+    {
+      id: 2,
+      name: "Stripe Vase",
+      price: 400,
     },
     {
       id: 5,
@@ -351,6 +361,14 @@ function Header() {
     <span className="product-count">{productsInCart.length}</span>
   )}
 </button>
+{/* <button className="btn shopping-cart-btn" onClick={() => {setCartVisible(true);
+                if (products.length > 0) { addProductToCart(products[0]);}
+              }}>
+              <GiShoppingBag size={24} />
+              {productsInCart.length > 0 && (
+                <span className="product-count">{productsInCart.length}</span>
+              )}
+            </button> */}
 
 
             {!loggedIn ? (
@@ -365,7 +383,7 @@ function Header() {
                     alt="Login"
                     style={{ height: '17px', width: '17px' }}
                   />{' '}
-                  Get Started
+                  Login
                 </Link>
               </button>
             ) : (
