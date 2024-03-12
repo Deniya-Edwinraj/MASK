@@ -9,7 +9,7 @@ const router = express.Router();
 import {isAdmin,protect} from '../../middleware/authMiddlesware.js';
 
 
-router.post("/new", protect, createContactMessage);
+router.post("/new", createContactMessage);
 router.get('/',getallContact);
 router.get('/:id',protect,isAdmin,getSingleContact);
 

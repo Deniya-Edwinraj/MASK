@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './App.css'
 import Header from './Header'
 import Sidebar from './Sidebar'
@@ -23,6 +26,8 @@ function App() {
   }
 
   return (
+    <>
+    <ToastContainer />
     <Router>
     <div className='grid-container'>
       <Header OpenSidebar={OpenSidebar}/>
@@ -45,6 +50,7 @@ function App() {
 
     </div>
     </Router>
+    </>
   )
 }
 

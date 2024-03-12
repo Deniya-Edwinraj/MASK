@@ -87,8 +87,7 @@
 
 import './customers.css';
 import React, { useEffect, useState } from 'react';
-
-// ... (other imports and styles)
+import { toast } from 'react-toastify';
 
 const CustomerTable = () => {
   const [customers, setCustomers] = useState([]);
@@ -112,11 +111,17 @@ const CustomerTable = () => {
       })
       .then((data) => {
         console.log(data.message); // Log the success message
+        toast.success('User disabled successfully');
+        // Refresh the user list after disabling
+        fetchUserList();
       })
-      .catch((error) => console.error('Error blocking user:', error));
+      .catch((error) => {
+        console.error('Error blocking user:', error);
+        toast.error('Error disabling user');
+      });
   };
 
-  useEffect(() => {
+  const fetchUserList = () => {
     const token = 'abc123';
 
     fetch('http://localhost:5000/api/users/all-users', {
@@ -132,7 +137,12 @@ const CustomerTable = () => {
       })
       .then((data) => setCustomers(data))
       .catch((error) => console.error('Error fetching data:', error));
+  };
+
+  useEffect(() => {
+    fetchUserList();
   }, []);
+
 
   return (
     <table>

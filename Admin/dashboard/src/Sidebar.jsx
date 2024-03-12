@@ -11,7 +11,9 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
+                <Link to="http://localhost:3000/" style={{ textDecoration: 'none', color:'black' }} className='side-link'>
                 <BsCart3  className='icon_header'/> MASK
+                </Link>
             </div>
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>

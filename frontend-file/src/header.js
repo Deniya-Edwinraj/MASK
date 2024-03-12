@@ -174,114 +174,118 @@
 
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import ShoppingCart from './cart';
-import Product from './dec-orn';
+import ShoppingCart from './cart.js';
 import { GiShoppingBag } from 'react-icons/gi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Header({ products }) {
-  const navigate= useNavigate();
+function Header() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [cartVisibility, setCartVisibility] = useState(false);
+  const [cartsVisibilty, setCartVisible] = useState(false);
   const [productsInCart, setProductsInCart] = useState(
-    JSON.parse(localStorage.getItem('shopping-cart')) || []
+    JSON.parse(localStorage.getItem("shopping-cart")) || []
   );
 
+  const products = [
+    {
+      id: 1,
+      name: "Brown Flower Vase",
+      price: 600,
+    },
+    {
+      id: 2,
+      name: "Stripe Vase",
+      price: 400,
+    },
+    {
+      id: 3,
+      name: "Round Roll Vase",
+      price: 420,
+    }
+    ,{
+      id: 4,
+      name: "Big Jaar Vase with quilled flowers and leaves",
+      price: 750,
+    },
+    {
+      id: 5,
+      name: "Stripe vase",
+      price: 450,
+    },
+    {
+      id: 6,
+      name: "Cuboid Vase",
+      price: 500,
+    },
+    {
+      id: 7,
+      name: "Tree wall hanger",
+      price: 550,
+    }
+  ];
+
   useEffect(() => {
-    localStorage.setItem('shopping-cart', JSON.stringify(productsInCart));
+    localStorage.setItem("shopping-cart", JSON.stringify(productsInCart));
   }, [productsInCart]);
 
-  const addProductToCart = (productName, productPrice, productImage) => {
+  const addProductToCart = (product) => {
     const newProduct = {
-      id: productsInCart.length + 1,
-      name: productName,
-      price: productPrice,
-      image: productImage,
+      ...product,
       count: 1,
     };
     setProductsInCart([...productsInCart, newProduct]);
     toast.success('Product added to cart');
   };
-
-  const onQuantityChange = (productId, count) => {
-    setProductsInCart((oldState) => {
-      const updatedCart = oldState.map((item) =>
-        item.id === productId ? { ...item, count } : item
-      );
-      return updatedCart;
+  const handleQuantityChange = (productId, count) => {
+    setProductsInCart((prevProducts) => {
+      const updatedProducts = prevProducts.map((product) => {
+        if (product.id === productId) {
+          return { ...product, count };
+        }
+        return product;
+      });
+      return updatedProducts;
     });
   };
 
-  const onProductRemove = (product) => {
-    setProductsInCart((oldState) =>
-      oldState.filter((item) => item.id !== product.id)
+  const handleProductRemove = (product) => {
+    setProductsInCart((prevProducts) =>
+      prevProducts.filter((p) => p.id !== product.id)
     );
+    toast.success(`${product.name} removed from cart`);
   };
 
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem('loggedIn');
     if (isLoggedIn) {
       setLoggedIn(true);
-      const userEmail = sessionStorage.getItem('userEmail');
-      if (userEmail === 'deniyaedwinraj@gmail.com') {
+      const userRole = sessionStorage.getItem('userRole');
+      if (userRole === 'admin') {
         setIsAdmin(true);
       }
     }
   }, []);
-  
 
   const handleLogin = () => {
     sessionStorage.setItem('loggedIn', true);
     setLoggedIn(true);
   };
 
-  const handleLogout = async () => {
-    try {
-      // Make a request to the backend logout endpoint
-      const response = await fetch('http://localhost:5000/api/users/logout', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        // Clear local and session storage
-        sessionStorage.removeItem('loggedIn');
-        // You may want to clear other user-related data as well
-
-        // Display success message
-        console.log ('logout successfully');
-        toast.success('Logout successful');
-        navigate('/');
-        
-
-        // Update the state or redirect to the login page
-        setLoggedIn(false);
-      } else {
-        // Handle errors or display an error message
-        console.error('Logout failed:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('Logout error:', error.message);
-    }
-  };
-
-  const handleCartVisibility = () => {
-    setCartVisibility((prevVisibility) => !prevVisibility);
+  const handleLogout = () => {
+    sessionStorage.removeItem('loggedIn');
+    setLoggedIn(false);
+    toast.success('Logout successful');
   };
 
   return (
     <div className="Header">
-
-      <ShoppingCart
-        visibility={cartVisibility}
+<ShoppingCart
+        visibilty={cartsVisibilty}
         products={productsInCart}
-        onClose={() => setCartVisibility(false)}
-        onQuantityChange={onQuantityChange}
-        onProductRemove={onProductRemove}
+        onClose={() => setCartVisible(false)}
+        onQuantityChange={handleQuantityChange}
+        onProductRemove={handleProductRemove}
+        addProductToCart={addProductToCart} // pass the addProductToCart function as a prop
       />
 
       <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
@@ -332,26 +336,22 @@ function Header({ products }) {
                   </a>
                 </Link>
               </li>
-              {loggedIn && isAdmin && (
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              href="http://localhost:5173/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Dashboard
-            </a>
-          </li>
-        )}
+              {isAdmin && (
+                <li className="nav-item">
+                 <a className="nav-link" href="http://localhost:5173/" target="_blank" rel="noopener noreferrer"  >
+                  Dashboard
+                 </a>
+                </li>
+              )}
             </ul>
 
-          <button className="btn shopping-cart-btn" onClick={handleCartVisibility} >
-            <GiShoppingBag size={24} />
-             {productsInCart.length > 0 && (
-              <span className="product-count">{productsInCart.length}</span>
-            )}
-          </button>
+            <button className="btn shopping-cart-btn" onClick={() => setCartVisible(true)}>
+  <GiShoppingBag size={24} />
+  {productsInCart.length > 0 && (
+    <span className="product-count">{productsInCart.length}</span>
+  )}
+</button>
+
 
             {!loggedIn ? (
               <button
@@ -380,7 +380,6 @@ function Header({ products }) {
           </div>
         </div>
       </nav>
-      {/* <Product addProductToCart={addProductToCart} /> */}
     </div>
   );
 }

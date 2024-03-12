@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Payment from './payment.js';
 
 
-const stripePromise = loadStripe('pk_test_51Oomx3GUJNDaDPYQbQyC2v4Rv4hugaqxIslqFbJvG7XsLK9X2DTdq0XjLsOYB68OxeYugd2RjMJSXXmNO68MG4Ge00xHctJzbP');
+const stripePromise = loadStripe('pk_test_51Ora6CRqx8Fsqr19a3PJmZayJeMu6krTrWFgTcIn5Is7sYiTi7fLMKHvtfoxuisvASju5uNm5BzOaDjIv0C7AXY800un9AdSyi');
 const PaymentHead = () => {
   return (
     <>

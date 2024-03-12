@@ -101,8 +101,9 @@ function Login() {
   
       if (response.ok) {
         const data = await response.json();
-        const token = data.token;
+        const token = response.data;
         localStorage.setItem('token', token);
+      
   
         console.log('Login successful', data);
   

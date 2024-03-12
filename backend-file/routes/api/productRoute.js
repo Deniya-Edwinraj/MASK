@@ -18,7 +18,7 @@ router.get("/:id", getaProduct);
 router.get("/", getProducts);
 
 //Admin Routes
-router.put("/:id",protect,isAdmin, updateProduct);
+router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.post("/",upload.single('image'), createProduct);
 

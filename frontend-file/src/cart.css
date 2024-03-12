@@ -105,3 +105,26 @@
 .remove-btn:hover{
 	color: #817201;
 }
+.btn-customize{
+	background-color: #FFD700;
+	padding: 10px 20px;
+	font-size: 1rem;
+	color: #000;
+	align-self: center;
+	margin: 2rem 0;
+	border-radius: 5px;
+	border: none;
+}
+.btn-customize:hover{
+	background-color: #817201;
+}
+.total-amount{
+	background-color: #FFD700;
+	border-radius: 10px;
+	width: 22%;
+	height: 70px;
+	padding: 20px;
+	align-items: center;
+	justify-items: center;
+	font-size: 20px;
+}

@@ -12,13 +12,13 @@ return(
     <img src={require("./Assests/img/dec hero.jpg")} alt='hero'/>
   </div>
   <div className="all-text-product">
-    <h2>Are You Looking For The <br/>Meticulous Decorations</h2>
-   <p><span>MASK</span> provide you with the paper flower decorations for celebrations like
+    <h2>Are You Looking For The <br/>Meticulous Decorations</h2><br/>
+   <p><span>MASK</span> provide you with the paper flower decorations for celebrations like 
     <ul>
-      <li>Birthday Party</li>
-      <li>Wedding</li>
-      <li>Family get-together</li>
-      <li>Reuions</li>
+      <li>&#8900; Birthday Party</li>
+      <li>&#8900; Wedding</li>
+      <li>&#8900; Family get-together</li>
+      <li>&#8900; Reuions</li>
     </ul>
   </p>
    <h3>Join us for a unique experience !</h3>

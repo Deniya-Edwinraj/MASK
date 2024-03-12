@@ -47,10 +47,12 @@
 
 import React, { useState } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { Link, useNavigate } from "react-router-dom";
+
 
 function AddVendorForm() {
+  const navigate = useNavigate();
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -74,7 +76,8 @@ function AddVendorForm() {
         try {
           const response = await axios.post('http://localhost:5000/api/vendor/new', formData, {withCredentials:true});
           console.log('Message send successfully:', response.data);
-          toast.success('Booking created succssfully');
+          toast.success('Vendor created succssfully');
+          navigate('/vendors');
       
           setFormData({
             name: '',
@@ -86,6 +89,8 @@ function AddVendorForm() {
           console.error('Error submitting request:', error.message);
           toast.error('Invalid process');
         }
+
+
       };
       const handleClear = () => {
         setFormData({

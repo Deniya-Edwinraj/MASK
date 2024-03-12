@@ -175,9 +175,15 @@ function Booking() {
   };
 
   const handleSubmit = async (e) => {
+    const token = 'abc123';
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/booking/new', formData, { withCredentials: true });
+      const response = await axios.post('http://localhost:5000/api/booking/new', formData, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log('Message sent successfully:', response.data);
       toast.success('Booking created successfully');
       // Optionally, you can clear the form after a successful submission

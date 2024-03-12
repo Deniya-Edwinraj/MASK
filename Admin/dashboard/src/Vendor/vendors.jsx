@@ -26,7 +26,7 @@ const deleteVendor = async (id) => {
     await fetch(`http://localhost:5000/api/vendor/${id}`, {
       method: 'DELETE',
     });
-    console.log('Vendor deleted successfully:', response.data);
+    
     toast.success('Vendor deleted successfully');
     navigate('/vendors');
 

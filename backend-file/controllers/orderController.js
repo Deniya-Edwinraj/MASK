@@ -41,17 +41,17 @@ const newOrder =  asyncHandler( async (req, res, next) => {
 });
 
 //Get Single Order - api/order/:id
-const getSingleOrder = asyncHandler(async (req, res, next) => {
-    const order = await Order.findById(req.params.id).populate('user', 'name email');
-    if(!order) {
-        return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404))
-    }
+// const getSingleOrder = asyncHandler(async (req, res, next) => {
+//     const order = await Order.findById(req.params.id).populate('user', 'name email');
+//     if(!order) {
+//         return next(new ErrorHandler(`Order not found with this id: ${req.params.id}`, 404))
+//     }
 
-    res.status(200).json({
-        success: true,
-        order
-    })
-});
+//     res.status(200).json({
+//         success: true,
+//         order
+//     })
+// });
 
 //Get Loggedin User Orders - /api/order/
 const myOrders = asyncHandler(async (req, res, next) => {
@@ -66,7 +66,7 @@ const myOrders = asyncHandler(async (req, res, next) => {
 //Admin: Get All Orders - api/order/orders
 const getAllOrders = async (req, res) => {
     try {
-      const orders = await Order.find().populate('user').populate('orderItems.product');
+      const orders = await Order.find().populate('orderItems.product');
   
       let totalAmount = 0;
   
@@ -129,7 +129,7 @@ const deleteOrder = asyncHandler(async (req, res, next) => {
 
 export { 
     newOrder,
-    getSingleOrder,
+    // getSingleOrder,
     myOrders,
     getAllOrders,
     updateOrder,

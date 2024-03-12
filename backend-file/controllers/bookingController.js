@@ -17,7 +17,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             phoneNo,
             address,
             district,
-            status,
+            // status,
             paymentInfo,
         } = req.body;
 
@@ -34,7 +34,7 @@ const newBooking = asyncHandler(async (req, res, next) => {
             phoneNo,
             address,
             district,
-            status,
+            // status,
             paymentInfo,
         });
         if (booking.errors) {
@@ -81,17 +81,17 @@ const newBooking = asyncHandler(async (req, res, next) => {
 
 
 //Get Single Booking - api/booking/:id
-const getSingleBooking = asyncHandler(async (req, res, next) => {
-    const booking = await Booking.findById(req.params.id);
-    if(!booking) {
-        return next(new ErrorHandler(`Booking not found with this id: ${req.params.id}`, 404))
-    }
+// const getSingleBooking = asyncHandler(async (req, res, next) => {
+//     const booking = await Booking.findById(req.params.id);
+//     if(!booking) {
+//         return next(new ErrorHandler(`Booking not found with this id: ${req.params.id}`, 404))
+//     }
 
-    res.status(200).json({
-        success: true,
-        booking
-    })
-});
+//     res.status(200).json({
+//         success: true,
+//         booking
+//     })
+// });
 
 //Get Loggedin User Bookings - /api/booking/
 const myBooking = asyncHandler(async (req, res, next) => {
@@ -156,7 +156,7 @@ const deleteBooking = asyncHandler(async (req, res, next) => {
 
 export {
     newBooking,
-    getSingleBooking,
+    // getSingleBooking,
     myBooking,
     getAllBookings,
     updateBooking,

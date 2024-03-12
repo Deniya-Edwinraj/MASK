@@ -189,7 +189,7 @@
   .all-text{
   width: 800px;
   max-width: 100%;
-  background: rgba(0,0,0,0.4);
+  background: #000;
   padding: 70px;
   align-items: center;
   justify-content: center;

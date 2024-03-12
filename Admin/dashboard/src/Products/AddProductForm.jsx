@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import './Products.css';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 function AddProductForm() {
-    const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
       name: '',
       price: '',
     });
@@ -27,7 +28,7 @@ function AddProductForm() {
           const response = await axios.post('http://localhost:5000/api/product', formData, {withCredentials:true});
           console.log('Message send successfully:', response.data);
           toast.success('Product created succssfully');
-      
+          navigate('/products');
           setFormData({
             name: '',
             price: '',

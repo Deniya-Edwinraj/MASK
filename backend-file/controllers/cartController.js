@@ -1,3 +1,5 @@
+import asyncHandler from 'express-async-handler';
+
 const addToCart = asyncHandler(async (req, res) => {
     const { userId, productId, quantity } = req.body;
   

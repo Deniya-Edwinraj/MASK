@@ -96,30 +96,7 @@ const handleSubmit = async (e) => {
 
 {/* <!-- Contact Form --> */}
 <div className="contact-section" id="contact">
-  {/* <form className="contactform" action="/api/contact" method="post">
-    <div className="banner-map">
-      <iframe allowfullscreen src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3933.394322960658!2d80.03600307598626!3d9.647307990440883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMzgnNTAuMyJOIDgwwrAwMicxOC45IkU!5e0!3m2!1sen!2slk!4v1706866217815!5m2!1sen!2slk" title="map" style={{ width:'100%',height:'210px', border:'0',loading:'lazy',referrerpolicy:'no-referrer-when-downgrade'}}></iframe>
-    </div>
-    <div className="item">
-      <p className="item-name">Name</p>
-      <input type="text" name="name" required/>
-    </div>
-    <div className="item">
-      <p className="item-name">Email</p>
-      <input type="email" name="email" required/>
-    </div>
-    <div className="item">
-      <p className="item-name">Phone Number</p>
-      <input type="text" name="phone-no" required/>
-    </div>
-    <div className="item">
-      <p className="item-name">Messages</p>
-      <textarea rows="4" required></textarea>
-    </div>
-    <div className="btn-block">
-      <button className="btn4" type="submit" href="/">SEND MESSAGE</button>
-    </div>
-    </form> */}
+
 <form className="contactform"  onSubmit={handleSubmit}>
 <div className="banner-map">
       <iframe allowfullscreen src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3933.394322960658!2d80.03600307598626!3d9.647307990440883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwMzgnNTAuMyJOIDgwwrAwMicxOC45IkU!5e0!3m2!1sen!2slk!4v1706866217815!5m2!1sen!2slk" title="map" style={{ width:'100%',height:'150px', border:'0',loading:'lazy',referrerpolicy:'no-referrer-when-downgrade'}}></iframe>

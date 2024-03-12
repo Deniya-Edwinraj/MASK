@@ -179,7 +179,7 @@ function Customize({item, handleClick}) {
     try {
       const response = await axios.post('http://localhost:5000/api/customize/new', formData, { withCredentials: true });
       console.log('Message sent successfully:', response.data);
-      toast.success('Created successfully');
+      toast.success('Customized successfully');
       navigate('/product');
 
       setFormData({
@@ -245,7 +245,7 @@ function Customize({item, handleClick}) {
             
               <div class="btn-block">
                 {/* <Link to='/product'> */}
-               <button className="btn5" type="submit" onClick={()=>handleClick(item)}>Order</button>
+               <button className="btn5" type="submit" >Customize</button>
                {/* </Link> */}
              </div>
           </form>

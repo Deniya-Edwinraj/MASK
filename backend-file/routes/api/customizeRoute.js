@@ -9,7 +9,7 @@ const router = express.Router();
 import {isAdmin,protect} from '../../middleware/authMiddlesware.js';
 
 
-router.post("/new", protect, createCustomize);
+router.post("/new", createCustomize);
 router.get('/' ,getallCustomize);
 router.get('/:id',protect,isAdmin,getaCustomize);
 

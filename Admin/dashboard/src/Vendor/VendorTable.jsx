@@ -18,7 +18,7 @@ export default class Vendor extends Component {
       .then(data => {
         this.setState({ vendors: data });
         console.log('Vendor successfully:');
-        toast.success('Vendor created successfully');
+        // toast.success('Vendor created successfully');
       })
       .catch(error => {
         console.log(error);

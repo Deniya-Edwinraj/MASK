@@ -1,5 +1,5 @@
-const express = require('express');
-const addToCart = require('../controllers/addToCart');
+import express from 'express';
+import addToCart from "../../controllers/cartController.js";
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

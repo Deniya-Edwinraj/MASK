@@ -6,37 +6,37 @@ import './Order.css';
 
 function Orders() {
 
-const usersData = [
+const ordersData = [
     // {id:1,name:'Logesh',username:'jvlogesh'},
     // {id:2,name:'Ramesh',username:'rameshtr'},
     // {id:3,name:'Daniel',username:'danielradcliff'},
 ];
 
-const addUser = (order)=>{
+const addOrder = (order)=>{
     order.id = orders.length + 1;
     setOrders([...orders,order])
 }
-const deleteUser = (id)=>{
+const deleteOrder = (id)=>{
     setOrders(orders.filter((order)=>order.id!==id))
     setEditing(false);
 }
 
-    const [orders,setOrders] = useState(usersData);
+    const [orders,setOrders] = useState(ordersData);
     const [editing,setEditing] = useState(false)
 
 
     const initialFormState = {id:null,name:'',username:''}
 
-    const [currentUser,setCurrentUser] = useState(initialFormState);
+    const [currentOrder,setCurrentOrder] = useState(initialFormState);
 
     const editRow = (order)=>{
         setEditing(true);
-        setCurrentUser({id:order.id,name:order.name,username:order.username});
+        setCurrentOrder({id:order.id,name:order.name,username:order.username});
     }
 
-    const updateUser = (id,updatedUser)=>{
+    const updateOrder = (id,updatedOrder)=>{
         setEditing(false);
-        setOrders(orders.map((order)=>(order.id===id?updatedUser:order)))
+        setOrders(orders.map((order)=>(order.id===id?updatedOrder:order)))
     }
 
   return (
@@ -46,11 +46,11 @@ const deleteUser = (id)=>{
         <div className="flex-large">
             {editing?(<div>
                 <h2>Edit User</h2>
-                <EditOrderForm 
+                {/* <EditOrderForm 
                     setEditing={setEditing}
-                    currentUser={currentUser}
-                    updateUser={updateUser}
-                />
+                    currentOrder={currentOrder}
+                    updateOrder={updateOrder}
+                /> */}
             </div>):(<div>
                 {/* <h2>Add Vendor</h2>
           <AddVendorForm addUser={addUser} /> */}
@@ -60,7 +60,7 @@ const deleteUser = (id)=>{
         </div>
         <div className="flex-large">
           {/* <h2>View Orders</h2> */}
-          <OrderTable editRow={editRow} deleteUser={deleteUser} orders={orders} />
+          <OrderTable editRow={editRow}  orders={orders} />
         </div>
       </div>
     </div>

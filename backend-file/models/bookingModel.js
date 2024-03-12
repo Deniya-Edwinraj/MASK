@@ -43,15 +43,15 @@ const bookingSchema = mongoose.Schema({
     //         required: true
     //     }
     // },
-    status: {
-        type: String,
-        default: 'Processing'
-    },
+    // status: {
+    //     type: String,
+    //     default: 'Processing'
+    // },
     paymentInfo: {
         type: String
     },
     date_of_delivery: {
-        type: Date
+        type: Date,
     }
 }, { timestamps: true });
 
