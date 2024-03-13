@@ -100,7 +100,7 @@ const BookingTable = () => {
                         <td>
                             <select className="browser-default custom-select">
                                 <option>Status</option>
-                                <option value="1" tyle={{color:"green"}}>Done</option>
+                                <option value="1" style={{color:"green"}}>Done</option>
                                 <option value="2" style={{color:"orange"}}>On process</option>
                                 <option value="3" style={{color:"red"}}>Rejected</option>
                             </select>

@@ -96,7 +96,7 @@ function ShoppingCart({
     }}
     style={{ textDecoration: 'none', color: "#000" }}
   >
-    Proceed to checkout
+    Order
   </Link></button>
 )}
 

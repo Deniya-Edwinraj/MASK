@@ -120,11 +120,12 @@ const OrderTable = () => {
         {orders.length > 0 ? (
           orders.map((order) => (
             <tr key={order._id}>
-              <td>
+              {/* <td>
                 {order.order_items && order.order_items.map((item, index) => (
-                  <div key={index}>{item.name}</div>
+                  <div key={index}>{order.orderItems}</div>
                 ))}
-              </td>
+              </td> */}
+              <td>{order.orderItems}</td>
               <td>{order.totalprice}</td>
               <td>{order.name}</td>
               <td>{order.email}</td>
