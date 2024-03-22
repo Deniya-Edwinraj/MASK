@@ -20,7 +20,7 @@ import contactRouter from './routes/api/contactRoute.js';
 import bookingRouter from './routes/api/bookingRoute.js';
 import customizeRouter from './routes/api/customizeRoute.js';
 import vendorRouter from './routes/api/vendorRoute.js';
-import paymentRouter from './routes/api/paymentRoute.js';
+// import paymentRouter from './routes/api/paymentRoute.js';
 import addtocartRouter from './routes/api/cartRoute.js'
 
 import cors from 'cors';
@@ -28,6 +28,12 @@ import { isAdmin } from './middleware/authMiddlesware.js';
 
 const corsInstance = cors({ origin: ['http://localhost:3000', 'http://localhost:5173'],credentials: true});
 app.use(corsInstance);
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use (morgan("dev"));
 app.use(express.json());
@@ -45,7 +51,7 @@ app.use('/api/contact',contactRouter);
 app.use('/api/booking',bookingRouter);
 app.use('/api/customize',customizeRouter);
 app.use('/api/vendor',vendorRouter);
-app.use('/api/payment',paymentRouter);
+// app.use('/api/payment',paymentRouter);
 app.use('/api/cart',addtocartRouter);
 
 if (process.env.NODE_ENV === 'production') {

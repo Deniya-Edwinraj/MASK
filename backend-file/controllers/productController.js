@@ -19,7 +19,6 @@ import multer from 'multer';
 // });
 const createProduct = asyncHandler(async (req, res) => {
   try {
-    // Image upload logic
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "MASK"
@@ -30,28 +29,57 @@ const createProduct = asyncHandler(async (req, res) => {
           public_id: result.public_id,
           secure_url: result.secure_url,
         },
-        // ... add more images if needed
       ];
     }
 
-    // Slug creation logic
     if (req.body.name) {
       req.body.slug = slugify(req.body.name);
     }
 
-    // Create the product with image information
     const newProduct = await Product.create(req.body);
 
-    // Respond with success and include image details
     res.json({
       ...newProduct._doc,
-      image: newProduct.image, // Assuming image is an array, modify based on your structure
+      image: newProduct.image, 
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+// const createProduct = asyncHandler(async (req, res) => {
+//   try {
+//     let image = null;
+//     if (req.body.image) {
+//       image = {
+//         data: Buffer.from(req.body.image, 'base64'),
+//         contentType: 'image/png'  
+//       };
+//     }
+
+//     if (req.body.name) {
+//       req.body.slug = slugify(req.body.name);
+//     }
+
+//     const productData = {
+//       name: req.body.name,
+//       category: req.body.category,
+//       price: req.body.price,
+//       image: image,
+//       sold: req.body.sold
+//     };
+
+//     const newProduct = await Product.create(productData);
+
+//     res.json(newProduct);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
+
+
 
 
 // update product

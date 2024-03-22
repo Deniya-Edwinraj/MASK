@@ -31,6 +31,10 @@ const orderSchema = mongoose.Schema({
             required: true,
             ref: 'Product'
         },
+        paymentMethod: {
+            type: String,
+            required: true,
+        },
     status: {
         type: String,
         default: 'Processing'

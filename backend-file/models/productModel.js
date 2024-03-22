@@ -14,10 +14,10 @@ const productSchema= mongoose.Schema(
         type: String,
         require: true
     },
-    image: {
-        public_id: String,
-        secure_url: String,
-    },
+    // image: {
+    //     data: Buffer,
+    //     contentType: String,
+    // },
     sold: {
         type: Number,
         default: 0,
